@@ -1,0 +1,239 @@
+{
+  "format": "page",
+  "id": "accomodation_single",
+  "label": "Accommodation Single",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "heading": {
+        "type": "Text",
+        "config": {
+          "label": "Heading",
+          "placeholder": ""
+        }
+      },
+      "ical": {
+        "type": "Text",
+        "config": {
+          "label": "iCal",
+          "placeholder": ""
+        }
+      },
+      "cover_image": {
+        "type": "Image",
+        "config": {
+          "label": "Cover Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "guests": {
+        "type": "Number",
+        "config": {
+          "label": "Guests",
+          "placeholder": ""
+        }
+      },
+      "bedrooms": {
+        "type": "Number",
+        "config": {
+          "label": "Bedrooms",
+          "placeholder": ""
+        }
+      },
+      "beds": {
+        "type": "Number",
+        "config": {
+          "label": "Beds",
+          "placeholder": ""
+        }
+      },
+      "bathrooms": {
+        "type": "Number",
+        "config": {
+          "label": "Bathrooms",
+          "placeholder": ""
+        }
+      },
+      "description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Description",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,strong,em,hyperlink,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "amenities": {
+        "type": "Group",
+        "config": {
+          "label": "Amenities",
+          "repeat": true,
+          "fields": {
+            "amenity": {
+              "type": "Text",
+              "config": {
+                "label": "Amenity",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
+      "price_from": {
+        "type": "Number",
+        "config": {
+          "label": "price from",
+          "placeholder": ""
+        }
+      },
+      "distances": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Distances",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "house_rules": {
+        "type": "StructuredText",
+        "config": {
+          "label": "House Rules",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "summary": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Summary",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "important_information": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Important Information",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,embed,list-item,o-list-item,rtl,hyperlink"
+        }
+      },
+      "faq": {
+        "type": "Group",
+        "config": {
+          "label": "FAQ",
+          "repeat": true,
+          "fields": {
+            "question": {
+              "type": "Text",
+              "config": {
+                "label": "Question",
+                "placeholder": ""
+              }
+            },
+            "answer": {
+              "type": "Text",
+              "config": {
+                "label": "Answer",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
+      "gallery": {
+        "type": "Group",
+        "config": {
+          "label": "Gallery",
+          "repeat": true,
+          "fields": {
+            "photo": {
+              "type": "Image",
+              "config": {
+                "label": "Photo",
+                "constraint": {},
+                "thumbnails": []
+              }
+            }
+          }
+        }
+      },
+      "pricing": {
+        "type": "Group",
+        "config": {
+          "label": "Pricing",
+          "repeat": true,
+          "fields": {
+            "period_start": {
+              "type": "Date",
+              "config": {
+                "label": "Period start",
+                "placeholder": ""
+              }
+            },
+            "period_end": {
+              "type": "Date",
+              "config": {
+                "label": "Period end",
+                "placeholder": ""
+              }
+            },
+            "price": {
+              "type": "Number",
+              "config": {
+                "label": "Price",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      }
+    }
+  }
+}

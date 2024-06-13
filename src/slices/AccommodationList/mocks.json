@@ -1,0 +1,24 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "changing",
+				"type": "Text"
+			},
+			"limit": {
+				"__TYPE__": "FieldContent",
+				"value": "No limit",
+				"type": "Select"
+			},
+			"overtitle": {
+				"__TYPE__": "FieldContent",
+				"value": "guide",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]
