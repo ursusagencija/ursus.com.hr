@@ -142,7 +142,7 @@ const Header = ({
                             <LinkBuilderWithLocale path={`/transfers`} className="nav-link nav-link-sm" onClick={() => setToggle(false)}>{locale === 'hr' ? "Transfer" : "Transfers"}</LinkBuilderWithLocale>
                         </li>
                         <li className="group/step-one">
-                            <LinkBuilderWithLocale path={`/za-iznajmljivace`} className="nav-link nav-link-sm" onClick={() => setToggle(false)}>{locale === 'hr' ? "Za iznajmljivače" : "For renters"}</LinkBuilderWithLocale>
+                            <LinkBuilderWithLocale path={`/for-renters`} className="nav-link nav-link-sm" onClick={() => setToggle(false)}>{locale === 'hr' ? "Za iznajmljivače" : "For renters"}</LinkBuilderWithLocale>
                         </li>
                         <li className="group/step-one">
                             <LinkBuilderWithLocale path={`/about-us`} className="nav-link nav-link-sm" onClick={() => setToggle(false)}>{locale === 'hr' ? "O nama" : "About Us"}</LinkBuilderWithLocale>
