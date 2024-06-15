@@ -73,6 +73,7 @@ export type AboutUsDocument<Lang extends string = string> =
   >;
 
 type AccomodationDocumentDataSlicesSlice =
+  | HeroWithSearchSlice
   | HeroSlice
   | GallerySlice
   | AccomodationListSlice;
@@ -336,17 +337,6 @@ interface AccomodationSingleDocumentData {
   amenities: prismic.GroupField<
     Simplify<AccomodationSingleDocumentDataAmenitiesItem>
   >;
-
-  /**
-   * price from field in *Accommodation Single*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: accomodation_single.price_from
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#number
-   */
-  price_from: prismic.NumberField;
 
   /**
    * Distances field in *Accommodation Single*
@@ -1248,6 +1238,61 @@ type HeroSliceVariation = HeroSliceDefault;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
+ * Primary content in *HeroWithSearch → Default → Primary*
+ */
+export interface HeroWithSearchSliceDefaultPrimary {
+  /**
+   * Heading field in *HeroWithSearch → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_with_search.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Image field in *HeroWithSearch → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_with_search.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for HeroWithSearch Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroWithSearchSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<HeroWithSearchSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *HeroWithSearch*
+ */
+type HeroWithSearchSliceVariation = HeroWithSearchSliceDefault;
+
+/**
+ * HeroWithSearch Shared Slice
+ *
+ * - **API ID**: `hero_with_search`
+ * - **Description**: HeroWithSearch
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroWithSearchSlice = prismic.SharedSlice<
+  "hero_with_search",
+  HeroWithSearchSliceVariation
+>;
+
+/**
  * Primary content in *ImageSlider → Items*
  */
 export interface ImageSliderSliceDefaultItem {
@@ -1416,6 +1461,10 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      HeroWithSearchSlice,
+      HeroWithSearchSliceDefaultPrimary,
+      HeroWithSearchSliceVariation,
+      HeroWithSearchSliceDefault,
       ImageSliderSlice,
       ImageSliderSliceDefaultItem,
       ImageSliderSliceVariation,

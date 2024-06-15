@@ -87,13 +87,6 @@
           }
         }
       },
-      "price_from": {
-        "type": "Number",
-        "config": {
-          "label": "price from",
-          "placeholder": ""
-        }
-      },
       "distances": {
         "type": "StructuredText",
         "config": {

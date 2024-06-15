@@ -6,6 +6,7 @@ export const components = {
   accomodation_list: dynamic(() => import("./AccommodationList")),
   gallery: dynamic(() => import("./Gallery")),
   hero: dynamic(() => import("./Hero")),
+  hero_with_search: dynamic(() => import("./HeroWithSearch")),
   image_slider: dynamic(() => import("./ImageSlider")),
   tour_list: dynamic(() => import("./TourList")),
 };
