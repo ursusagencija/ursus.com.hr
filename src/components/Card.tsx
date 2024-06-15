@@ -48,12 +48,12 @@ const Card = (
                         </span>
                         <span>{people} People</span>
                     </li>
-                        {bedrooms > 0 && <li>
+                        <li>
                             <span className="text-primary-1">
                                 <i className="bi bi-usb-mini" />
                             </span>
-                            <span>{bedrooms} Bedrooms</span>
-                        </li>}
+                            <span>Bedrooms: {bedrooms == 0 ? "Studio" : bedrooms}</span>
+                        </li>
                     </>)}
 
                     {tour && (
