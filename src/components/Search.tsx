@@ -27,7 +27,7 @@ export default function Search() {
 
     return (
         <>
-            <form action="#" className="container lg:mt-20 md:mt-16 absolute left-0 md:left-1/2 md:-translate-x-1/2 bottom-20 md:bottom-28 z-10" autoComplete="off">
+            <form action="#" className="container z-10" autoComplete="off">
                 <div className="flex items-center lg:flex-row flex-col space-y-4 lg:space-y-0 lg:space-x-base">
 
                     <div className="relative  flex-grow lg:w-auto w-full">

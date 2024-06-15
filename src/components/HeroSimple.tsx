@@ -21,9 +21,10 @@ export default function HeroSimple({ image, heading, children }: { image: any, h
                         </div>
                     </div>
                 </div>
+                <div>{children}</div>
             </div>
             <div className='absolute inset-0 from-primary-1/40 to-primary-1/30 bg-gradient-to-r' />
-            {children}
+
         </div>
     )
 }
