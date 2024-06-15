@@ -52,7 +52,7 @@ const Card = (
                             <span className="text-primary-1">
                                 <i className="bi bi-usb-mini" />
                             </span>
-                            <span>{bedrooms == 0 ? "Studio apartment" : bedrooms + " Bedrooms"}</span>
+                            <span>{bedrooms == 0 ? "Studio Apartment" : bedrooms + " Bedrooms"}</span>
                         </li>
                     </>)}
 
