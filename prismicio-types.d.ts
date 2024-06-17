@@ -420,6 +420,18 @@ interface AccomodationSingleDocumentData {
   >;
 
   /**
+   * Is Featured field in *Accommodation Single*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: accomodation_single.isFeatured
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  isFeatured: prismic.BooleanField;
+
+  /**
    * Slice Zone field in *Accommodation Single*
    *
    * - **Field Type**: Slice Zone
@@ -547,7 +559,10 @@ export type ForRentersDocument<Lang extends string = string> =
     Lang
   >;
 
-type HomepageDocumentDataSlicesSlice = AccomodationListSlice | HeroSlice;
+type HomepageDocumentDataSlicesSlice =
+  | TourListSlice
+  | AccomodationListSlice
+  | HeroSlice;
 
 /**
  * Content for homepage documents
@@ -1039,6 +1054,18 @@ interface ToursSingleDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#group
    */
   gallery: prismic.GroupField<Simplify<ToursSingleDocumentDataGalleryItem>>;
+
+  /**
+   * Is Featured field in *Tours Single*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: tours_single.isFeatured
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  isFeatured: prismic.BooleanField;
 
   /**
    * Slice Zone field in *Tours Single*

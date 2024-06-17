@@ -11,6 +11,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "tour_list": {
+              "type": "SharedSlice"
+            },
             "accomodation_list": {
               "type": "SharedSlice"
             },

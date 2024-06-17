@@ -20,55 +20,53 @@ const AccomodationList = async ({ slice }: AccomodationListProps): Promise<JSX.E
   // console.log(accommondations)
 
 
+  const sortedAccommodations = accommodations.sort((a, b) => {
+    if (a.data.isFeatured && !b.data.isFeatured) {
+      return -1;
+    } else if (!a.data.isFeatured && b.data.isFeatured) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+
   return (
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className="py-20"
     >
-
-
-
-
       <div className="container pt-4">
-
-
         <div className="text-center lg:pb-[60px] pb-[40px]">
           <h5 className="section-sub-title-v1 variant-1">{slice.primary.overtitle}</h5>
           <h2 className="section-title-v1">{slice.primary.heading}</h2>
         </div>
 
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-base ">
+          {sortedAccommodations
+            .slice(0, slice.primary.limit !== "No limit" ? parseInt(slice.primary.limit) : undefined)
+            .map((item) => {
+              const lowestPrice = () => {
+                const prices = item.data.pricing.map((period) => period.price ?? 0).filter(Boolean);
+                return Math.min(...prices);
+              };
 
-
-          {accommodations.map((item) => {
-            const lowestPrice = () => {
-              const prices = item.data.pricing.map((period) => period.price ?? 0).filter(Boolean);
-              return Math.min(...prices);
-            };
-
-            return <Card
-              key={item.uid}
-              tour={false}
-              title={item.data.heading || "Heading"}
-              img={item.data.cover_image.url || ""}
-              price={lowestPrice().toString()}
-              bedrooms={item.data.bedrooms || 0}
-              people={item.data.guests || 0}
-              href={`/accommodation/${item.uid}`}
-            />
-          }
-          )}
-
+              return (
+                <Card
+                  key={item.uid}
+                  tour={false}
+                  title={item.data.heading || "Heading"}
+                  img={item.data.cover_image.url || ""}
+                  price={lowestPrice().toString()}
+                  bedrooms={item.data.bedrooms || 0}
+                  people={item.data.guests || 0}
+                  href={`/accommodation/${item.uid}`}
+                />
+              );
+            })}
         </div>
       </div>
-
-
-
-
-
-
-    </section >
+    </section>
   );
 };
 
