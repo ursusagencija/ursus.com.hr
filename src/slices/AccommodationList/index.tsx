@@ -3,6 +3,7 @@ import { SliceComponentProps } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import Card from "@/components/Card";
 import { occupiedDatesFromIcal } from "@/lib/utils";
+import { AccommodationSingle } from "@/app/[lang]/accommodation/accommodation-single";
 
 /**
  * Props for `AccomodationList`.
@@ -19,12 +20,12 @@ const AccomodationList = async ({
   const client = createClient();
   const accommodations = await client.getAllByType("accomodation_single");
 
-  const accommodationsWithCalendar = accommodations.map((a) => ({
-    ...a,
-    occupiedDates: occupiedDatesFromIcal(a.data.ical as string),
-  }));
-
-  console.log(accommodationsWithCalendar[0]);
+  const accommodationsWithCalendar = await Promise.all(
+    accommodations.map(async (a) => ({
+      ...a,
+      occupiedDates: await occupiedDatesFromIcal(a.data.ical as string),
+    }))
+  );
 
   return (
     <section
@@ -41,7 +42,8 @@ const AccomodationList = async ({
         </div>
 
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-base ">
-          {accommodations.map((item) => {
+          <AccommodationSingle accommodations={accommodationsWithCalendar} />
+          {/* {accommodations.map((item) => {
             const lowestPrice = () => {
               const prices = item.data.pricing
                 .map((period) => period.price ?? 0)
@@ -61,7 +63,7 @@ const AccomodationList = async ({
                 href={`/accommodation/${item.uid}`}
               />
             );
-          })}
+          })} */}
         </div>
       </div>
     </section>

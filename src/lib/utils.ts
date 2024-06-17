@@ -1,26 +1,32 @@
 import ical from "@/lib/cal-parser";
-import { eachDayOfInterval, subDays } from "date-fns";
+import { eachDayOfInterval, isWithinInterval, subDays } from "date-fns";
 
 export const occupiedDatesFromIcal = async (url: string) => {
-  fetch(url)
-    .then((res) => res.text())
-    .then((text) => {
-      const dates: Date[] = [];
-      ical(text).forEach((e) => {
-        const startDate = e.startDate!;
-        const endDate = subDays(e.endDate!, 1);
+  const dates: Date[] = [];
 
-        const interval = eachDayOfInterval({
-          start: startDate,
-          end: endDate,
-        });
+  const res = await fetch(url);
+  const text = await res.text();
 
-        dates.push(...interval);
-      });
+  ical(text).forEach((e) => {
+    const startDate = e.startDate!;
+    const endDate = subDays(e.endDate!, 1);
 
-      return dates;
-    })
-    .catch((error) => {
-      console.error("Error fetching iCal", error);
+    const interval = eachDayOfInterval({
+      start: startDate,
+      end: endDate,
     });
+
+    dates.push(...interval);
+  });
+
+  return dates;
+};
+
+export const hasOverlap = (
+  range: [Date | null, Date | null],
+  excludedDates: Date[]
+) => {
+  return excludedDates.some((d) =>
+    isWithinInterval(d, { start: range[0]!, end: range[1]! })
+  );
 };
