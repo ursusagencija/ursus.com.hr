@@ -1,11 +1,11 @@
 import ContentBlock from "@/components/ContentBlock";
-import { Content } from "@prismicio/client";
+import { Content as PrismicContent } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 
 /**
  * Props for `Content`.
  */
-export type ContentProps = SliceComponentProps<Content.ContentSlice>;
+export type ContentProps = SliceComponentProps<PrismicContent.ContentSlice>;
 
 /**
  * Component for "Content" Slices.
