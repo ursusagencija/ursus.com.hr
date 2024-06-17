@@ -2,6 +2,8 @@ import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import Card from '@/components/Card';
+import LinkBuilderWithLocale from "@/components/utility/LinkBuilderWithLocale";
+import LocalizeText from "@/components/utility/LocalizeText";
 
 /**
  * Props for `TourList`.
@@ -54,6 +56,18 @@ const TourList = async ({ slice }: any) => {
               );
             })}
         </div>
+        {slice.primary.limit !== "No limit" ? (
+          <div className="text-center mt-8">
+            <LinkBuilderWithLocale
+              path="/tours"
+              className="hover:bg-primary-1 hover:text-white transition-colors duration-200 py-2 px-4 text-primary-1 border border-primary-1"
+            >
+              <LocalizeText croatianText="Prikaži sve" englishText="Show all" />
+            </LinkBuilderWithLocale>
+          </div>
+        ) : null
+
+        }
       </div>
     </section>
   );
