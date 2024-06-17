@@ -612,6 +612,71 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
+type TermsAndConditionsDocumentDataSlicesSlice = HeroSlice | ContentSlice;
+
+/**
+ * Content for Terms And Conditions documents
+ */
+interface TermsAndConditionsDocumentData {
+  /**
+   * Slice Zone field in *Terms And Conditions*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: terms_and_conditions.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<TermsAndConditionsDocumentDataSlicesSlice> /**
+   * Meta Description field in *Terms And Conditions*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: terms_and_conditions.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Terms And Conditions*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: terms_and_conditions.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Terms And Conditions*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: terms_and_conditions.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Terms And Conditions document from Prismic
+ *
+ * - **API ID**: `terms_and_conditions`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TermsAndConditionsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<TermsAndConditionsDocumentData>,
+    "terms_and_conditions",
+    Lang
+  >;
+
 type ToursDocumentDataSlicesSlice = TourListSlice | HeroSlice;
 
 /**
@@ -1043,6 +1108,7 @@ export type AllDocumentTypes =
   | AccomodationSingleDocument
   | ForRentersDocument
   | HomepageDocument
+  | TermsAndConditionsDocument
   | ToursDocument
   | ToursSingleDocument
   | TransfersDocument;
@@ -1479,6 +1545,9 @@ declare module "@prismicio/client" {
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
+      TermsAndConditionsDocument,
+      TermsAndConditionsDocumentData,
+      TermsAndConditionsDocumentDataSlicesSlice,
       ToursDocument,
       ToursDocumentData,
       ToursDocumentDataSlicesSlice,
