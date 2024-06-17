@@ -2,6 +2,7 @@ import FooterDataOne from "@/constant/common/FooterDataOne"
 import Link from "next/link"
 
 import Image from 'next/image'
+import LocalizeText from "./utility/LocalizeText"
 const Footer = () => {
     return (
         <footer className="bg-gray-100"
@@ -21,14 +22,14 @@ const Footer = () => {
                 </p>
                 <ul className="mt-8 space-y-1 text-sm text-center text-gray-700">
                     <li>
-                        <strong>Office</strong>    <br />
+                        <strong><LocalizeText croatianText="Ured:" englishText="Office" /></strong>    <br />
                         Dubrovačka 3, 21 000 Split, Croatia
                     </li>
 
-                    <li><strong>Summer Season</strong> (June - Semptember)</li>
-                    <li>Monday to Sunday: 9am - 5pm</li>
-                    <li><strong>Off - Season</strong> (October - May)</li>
-                    <li>Monday to Friday: 9am - 5pm</li>
+                    <li><strong><LocalizeText croatianText="Ljetna sezona" englishText="Summer Season" /></strong><LocalizeText croatianText=" (Lipanj - Rujan)" englishText=" (June - Semptember)" /></li>
+                    <li><LocalizeText croatianText="Ponedjeljak - Nedjelja 09:00 - 17:00" englishText="Monday to Sunday: 9am - 5pm" /></li>
+                    <li><strong><LocalizeText croatianText="Van sezone" englishText="Off - Season" /></strong> (October - May)</li>
+                    <li><LocalizeText croatianText="Ponedjeljak - Petak 09:00 - 17:00" englishText="Monday to Friday: 9am - 5pm" /></li>
 
                 </ul>
 

@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 // Import Swiper styles
 import 'swiper/css';
 import Footer from '@/components/Footer';
+import ContactBar from '@/components/ContactBar';
 
 /*Configure Google Fonts*/
 const jost = Jost({
@@ -39,6 +40,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <ContactBar number="385912004400" />
       </body>
     </html >
   )
