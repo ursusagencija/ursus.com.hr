@@ -479,6 +479,7 @@ export type AccomodationSingleDocument<Lang extends string = string> =
   >;
 
 type ForRentersDocumentDataSlicesSlice =
+  | ContentSlice
   | HeroSlice
   | GallerySlice
   | ImageSliderSlice;
@@ -1116,6 +1117,51 @@ export type AccomodationListSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *Content → Default → Primary*
+ */
+export interface ContentSliceDefaultPrimary {
+  /**
+   * Content field in *Content → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Content Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContentSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ContentSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Content*
+ */
+type ContentSliceVariation = ContentSliceDefault;
+
+/**
+ * Content Shared Slice
+ *
+ * - **API ID**: `content`
+ * - **Description**: Content
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContentSlice = prismic.SharedSlice<
+  "content",
+  ContentSliceVariation
+>;
+
+/**
  * Primary content in *Gallery → Default → Primary*
  */
 export interface GallerySliceDefaultPrimary {
@@ -1452,6 +1498,10 @@ declare module "@prismicio/client" {
       AccomodationListSliceDefaultPrimary,
       AccomodationListSliceVariation,
       AccomodationListSliceDefault,
+      ContentSlice,
+      ContentSliceDefaultPrimary,
+      ContentSliceVariation,
+      ContentSliceDefault,
       GallerySlice,
       GallerySliceDefaultPrimary,
       GallerySliceDefaultItem,

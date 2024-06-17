@@ -11,6 +11,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "content": {
+              "type": "SharedSlice"
+            },
             "hero": {
               "type": "SharedSlice"
             },
