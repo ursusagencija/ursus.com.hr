@@ -123,9 +123,11 @@ export default async function Page({ params }: { params: Params }) {
                                 <PrismicRichText field={page.data.distances} components={rtfComponents} />
 
                             </div>
+                            {photos && < PhotoGallery overtitle="View photos" heading="Gallery" photos={photos} />}
                             <div className="lg:pt-10 pt-8" id="rules">
                                 <h3><LocalizeText croatianText="Kućna pravila" englishText="House Rules" />
                                 </h3>
+
                                 <PrismicRichText field={page.data.house_rules} components={rtfComponents} />
 
                             </div>
@@ -133,7 +135,7 @@ export default async function Page({ params }: { params: Params }) {
 
 
                         </div>
-                        {photos && < PhotoGallery overtitle="View photos" heading="Gallery" photos={photos} />}
+
                     </div>
                     <div className="lg:col-span-4 col-span-12 lg:pt-20 pt-10 relative">
                         <div className="lg:sticky top-[108px]">
