@@ -5,19 +5,22 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import LocalizeText from "../utility/LocalizeText";
+import { useSearch } from "@/providers/SearchProvider";
 
 type Props = {
   excludeDates: Date[];
 };
 
 const PackageBookingForm = ({ excludeDates }: Props) => {
-  const [dateRange, setDateRange] = useState([null, null]);
+  const { query } = useSearch();
+
+  const [dateRange, setDateRange] = useState(query.dateRange);
   const [startDate, endDate] = dateRange;
 
   const [activTab, setActiveTab] = useState("booking");
   const [dropdownActive, setDropdownActive] = useState(false);
   const [guest, setGuest] = useState<Guest>({
-    adult: 0,
+    adult: query.people,
     child: 0,
   });
 
@@ -72,6 +75,7 @@ const PackageBookingForm = ({ excludeDates }: Props) => {
               Date
             </label>
             <DatePicker
+              disabled
               dateFormat="do MMM yyyy"
               minDate={new Date()}
               selectsRange={true}

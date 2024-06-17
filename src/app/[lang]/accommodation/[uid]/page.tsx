@@ -13,6 +13,8 @@ import { PrismicRichText } from "@prismicio/react";
 import PhotoGallery from "@/components/PhotoGallery";
 import ical from "@/lib/cal-parser";
 import { eachDayOfInterval, subDays } from "date-fns";
+import DatePicker from "react-datepicker";
+import { Calendar } from "@/components/Calendar";
 
 // const DynamicMap = dynamic(() => import('@/components/package/PackageMap'), {
 //     ssr: false
@@ -218,6 +220,7 @@ export default async function Page({ params }: { params: Params }) {
                   photos={photos}
                 />
               )}
+              <Calendar excludeDates={dates} />
             </div>
             <div className="lg:col-span-4 col-span-12 lg:pt-20 pt-10 relative">
               <div className="lg:sticky top-[108px]">
