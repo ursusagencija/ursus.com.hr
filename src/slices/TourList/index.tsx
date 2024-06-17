@@ -30,7 +30,7 @@ const TourList = async ({ slice }: any) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="py-20"
+      className="my-12 lg:my-20"
     >
       <div className="container pt-4">
         <div className="text-center lg:pb-[60px] pb-[40px]">
