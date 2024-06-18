@@ -21,7 +21,6 @@ export const AccommodationSingle = ({ accommodations }: Props) => {
   );
 
   const filteredByDate = filteredByPeople.filter((item) => {
-    console.log({ dateRange, dates: item.occupiedDates });
     return !hasOverlap(dateRange, item.occupiedDates);
   });
 

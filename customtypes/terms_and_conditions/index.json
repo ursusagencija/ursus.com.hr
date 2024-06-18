@@ -1,7 +1,7 @@
 {
   "format": "page",
-  "id": "homepage",
-  "label": "homepage",
+  "id": "terms_and_conditions",
+  "label": "Terms And Conditions",
   "repeatable": false,
   "status": true,
   "json": {
@@ -11,13 +11,10 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "tour_list": {
-              "type": "SharedSlice"
-            },
-            "accomodation_list": {
-              "type": "SharedSlice"
-            },
             "hero": {
+              "type": "SharedSlice"
+            },
+            "content": {
               "type": "SharedSlice"
             }
           }

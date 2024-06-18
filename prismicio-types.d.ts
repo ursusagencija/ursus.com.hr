@@ -420,6 +420,18 @@ interface AccomodationSingleDocumentData {
   >;
 
   /**
+   * Is Featured field in *Accommodation Single*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: accomodation_single.isFeatured
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  isFeatured: prismic.BooleanField;
+
+  /**
    * Slice Zone field in *Accommodation Single*
    *
    * - **Field Type**: Slice Zone
@@ -479,6 +491,7 @@ export type AccomodationSingleDocument<Lang extends string = string> =
   >;
 
 type ForRentersDocumentDataSlicesSlice =
+  | ContentSlice
   | HeroSlice
   | GallerySlice
   | ImageSliderSlice;
@@ -546,7 +559,10 @@ export type ForRentersDocument<Lang extends string = string> =
     Lang
   >;
 
-type HomepageDocumentDataSlicesSlice = AccomodationListSlice | HeroSlice;
+type HomepageDocumentDataSlicesSlice =
+  | TourListSlice
+  | AccomodationListSlice
+  | HeroSlice;
 
 /**
  * Content for homepage documents
@@ -608,6 +624,136 @@ export type HomepageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<
     Simplify<HomepageDocumentData>,
     "homepage",
+    Lang
+  >;
+
+type PrivacyPolicyDocumentDataSlicesSlice = ContentSlice | HeroSlice;
+
+/**
+ * Content for Privacy Policy documents
+ */
+interface PrivacyPolicyDocumentData {
+  /**
+   * Slice Zone field in *Privacy Policy*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: privacy_policy.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<PrivacyPolicyDocumentDataSlicesSlice> /**
+   * Meta Description field in *Privacy Policy*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: privacy_policy.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Privacy Policy*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: privacy_policy.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Privacy Policy*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: privacy_policy.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Privacy Policy document from Prismic
+ *
+ * - **API ID**: `privacy_policy`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PrivacyPolicyDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<PrivacyPolicyDocumentData>,
+    "privacy_policy",
+    Lang
+  >;
+
+type TermsAndConditionsDocumentDataSlicesSlice = HeroSlice | ContentSlice;
+
+/**
+ * Content for Terms And Conditions documents
+ */
+interface TermsAndConditionsDocumentData {
+  /**
+   * Slice Zone field in *Terms And Conditions*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: terms_and_conditions.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<TermsAndConditionsDocumentDataSlicesSlice> /**
+   * Meta Description field in *Terms And Conditions*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: terms_and_conditions.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Terms And Conditions*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: terms_and_conditions.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Terms And Conditions*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: terms_and_conditions.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Terms And Conditions document from Prismic
+ *
+ * - **API ID**: `terms_and_conditions`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TermsAndConditionsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<TermsAndConditionsDocumentData>,
+    "terms_and_conditions",
     Lang
   >;
 
@@ -910,6 +1056,18 @@ interface ToursSingleDocumentData {
   gallery: prismic.GroupField<Simplify<ToursSingleDocumentDataGalleryItem>>;
 
   /**
+   * Is Featured field in *Tours Single*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: tours_single.isFeatured
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  isFeatured: prismic.BooleanField;
+
+  /**
    * Slice Zone field in *Tours Single*
    *
    * - **Field Type**: Slice Zone
@@ -1042,6 +1200,8 @@ export type AllDocumentTypes =
   | AccomodationSingleDocument
   | ForRentersDocument
   | HomepageDocument
+  | PrivacyPolicyDocument
+  | TermsAndConditionsDocument
   | ToursDocument
   | ToursSingleDocument
   | TransfersDocument;
@@ -1113,6 +1273,51 @@ type AccomodationListSliceVariation = AccomodationListSliceDefault;
 export type AccomodationListSlice = prismic.SharedSlice<
   "accomodation_list",
   AccomodationListSliceVariation
+>;
+
+/**
+ * Primary content in *Content → Default → Primary*
+ */
+export interface ContentSliceDefaultPrimary {
+  /**
+   * Content field in *Content → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Content Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContentSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ContentSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Content*
+ */
+type ContentSliceVariation = ContentSliceDefault;
+
+/**
+ * Content Shared Slice
+ *
+ * - **API ID**: `content`
+ * - **Description**: Content
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContentSlice = prismic.SharedSlice<
+  "content",
+  ContentSliceVariation
 >;
 
 /**
@@ -1433,6 +1638,12 @@ declare module "@prismicio/client" {
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
+      PrivacyPolicyDocument,
+      PrivacyPolicyDocumentData,
+      PrivacyPolicyDocumentDataSlicesSlice,
+      TermsAndConditionsDocument,
+      TermsAndConditionsDocumentData,
+      TermsAndConditionsDocumentDataSlicesSlice,
       ToursDocument,
       ToursDocumentData,
       ToursDocumentDataSlicesSlice,
@@ -1452,6 +1663,10 @@ declare module "@prismicio/client" {
       AccomodationListSliceDefaultPrimary,
       AccomodationListSliceVariation,
       AccomodationListSliceDefault,
+      ContentSlice,
+      ContentSliceDefaultPrimary,
+      ContentSliceVariation,
+      ContentSliceDefault,
       GallerySlice,
       GallerySliceDefaultPrimary,
       GallerySliceDefaultItem,

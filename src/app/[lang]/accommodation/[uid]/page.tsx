@@ -11,9 +11,8 @@ import PackageBookingForm from "@/components/package/PackageBookingForm";
 import LocalizeText from "@/components/utility/LocalizeText";
 import { PrismicRichText } from "@prismicio/react";
 import PhotoGallery from "@/components/PhotoGallery";
-import ical from "@/lib/cal-parser";
 import { eachDayOfInterval, subDays } from "date-fns";
-import DatePicker from "react-datepicker";
+import ical from "@/lib/cal-parser";
 import { Calendar } from "@/components/Calendar";
 
 // const DynamicMap = dynamic(() => import('@/components/package/PackageMap'), {
@@ -200,6 +199,14 @@ export default async function Page({ params }: { params: Params }) {
                     components={rtfComponents}
                   />
                 </div>
+                {photos && (
+                  <PhotoGallery
+                    overtitle="View photos"
+                    heading="Gallery"
+                    photos={photos}
+                  />
+                )}
+                <Calendar excludeDates={dates} />
                 <div className="lg:pt-10 pt-8" id="rules">
                   <h3>
                     <LocalizeText
@@ -207,20 +214,13 @@ export default async function Page({ params }: { params: Params }) {
                       englishText="House Rules"
                     />
                   </h3>
+
                   <PrismicRichText
                     field={page.data.house_rules}
                     components={rtfComponents}
                   />
                 </div>
               </div>
-              {photos && (
-                <PhotoGallery
-                  overtitle="View photos"
-                  heading="Gallery"
-                  photos={photos}
-                />
-              )}
-              <Calendar excludeDates={dates} />
             </div>
             <div className="lg:col-span-4 col-span-12 lg:pt-20 pt-10 relative">
               <div className="lg:sticky top-[108px]">

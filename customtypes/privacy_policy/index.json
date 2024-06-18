@@ -1,7 +1,7 @@
 {
   "format": "page",
-  "id": "homepage",
-  "label": "homepage",
+  "id": "privacy_policy",
+  "label": "Privacy Policy",
   "repeatable": false,
   "status": true,
   "json": {
@@ -11,10 +11,7 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "tour_list": {
-              "type": "SharedSlice"
-            },
-            "accomodation_list": {
+            "content": {
               "type": "SharedSlice"
             },
             "hero": {

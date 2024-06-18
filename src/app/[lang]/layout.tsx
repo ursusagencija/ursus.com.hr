@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 // Import Swiper styles
 import "swiper/css";
 import Footer from "@/components/Footer";
+import ContactBar from "@/components/ContactBar";
 import SearchProvider from "@/providers/SearchProvider";
 
 /*Configure Google Fonts*/
@@ -43,6 +44,7 @@ export default function RootLayout({
           <Header variant="transparent" />
           <main className="">{children}</main>
           <Footer />
+          <ContactBar number="385912004400" />
         </SearchProvider>
       </body>
     </html>
