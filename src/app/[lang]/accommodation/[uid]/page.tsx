@@ -14,6 +14,7 @@ import PhotoGallery from "@/components/PhotoGallery";
 import { eachDayOfInterval, subDays } from "date-fns";
 import ical from "@/lib/cal-parser";
 import { Calendar } from "@/components/Calendar";
+import { computePrice } from "@/lib/utils";
 
 // const DynamicMap = dynamic(() => import('@/components/package/PackageMap'), {
 //     ssr: false
@@ -224,7 +225,10 @@ export default async function Page({ params }: { params: Params }) {
             </div>
             <div className="lg:col-span-4 col-span-12 lg:pt-20 pt-10 relative">
               <div className="lg:sticky top-[108px]">
-                <PackageBookingForm excludeDates={dates} />
+                <PackageBookingForm
+                  excludeDates={dates}
+                  pricing={page.data.pricing}
+                />
               </div>
             </div>
           </div>

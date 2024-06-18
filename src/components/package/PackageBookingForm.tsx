@@ -6,12 +6,15 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import LocalizeText from "../utility/LocalizeText";
 import { useSearch } from "@/providers/SearchProvider";
+import { computePrice, formatCurrency } from "@/lib/utils";
+import { Content } from "@prismicio/client";
 
 type Props = {
   excludeDates: Date[];
+  pricing: Content.AccomodationSingleDocumentData["pricing"];
 };
 
-const PackageBookingForm = ({ excludeDates }: Props) => {
+const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
   const { query } = useSearch();
 
   const [dateRange, setDateRange] = useState(query.dateRange);
@@ -203,7 +206,16 @@ const PackageBookingForm = ({ excludeDates }: Props) => {
                     </div> */}
           <div className="pt-5 border-t border-stock-1 mt-6">
             <div className="font-sans text-dark-1 text-2md font-semibold flex justify-between">
-              Total : <span>$450</span>
+              Total :{" "}
+              <span>
+                {formatCurrency(
+                  computePrice(
+                    pricing,
+                    query.dateRange[0]!,
+                    query.dateRange[1]!
+                  )
+                )}
+              </span>
             </div>
           </div>
           {/* <button aria-label="check button" className="capitalize w-full text-center underline duration-150 mt-4 text-dark-1 font-medium flex items-center justify-center hover:text-primary-1">check availability </button> */}
