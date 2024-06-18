@@ -61,6 +61,7 @@ const AccomodationList = async ({
                 ? parseInt(slice.primary.limit)
                 : undefined
             )}
+            showAll={slice.primary.limit !== "No limit"}
           />
           {/* {sortedAccommodations
             .slice(
