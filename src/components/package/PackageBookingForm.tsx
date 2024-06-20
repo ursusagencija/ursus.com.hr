@@ -8,6 +8,8 @@ import LocalizeText from "../utility/LocalizeText";
 import { useSearch } from "@/providers/SearchProvider";
 import { computePrice, formatCurrency } from "@/lib/utils";
 import { Content } from "@prismicio/client";
+import { eachDayOfInterval, isSameDay } from "date-fns";
+import { submitBooking } from "@/app/actions";
 
 type Props = {
   excludeDates: Date[];
@@ -15,7 +17,7 @@ type Props = {
 };
 
 const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
-  const { query } = useSearch();
+  const { query, updateQuery } = useSearch();
 
   const [dateRange, setDateRange] = useState(query.dateRange);
   const [startDate, endDate] = dateRange;
@@ -48,6 +50,42 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
     }
   };
 
+  const isDateExcluded = (date: Date) => {
+    return excludeDates.some((e) => isSameDay(date, e));
+  };
+
+  const isSelectable = (date: Date) => {
+    if (!startDate) return true;
+    if (isDateExcluded(date)) return false;
+
+    if (startDate && !endDate) {
+      const range = eachDayOfInterval({ start: startDate, end: date });
+      return !range.some(isDateExcluded);
+    }
+
+    return true;
+  };
+
+  const handleDateChange = (update: any) => {
+    const [start, end] = update;
+
+    if (start && end) {
+      const range = eachDayOfInterval({ start, end });
+      const rangeIsValid = !range.some(isDateExcluded);
+
+      if (!rangeIsValid) {
+        alert(
+          "The selected date range contains dates that are already occupied. Please select different dates."
+        );
+        setDateRange([null, null]);
+        return;
+      }
+    }
+
+    setDateRange(update);
+    updateQuery({ dateRange: update });
+  };
+
   return (
     <div>
       <ul id="tabs-nav" className="booking-tabs flex gap-4 pb-6">
@@ -59,7 +97,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
         className={`tab-content ${activTab === "booking" ? "active" : ""}`}
       >
         <form
-          action="#"
+          action={submitBooking}
           autoComplete="off"
           className="lg:px-base px-5 lg:pt-6 lg:pb-base pt-4 pb-5 bg-white border-primary-1 border"
         >
@@ -78,16 +116,15 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
               Date
             </label>
             <DatePicker
-              disabled
+              //disabled
               dateFormat="do MMM yyyy"
               minDate={new Date()}
               selectsRange={true}
               startDate={startDate}
               endDate={endDate}
               excludeDates={excludeDates}
-              onChange={(update: any) => {
-                setDateRange(update);
-              }}
+              filterDate={isSelectable}
+              onChange={handleDateChange}
               placeholderText="Select Date"
               className="search__daterange border border-stock-1 lg:h-[54px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start z-50"
             />
@@ -186,13 +223,50 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
             </div>
           </div>
           <div className="mt-5 lg:mt-6">
-            <label
-              htmlFor="tourTime"
-              className="mb-2 text-dark-3 capitalize block"
-            >
+            <label htmlFor="name" className="mb-2 text-dark-3 capitalize block">
               Full name
             </label>
-            <input className="border border-stock-1 lg:h-[54px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start" />
+            <input
+              name="name"
+              className="border border-stock-1 lg:h-[54px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start"
+            />
+          </div>
+          <div className="mt-5 lg:mt-6">
+            <label
+              htmlFor="email"
+              className="mb-2 text-dark-3 capitalize block"
+            >
+              E-mail
+            </label>
+            <input
+              name="email"
+              className="border border-stock-1 lg:h-[54px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start"
+            />
+          </div>
+          <div className="mt-5 lg:mt-6">
+            <label
+              htmlFor="phone"
+              className="mb-2 text-dark-3 capitalize block"
+            >
+              Phone
+            </label>
+            <input
+              name="phone"
+              className="border border-stock-1 lg:h-[54px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start"
+            />
+          </div>
+          <div className="mt-5 lg:mt-6">
+            <label
+              htmlFor="message"
+              className="mb-2 text-dark-3 capitalize block"
+            >
+              Message
+            </label>
+            <textarea
+              name="message"
+              rows={3}
+              className="border border-stock-1 lg:h-[162px] h-36 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start"
+            />
           </div>
           {/* <div className="pt-4">
                         <div className="custom-checkbox mt-4">
@@ -219,7 +293,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
             </div>
           </div>
           {/* <button aria-label="check button" className="capitalize w-full text-center underline duration-150 mt-4 text-dark-1 font-medium flex items-center justify-center hover:text-primary-1">check availability </button> */}
-          <Link
+          {/* <Link
             href="/booking"
             className="btn_primary__v1 !w-full justify-center mt-5"
           >
@@ -240,7 +314,29 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
                 strokeLinejoin="round"
               />
             </svg>
-          </Link>
+          </Link> */}
+          <button
+            type="submit"
+            className="btn_primary__v1 !w-full justify-center mt-5"
+          >
+            <LocalizeText croatianText="Pošalji" englishText="Send" />
+            <svg
+              width={20}
+              height={20}
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.42505 16.5999L12.8584 11.1666C13.5 10.5249 13.5 9.4749 12.8584 8.83324L7.42505 3.3999"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeMiterlimit={10}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
         </form>
       </div>
       {/* <div id="tab-4" className={`tab-content ${activTab === 'enquiry' ? 'active' : ''}`}>
