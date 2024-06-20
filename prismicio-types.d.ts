@@ -1126,6 +1126,31 @@ export type ToursSingleDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Item in *Transfers → HowToBook*
+ */
+export interface TransfersDocumentDataHowtobookItem {
+  /**
+   * Heading field in *Transfers → HowToBook*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: transfers.howtobook[].heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Content field in *Transfers → HowToBook*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: transfers.howtobook[].content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+}
+
 type TransfersDocumentDataSlicesSlice =
   | ImageSliderSlice
   | HeroSlice
@@ -1135,6 +1160,50 @@ type TransfersDocumentDataSlicesSlice =
  * Content for Transfers documents
  */
 interface TransfersDocumentData {
+  /**
+   * Heading field in *Transfers*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: transfers.heading
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Image field in *Transfers*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: transfers.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Content field in *Transfers*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: transfers.content
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * HowToBook field in *Transfers*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: transfers.howtobook[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  howtobook: prismic.GroupField<Simplify<TransfersDocumentDataHowtobookItem>>;
+
   /**
    * Slice Zone field in *Transfers*
    *
@@ -1657,6 +1726,7 @@ declare module "@prismicio/client" {
       ToursSingleDocumentDataSlicesSlice,
       TransfersDocument,
       TransfersDocumentData,
+      TransfersDocumentDataHowtobookItem,
       TransfersDocumentDataSlicesSlice,
       AllDocumentTypes,
       AccomodationListSlice,

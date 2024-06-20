@@ -3,6 +3,9 @@ import { SliceZone } from "@prismicio/react";
 
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
+import HeroSimple from "@/components/HeroSimple";
+import ContentBlock from "@/components/ContentBlock";
+import Itinerary from "@/components/Itinerary";
 
 export default async function Page({
     params: { lang },
@@ -14,7 +17,18 @@ export default async function Page({
         lang,
     });
 
-    return <SliceZone slices={page.data.slices} components={components} />;
+    return <>
+        <HeroSimple heading={page.data.heading} image={page.data.image} />
+        <div className="container">
+            <ContentBlock>
+                {page.data.content}
+            </ContentBlock>
+            <Itinerary itinerary={page.data.howtobook} />
+
+            <SliceZone slices={page.data.slices} components={components} />;
+        </div>
+    </>
+
 }
 
 export async function generateMetadata({
