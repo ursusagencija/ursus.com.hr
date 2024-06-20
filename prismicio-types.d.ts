@@ -1152,6 +1152,7 @@ export interface TransfersDocumentDataHowtobookItem {
 }
 
 type TransfersDocumentDataSlicesSlice =
+  | TransferContactFormSliceSlice
   | ImageSliderSlice
   | HeroSlice
   | GallerySlice;
@@ -1678,6 +1679,37 @@ export type TourListSlice = prismic.SharedSlice<
   TourListSliceVariation
 >;
 
+/**
+ * Default variation for TransferContactFormSlice Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TransferContactFormSliceSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *TransferContactFormSlice*
+ */
+type TransferContactFormSliceSliceVariation =
+  TransferContactFormSliceSliceDefault;
+
+/**
+ * TransferContactFormSlice Shared Slice
+ *
+ * - **API ID**: `transfer_contact_form_slice`
+ * - **Description**: TransferContactFormSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TransferContactFormSliceSlice = prismic.SharedSlice<
+  "transfer_contact_form_slice",
+  TransferContactFormSliceSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -1758,6 +1790,9 @@ declare module "@prismicio/client" {
       TourListSliceDefaultPrimary,
       TourListSliceVariation,
       TourListSliceDefault,
+      TransferContactFormSliceSlice,
+      TransferContactFormSliceSliceVariation,
+      TransferContactFormSliceSliceDefault,
     };
   }
 }

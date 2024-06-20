@@ -25,7 +25,7 @@ export default async function Page({
             </ContentBlock>
             <Itinerary itinerary={page.data.howtobook} />
 
-            <SliceZone slices={page.data.slices} components={components} />;
+            <SliceZone slices={page.data.slices} components={components} />
         </div>
     </>
 

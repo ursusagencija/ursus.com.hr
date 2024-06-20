@@ -1,0 +1,16 @@
+{
+  "id": "transfer_contact_form_slice",
+  "type": "SharedSlice",
+  "name": "TransferContactFormSlice",
+  "description": "TransferContactFormSlice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": ""
+    }
+  ]
+}

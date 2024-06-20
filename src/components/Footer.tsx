@@ -5,7 +5,7 @@ import Image from 'next/image'
 import LocalizeText from "./utility/LocalizeText"
 const Footer = () => {
     return (
-        <footer className="bg-gray-100"
+        <footer className="bg-gray-100 mt-12"
 
         >
 
