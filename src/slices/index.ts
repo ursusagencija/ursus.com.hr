@@ -10,4 +10,7 @@ export const components = {
   hero_with_search: dynamic(() => import("./HeroWithSearch")),
   image_slider: dynamic(() => import("./ImageSlider")),
   tour_list: dynamic(() => import("./TourList")),
+  transfer_contact_form_slice: dynamic(
+    () => import("./TransferContactFormSlice"),
+  ),
 };
