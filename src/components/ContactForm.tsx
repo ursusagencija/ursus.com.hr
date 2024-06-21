@@ -61,19 +61,19 @@ const ContactForm = () => {
             <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-2 gap-base">
                     <div className="lg:col-span-1 col-span-2">
-                        <input type="text" placeholder="Your Name" className="input_style__primary" name="name" />
+                        <input type="text" placeholder="Your Name" className="input_style__primary" name="name" required />
                     </div>
                     <div className="lg:col-span-1 col-span-2">
-                        <input type="text" placeholder="Your Phone Number" className="input_style__primary" name="phone" />
+                        <input type="text" placeholder="Your Phone Number" className="input_style__primary" name="phone" required />
                     </div>
                     <div className="col-span-2">
-                        <input type="email" placeholder="Your Email" className="input_style__primary" name="email" />
+                        <input type="email" placeholder="Your Email" className="input_style__primary" name="email" required />
                     </div>
                     <div className="col-span-2">
-                        <textarea cols={30} rows={6} className="input_style__primary" placeholder="Your Message..." defaultValue={""} name="email" />
+                        <textarea cols={30} rows={6} className="input_style__primary" placeholder="Your Message..." defaultValue={""} name="message" required />
                     </div>
                     <div className="col-span-2">
-                        <button aria-label="contact submit" type="submit" className="btn_primary__v1">
+                        <button aria-label="contact submit" type="submit" className="btn_primary__v1" onClick={() => console.log('form submited')}>
                             <LocalizeText croatianText='Pošalji' englishText='Send' />
                             <i className="bi bi-chevron-right" />
                         </button>
