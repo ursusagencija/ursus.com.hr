@@ -1,28 +1,25 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import LocalizeText from "../utility/LocalizeText";
 import { useSearch } from "@/providers/SearchProvider";
-import { computePrice, formatCurrency } from "@/lib/utils";
+import { formatCurrency } from "@/lib/utils";
 import { Content } from "@prismicio/client";
 import { eachDayOfInterval, isSameDay } from "date-fns";
-import { submitBooking } from "@/app/actions";
+import { submitBooking, submitTourBooking } from "@/app/actions";
 import { usePathname } from "next/navigation";
 
 type Props = {
-  excludeDates: Date[];
-  pricing: Content.AccomodationSingleDocumentData["pricing"];
+  price: Content.ToursSingleDocumentData["price"];
 };
 
-const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
+const TourBookingForm = ({ price }: Props) => {
   const path = usePathname();
-  const { query, updateQuery } = useSearch();
+  const { query } = useSearch();
 
-  const [dateRange, setDateRange] = useState(query.dateRange);
-  const [startDate, endDate] = dateRange;
+  const [date, setDate] = useState<Date | undefined>();
 
   const [activTab, setActiveTab] = useState("booking");
   const [dropdownActive, setDropdownActive] = useState(false);
@@ -52,50 +49,12 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
     }
   };
 
-  const isDateExcluded = (date: Date) => {
-    return excludeDates.some((e) => isSameDay(date, e));
-  };
-
-  const isSelectable = (date: Date) => {
-    if (!startDate) return true;
-    if (isDateExcluded(date)) return false;
-
-    if (startDate && !endDate) {
-      const range = eachDayOfInterval({ start: startDate, end: date });
-      return !range.some(isDateExcluded);
-    }
-
-    return true;
-  };
-
-  const handleDateChange = (update: any) => {
-    const [start, end] = update;
-
-    if (start && end) {
-      const range = eachDayOfInterval({ start, end });
-      const rangeIsValid = !range.some(isDateExcluded);
-
-      if (!rangeIsValid) {
-        alert(
-          "The selected date range contains dates that are already occupied. Please select different dates."
-        );
-        setDateRange([null, null]);
-        return;
-      }
-    }
-
-    setDateRange(update);
-    updateQuery({ dateRange: update });
-  };
-
-  const handleSubmit = submitBooking.bind(
+  const handleSubmit = submitTourBooking.bind(
     null,
-    dateRange,
+    date!,
     `${guest.adult} adults, ${guest.child} children`,
     path,
-    formatCurrency(
-      computePrice(pricing, query.dateRange[0]!, query.dateRange[1]!)
-    )
+    formatCurrency(Number(price))
   );
 
   return (
@@ -128,16 +87,11 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
               Date
             </label>
             <DatePicker
-              //disabled
               form="bookingForm"
               dateFormat="do MMM yyyy"
               minDate={new Date()}
-              selectsRange={true}
-              startDate={startDate!}
-              endDate={endDate!}
-              excludeDates={excludeDates}
-              filterDate={isSelectable}
-              onChange={handleDateChange}
+              selected={date}
+              onChange={(d) => setDate(d!)}
               placeholderText="Select Date"
               className="search__daterange border border-stock-1 lg:h-[54px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start z-50"
             />
@@ -293,16 +247,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
                     </div> */}
           <div className="pt-5 border-t border-stock-1 mt-6">
             <div className="font-sans text-dark-1 text-2md font-semibold flex justify-between">
-              Total :{" "}
-              <span>
-                {formatCurrency(
-                  computePrice(
-                    pricing,
-                    query.dateRange[0]!,
-                    query.dateRange[1]!
-                  )
-                )}
-              </span>
+              Total : <span>{formatCurrency(Number(price))}</span>
             </div>
           </div>
           {/* <button aria-label="check button" className="capitalize w-full text-center underline duration-150 mt-4 text-dark-1 font-medium flex items-center justify-center hover:text-primary-1">check availability </button> */}
@@ -381,4 +326,4 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
   );
 };
 
-export default PackageBookingForm;
+export default TourBookingForm;

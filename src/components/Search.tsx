@@ -43,8 +43,8 @@ export default function Search() {
               dateFormat="do MMM yyyy"
               minDate={new Date()}
               selectsRange={true}
-              startDate={startDate}
-              endDate={endDate}
+              startDate={startDate!}
+              endDate={endDate!}
               onChange={(update: any) => {
                 setDateRange(update);
               }}
