@@ -38,7 +38,7 @@ const ContactForm = () => {
 
         const errors = handleValidation(data);
 
-        if (Object.keys(errors).length === 0) {
+        if (errors.email === '' && errors.name === '' && errors.phone === '' && errors.message === '') {
             const res = await fetch("/api/sendmail", {
                 method: "POST",
                 headers: {
