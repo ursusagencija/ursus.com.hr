@@ -1,6 +1,6 @@
 'use client'
 import LocalizeText from './utility/LocalizeText'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 const ContactForm = () => {
     const router = useRouter();
