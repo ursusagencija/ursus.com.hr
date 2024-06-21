@@ -1,5 +1,10 @@
 import ical from "@/lib/cal-parser";
-import { eachDayOfInterval, isWithinInterval, subDays } from "date-fns";
+import {
+  eachDayOfInterval,
+  isSameDay,
+  isWithinInterval,
+  subDays,
+} from "date-fns";
 import { Content } from "@prismicio/client";
 
 export const occupiedDatesFromIcal = async (url: string) => {
