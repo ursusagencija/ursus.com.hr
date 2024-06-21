@@ -27,13 +27,13 @@ export async function POST(req: any) {
             status: "success",
             message: "Your message was sent. I'll be in contact shortly.",
         };
-        console.log("Message sent");
+        // console.log("Message sent");
     } catch (error) {
         response = {
             status: "error",
             message: `Message failed to send with error, ${error}`,
         };
-        console.log("Message failed to send");
+        // console.log("Message failed to send");
     }
 
     return NextResponse.json(response);

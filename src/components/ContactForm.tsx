@@ -73,7 +73,7 @@ const ContactForm = () => {
                         <textarea cols={30} rows={6} className="input_style__primary" placeholder="Your Message..." defaultValue={""} name="message" required />
                     </div>
                     <div className="col-span-2">
-                        <button aria-label="contact submit" type="submit" className="btn_primary__v1" onClick={() => console.log('form submited')}>
+                        <button aria-label="contact submit" type="submit" className="btn_primary__v1">
                             <LocalizeText croatianText='Pošalji' englishText='Send' />
                             <i className="bi bi-chevron-right" />
                         </button>
