@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type AboutUsDocumentDataSlicesSlice =
+  | ContentSlice
   | GallerySlice
   | ImageSliderSlice
   | HeroSlice;
@@ -487,6 +488,93 @@ export type AccomodationSingleDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
     Simplify<AccomodationSingleDocumentData>,
     "accomodation_single",
+    Lang
+  >;
+
+type ContactDocumentDataSlicesSlice = HeroSlice;
+
+/**
+ * Content for Contact documents
+ */
+interface ContactDocumentData {
+  /**
+   * Heading field in *Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.heading
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Image field in *Contact*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Slice Zone field in *Contact*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ContactDocumentDataSlicesSlice> /**
+   * Meta Description field in *Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: contact.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Contact*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: contact.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Contact document from Prismic
+ *
+ * - **API ID**: `contact`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ContactDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ContactDocumentData>,
+    "contact",
     Lang
   >;
 
@@ -1126,7 +1214,33 @@ export type ToursSingleDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Item in *Transfers → HowToBook*
+ */
+export interface TransfersDocumentDataHowtobookItem {
+  /**
+   * Heading field in *Transfers → HowToBook*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: transfers.howtobook[].heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Content field in *Transfers → HowToBook*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: transfers.howtobook[].content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+}
+
 type TransfersDocumentDataSlicesSlice =
+  | TransferContactFormSliceSlice
   | ImageSliderSlice
   | HeroSlice
   | GallerySlice;
@@ -1135,6 +1249,50 @@ type TransfersDocumentDataSlicesSlice =
  * Content for Transfers documents
  */
 interface TransfersDocumentData {
+  /**
+   * Heading field in *Transfers*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: transfers.heading
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Image field in *Transfers*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: transfers.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Content field in *Transfers*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: transfers.content
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * HowToBook field in *Transfers*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: transfers.howtobook[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  howtobook: prismic.GroupField<Simplify<TransfersDocumentDataHowtobookItem>>;
+
   /**
    * Slice Zone field in *Transfers*
    *
@@ -1198,6 +1356,7 @@ export type AllDocumentTypes =
   | AboutUsDocument
   | AccomodationDocument
   | AccomodationSingleDocument
+  | ContactDocument
   | ForRentersDocument
   | HomepageDocument
   | PrivacyPolicyDocument
@@ -1609,6 +1768,37 @@ export type TourListSlice = prismic.SharedSlice<
   TourListSliceVariation
 >;
 
+/**
+ * Default variation for TransferContactFormSlice Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TransferContactFormSliceSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *TransferContactFormSlice*
+ */
+type TransferContactFormSliceSliceVariation =
+  TransferContactFormSliceSliceDefault;
+
+/**
+ * TransferContactFormSlice Shared Slice
+ *
+ * - **API ID**: `transfer_contact_form_slice`
+ * - **Description**: TransferContactFormSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TransferContactFormSliceSlice = prismic.SharedSlice<
+  "transfer_contact_form_slice",
+  TransferContactFormSliceSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -1632,6 +1822,9 @@ declare module "@prismicio/client" {
       AccomodationSingleDocumentDataGalleryItem,
       AccomodationSingleDocumentDataPricingItem,
       AccomodationSingleDocumentDataSlicesSlice,
+      ContactDocument,
+      ContactDocumentData,
+      ContactDocumentDataSlicesSlice,
       ForRentersDocument,
       ForRentersDocumentData,
       ForRentersDocumentDataSlicesSlice,
@@ -1657,6 +1850,7 @@ declare module "@prismicio/client" {
       ToursSingleDocumentDataSlicesSlice,
       TransfersDocument,
       TransfersDocumentData,
+      TransfersDocumentDataHowtobookItem,
       TransfersDocumentDataSlicesSlice,
       AllDocumentTypes,
       AccomodationListSlice,
@@ -1688,6 +1882,9 @@ declare module "@prismicio/client" {
       TourListSliceDefaultPrimary,
       TourListSliceVariation,
       TourListSliceDefault,
+      TransferContactFormSliceSlice,
+      TransferContactFormSliceSliceVariation,
+      TransferContactFormSliceSliceDefault,
     };
   }
 }

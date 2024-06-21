@@ -5,7 +5,7 @@ import Image from 'next/image'
 import LocalizeText from "./utility/LocalizeText"
 const Footer = () => {
     return (
-        <footer className="bg-gray-100"
+        <footer className="bg-gray-100 mt-12"
 
         >
 
@@ -44,6 +44,7 @@ const Footer = () => {
 
 
                 </ul>
+                <Image src="/assets/images/uhpa.png" alt="credit cards" width={76} height={50} className="mx-auto mt-8" />
 
 
 

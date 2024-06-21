@@ -1,25 +1,31 @@
 {
   "format": "page",
-  "id": "about_us",
-  "label": "About Us",
+  "id": "contact",
+  "label": "Contact",
   "repeatable": false,
   "status": true,
   "json": {
     "Main": {
+      "heading": {
+        "type": "Text",
+        "config": {
+          "label": "Heading",
+          "placeholder": ""
+        }
+      },
+      "image": {
+        "type": "Image",
+        "config": {
+          "label": "Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "content": {
-              "type": "SharedSlice"
-            },
-            "gallery": {
-              "type": "SharedSlice"
-            },
-            "image_slider": {
-              "type": "SharedSlice"
-            },
             "hero": {
               "type": "SharedSlice"
             }
