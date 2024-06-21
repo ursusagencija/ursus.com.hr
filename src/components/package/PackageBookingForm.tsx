@@ -10,6 +10,7 @@ import { computePrice, formatCurrency } from "@/lib/utils";
 import { Content } from "@prismicio/client";
 import { eachDayOfInterval, isSameDay } from "date-fns";
 import { submitBooking } from "@/app/actions";
+import { usePathname } from "next/navigation";
 
 type Props = {
   excludeDates: Date[];
@@ -17,6 +18,7 @@ type Props = {
 };
 
 const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
+  const path = usePathname();
   const { query, updateQuery } = useSearch();
 
   const [dateRange, setDateRange] = useState(query.dateRange);
@@ -86,6 +88,10 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
     updateQuery({ dateRange: update });
   };
 
+  console.log(path);
+
+  const handleSubmit = submitBooking.bind(null, dateRange, query.people, path);
+
   return (
     <div>
       <ul id="tabs-nav" className="booking-tabs flex gap-4 pb-6">
@@ -97,7 +103,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
         className={`tab-content ${activTab === "booking" ? "active" : ""}`}
       >
         <form
-          action={submitBooking}
+          action={handleSubmit}
           autoComplete="off"
           className="lg:px-base px-5 lg:pt-6 lg:pb-base pt-4 pb-5 bg-white border-primary-1 border"
         >
@@ -117,11 +123,12 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
             </label>
             <DatePicker
               //disabled
+              form="bookingForm"
               dateFormat="do MMM yyyy"
               minDate={new Date()}
               selectsRange={true}
-              startDate={startDate}
-              endDate={endDate}
+              startDate={startDate!}
+              endDate={endDate!}
               excludeDates={excludeDates}
               filterDate={isSelectable}
               onChange={handleDateChange}
