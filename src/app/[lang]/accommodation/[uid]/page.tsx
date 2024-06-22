@@ -15,6 +15,8 @@ import { eachDayOfInterval, subDays } from "date-fns";
 import ical from "@/lib/cal-parser";
 import { Calendar } from "@/components/Calendar";
 import { computePrice } from "@/lib/utils";
+import { list } from "postcss";
+import PartialDiv from "@/components/PartialDiv";
 
 // const DynamicMap = dynamic(() => import('@/components/package/PackageMap'), {
 //     ssr: false
@@ -32,16 +34,19 @@ export default async function Page({ params }: { params: Params }) {
     string,
     React.ComponentType<{ children: React.ReactNode }>
   > = {
+
     em: ({ children }) => (
-      <span className="block lg:text-2md text-md text-dark-2 font-medium leading-[1.5] font-sans">
+      <span className="text-dark-2 text-sm">
         {children}
       </span>
     ),
 
-    paragraph: ({ children }) => <p className="">{children}</p>,
+    paragraph: ({ children }) => <p className="text-dark-2 text-sm">{children}</p>,
     strong: ({ children }) => (
-      <span className="font-medium text-dark-2">{children}</span>
+      <span className=" text-dark-2 text-sm">{children}</span>
     ),
+    list: ({ children }) => <ul className=" text-sm">{children}</ul>,
+
   };
   const photos = page.data.gallery.map((photo) => ({
     src: photo.photo?.url || "",
@@ -226,10 +231,12 @@ export default async function Page({ params }: { params: Params }) {
                     />
                   </h3>
 
-                  <PrismicRichText
-                    field={page.data.house_rules}
-                    components={rtfComponents}
-                  />
+                  <PartialDiv>
+                    <PrismicRichText
+                      field={page.data.house_rules}
+                      components={rtfComponents}
+                    />
+                  </PartialDiv>
                 </div>
               </div>
             </div>
