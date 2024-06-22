@@ -44,10 +44,8 @@ export default async function Page({ params }: { params: Params }) {
     //     {children}
     //   </span>
     // ),
-
     // paragraph: ({ children }) => <p className="text-xl leading-[1.5]">{children}</p>,
     // strong: ({ children }) => <span className="text-md ">{children}</span>,
-
   };
   const includedItems = page.data.price_includes.map((item) => item.included);
   const excludedItems = page.data.price_excludes.map((item) => item.excluded);
@@ -97,7 +95,8 @@ export default async function Page({ params }: { params: Params }) {
             <div className="p-2">
               <ul className="flex flex-col md:flex-row gap-2 text-md flex-wrap items-start">
                 <li className="flex items-center gap-2 px-2">
-                  <i className="bi bi-clock" /> Duration <strong>{page.data.duration}</strong>
+                  <i className="bi bi-clock" /> Duration{" "}
+                  <strong>{page.data.duration}</strong>
                 </li>
                 <li className="flex items-center gap-2 px-2">
                   {" "}
@@ -189,7 +188,7 @@ export default async function Page({ params }: { params: Params }) {
             </div>
             <div className="lg:col-span-4 col-span-12 relative">
               <div className="lg:sticky top-[108px]">
-                <TourBookingForm price={page.data.price} />
+                <TourBookingForm />
               </div>
             </div>
           </div>
