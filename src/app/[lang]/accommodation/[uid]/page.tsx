@@ -115,53 +115,63 @@ export default async function Page({ params }: { params: Params }) {
             <div className="lg:col-span-8 col-span-12">
               <div className="pack__disc" id="Information">
                 <div className="flex justify-between items-center gap-2 flex-wrap lg:pt-8 pt-4 lg:pb-4">
-                  <h2 className="font-sans lg:text-[45px] md:text-xl text-xl font-semibold !pointer-events-none !mt-0 !mb-0 pb-4 md:pb-0">
+                  {/* <h2 className="font-sans lg:text-[45px] md:text-xl text-xl font-semibold !pointer-events-none !mt-0 !mb-0 pb-4 md:pb-0">
                     <LocalizeText croatianText="od" englishText="from" />{" "}
                     {lowestPrice()}€
                     <span className="lg:text-lg text-md font-normal">
-                      {/* <LocalizeText croatianText="po osobi" englishText="per person" /> */}
+                      <LocalizeText croatianText="po osobi" englishText="per person" />
                     </span>{" "}
-                  </h2>
+                  </h2> */}
+                  <ul className="pack__list">
+                    <li>
+                      {" "}
+                      <i className="bi bi-person" />
+                      <LocalizeText
+                        croatianText="Gosti"
+                        englishText="Guests"
+                      />{" "}
+                      {page.data.guests}
+                    </li>
+                    <li>
+                      <i className="bi bi-usb-mini" />{" "}
+                      <LocalizeText
+                        croatianText="Spavaće Sobe"
+                        englishText="Bedrooms"
+                      />{" "}
+                      {page.data.bedrooms}
+                    </li>
+                    <li>
+                      <i className="bi bi-tablet-landscape" />
+                      <LocalizeText
+                        croatianText="Kreveti"
+                        englishText="Beds"
+                      />{" "}
+                      {page.data.beds}
+                    </li>
+                    <li>
+                      <i className="bi bi-droplet" />
+                      <LocalizeText
+                        croatianText="Kupatilo"
+                        englishText="Bathrooms"
+                      />{" "}
+                      {page.data.beds}
+                    </li>
+                    <li>
+                      <i className="bi bi-coin" />
+                      <LocalizeText
+                        croatianText="cijena do"
+                        englishText="price from"
+                      />{" "}
+                      {lowestPrice()}€
+                    </li>
+
+                  </ul>
                 </div>
                 <PrismicRichText
                   field={page.data.description}
                   components={rtfComponents}
                 />
-                <ul className="pack__list">
-                  <li>
-                    {" "}
-                    <i className="bi bi-person" />
-                    <LocalizeText
-                      croatianText="Gosti"
-                      englishText="Guests"
-                    />{" "}
-                    {page.data.guests}
-                  </li>
-                  <li>
-                    <i className="bi bi-usb-mini" />{" "}
-                    <LocalizeText
-                      croatianText="Spavaće Sobe"
-                      englishText="Bedrooms"
-                    />{" "}
-                    {page.data.bedrooms}
-                  </li>
-                  <li>
-                    <i className="bi bi-tablet-landscape" />
-                    <LocalizeText
-                      croatianText="Kreveti"
-                      englishText="Beds"
-                    />{" "}
-                    {page.data.beds}
-                  </li>
-                  <li>
-                    <i className="bi bi-droplet" />
-                    <LocalizeText
-                      croatianText="Kreveti"
-                      englishText="Bathrooms"
-                    />{" "}
-                    {page.data.beds}
-                  </li>
-                </ul>
+
                 <ul className="mt-base">
                   <li className="lg:flex lg:pt-6 pt-5 pb-5 lg:pb-6 border-t border-stock-1 last:border-b">
                     <div className="lg:w-1/3 lg:text-2md text-md text-dark-2 font-medium">

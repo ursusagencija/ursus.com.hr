@@ -45,8 +45,8 @@ export default async function Page({ params }: { params: Params }) {
       </span>
     ),
 
-    paragraph: ({ children }) => <p className="">{children}</p>,
-    strong: ({ children }) => <span className="">{children}</span>,
+    paragraph: ({ children }) => <p className="text-md">{children}</p>,
+    strong: ({ children }) => <span className="text-md">{children}</span>,
   };
   const includedItems = page.data.price_includes.map((item) => item.included);
   const excludedItems = page.data.price_excludes.map((item) => item.excluded);
@@ -93,24 +93,28 @@ export default async function Page({ params }: { params: Params }) {
       <div className="md:mb-16">
         <div className="container">
           <div className="flex flex-wrap justify-between pb-8 pt-6 mb-8 border-b border-stock-1">
-            <div className="pt-2  p-4">
-              <ul className="grid grid-cols-1 md:grid-cols-3">
+            <div className="p-2">
+              <ul className="flex flex-col md:flex-row gap-2 text-md flex-wrap items-start">
                 <li className="flex items-center gap-2 px-2">
-                  <i className="bi bi-clock" /> {page.data.duration}
+                  <i className="bi bi-clock" /> Duration <strong>{page.data.duration}</strong>
                 </li>
                 <li className="flex items-center gap-2 px-2">
                   {" "}
                   <i className="bi bi-person" />
-                  Min. age: {page.data.min_age}
+                  Min. age: <strong>{page.data.min_age}</strong>
                 </li>
                 <li className="flex items-center gap-2 px-2">
                   <i className="bi bi-map" />
-                  {page.data.location}
+                  Location: <strong>{page.data.location}</strong>
+                </li>
+                <li className="flex items-center gap-2 px-2">
+                  <i className="bi bi-coin" />
+                  <strong> {page.data.price}€</strong>
                 </li>
               </ul>
-              <h2 className="font-sans lg:text-[45px] leading-1.2 md:text-xl text-lg font-semibold">
+              {/* <h2 className="font-sans lg:text-[45px] leading-1.2 md:text-xl text-lg font-semibold">
                 {page.data.price}€
-              </h2>
+              </h2> */}
               {/* <div className="text-md font-normal ml-1">per person</div> */}
             </div>
           </div>

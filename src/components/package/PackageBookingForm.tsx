@@ -111,19 +111,19 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
         <form
           action={handleSubmit}
           autoComplete="off"
-          className="lg:px-base px-5 lg:pt-6 lg:pb-base pt-4 pb-5 bg-white border-primary-1 border"
+          className="lg:px-base px-2 lg:pt-4 lg:pb-base pt-2 pb-3 bg-white border-primary-1 border"
         >
-          <h4 className="lg:text-xl text-2xl text-primary-1 font-semibold">
+          <h4 className="lg:text-xl text-lg text-primary-1 font-semibold">
             {" "}
             <LocalizeText
               croatianText="Provjerite dostuponost"
               englishText="Check Availability"
             />
           </h4>
-          <div className="mt-5 lg:mt-6">
+          <div className="mt-2">
             <label
               htmlFor="tourTime"
-              className="mb-2 text-dark-3 capitalize block"
+              className="mb-1 text-dark-3 capitalize block"
             >
               Date
             </label>
@@ -139,21 +139,23 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
               filterDate={isSelectable}
               onChange={handleDateChange}
               placeholderText="Select Date"
-              className="search__daterange border border-stock-1 lg:h-[54px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start z-50"
+              className="search__daterange border border-stock-1 lg:h-[40px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start z-50"
             />
           </div>
-          <div className="js-form-counters lg:mt-6 mt-5 relative">
+
+
+          <div className="js-form-counters mt-2 relative">
             <label
               htmlFor="tourTime"
-              className="mb-2 text-dark-3 capitalize block"
+              className="mb-1 text-dark-3 block"
             >
-              Number of people
+              People
             </label>
             <button
               aria-label="count button"
               onClick={() => setDropdownActive(!dropdownActive)}
               type="button"
-              className="w-full bg-transparent border border-stock-1 lg:h-[54px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 flex items-center common_dropdown__btn"
+              className="w-full bg-transparent border border-stock-1 lg:h-[40px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 flex items-center common_dropdown__btn"
             >
               <div>
                 <span className="js-count-adult">{guest.adult}</span> adults -
@@ -222,63 +224,66 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
 
               {/* room count */}
               {/* <div className="js-counter flex justify-between items-center" data-value-change=".js-count-room">
-                                <p className="text-dark-1 ">Room</p>
-                                <div className="flex items-center space-x-4">
-                                    <button onClick={() => minusGuest('room')} type="button" className="js-down h-[38px] w-[38px] border border-primary-1 flex items-center justify-center rounded-full text-dark-1 hover:bg-primary-1 hover:text-white duration-150">
-                                        <i className="bi bi-dash-lg" />
-                                    </button>
-                                    <div className="js-count text-dark-1 lg:ext-md">{guest.room}</div>
-                                    <button aria-label="count button" onClick={() => incrementGuest('room')} type="button" className="js-up h-[38px] w-[38px] border border-primary-1 flex items-center justify-center rounded-full text-dark-1 hover:bg-primary-1 hover:text-white duration-150">
-                                        <i className="bi bi-plus-lg" />
-                                    </button>
-                                </div>
-                            </div> */}
+                                  <p className="text-dark-1 ">Room</p>
+                                  <div className="flex items-center space-x-4">
+                                      <button onClick={() => minusGuest('room')} type="button" className="js-down h-[38px] w-[38px] border border-primary-1 flex items-center justify-center rounded-full text-dark-1 hover:bg-primary-1 hover:text-white duration-150">
+                                          <i className="bi bi-dash-lg" />
+                                      </button>
+                                      <div className="js-count text-dark-1 lg:ext-md">{guest.room}</div>
+                                      <button aria-label="count button" onClick={() => incrementGuest('room')} type="button" className="js-up h-[38px] w-[38px] border border-primary-1 flex items-center justify-center rounded-full text-dark-1 hover:bg-primary-1 hover:text-white duration-150">
+                                          <i className="bi bi-plus-lg" />
+                                      </button>
+                                  </div>
+                              </div> */}
             </div>
           </div>
-          <div className="mt-5 lg:mt-6">
-            <label htmlFor="name" className="mb-2 text-dark-3 capitalize block">
-              Full name
+
+          <div className="mt-2">
+            <label htmlFor="name" className="mb-1 text-dark-3 capitalize block">
+              Name
             </label>
             <input
               name="name"
-              className="border border-stock-1 lg:h-[54px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start"
+              className="border border-stock-1 lg:h-[40px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start"
             />
           </div>
-          <div className="mt-5 lg:mt-6">
-            <label
-              htmlFor="email"
-              className="mb-2 text-dark-3 capitalize block"
-            >
-              E-mail
-            </label>
-            <input
-              name="email"
-              className="border border-stock-1 lg:h-[54px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start"
-            />
+          <div className="grid grid-cols-2 gap-4">
+            <div className="mt-2">
+              <label
+                htmlFor="email"
+                className="mb-1 text-dark-3 capitalize block"
+              >
+                E-mail
+              </label>
+              <input
+                name="email"
+                className="border border-stock-1 lg:h-[40px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start"
+              />
+            </div>
+            <div className="mt-2">
+              <label
+                htmlFor="phone"
+                className="mb-1 text-dark-3 capitalize block"
+              >
+                Phone
+              </label>
+              <input
+                name="phone"
+                className="border border-stock-1 lg:h-[40px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start"
+              />
+            </div>
           </div>
-          <div className="mt-5 lg:mt-6">
-            <label
-              htmlFor="phone"
-              className="mb-2 text-dark-3 capitalize block"
-            >
-              Phone
-            </label>
-            <input
-              name="phone"
-              className="border border-stock-1 lg:h-[54px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start"
-            />
-          </div>
-          <div className="mt-5 lg:mt-6">
+          <div className="mt-2">
             <label
               htmlFor="message"
-              className="mb-2 text-dark-3 capitalize block"
+              className="mb-1 text-dark-3 capitalize block"
             >
               Message
             </label>
             <textarea
               name="message"
-              rows={3}
-              className="border border-stock-1 lg:h-[162px] h-36 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start"
+              rows={2}
+              className="border border-stock-1 h-28 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start"
             />
           </div>
           {/* <div className="pt-4">
@@ -291,7 +296,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
                             <label htmlFor="add-two">Add Service per day - <span className="font-semibold">$10</span></label>
                         </div>
                     </div> */}
-          <div className="pt-5 border-t border-stock-1 mt-6">
+          <div className="pt-2 border-t border-stock-1 mt-6">
             <div className="font-sans text-dark-1 text-2md font-semibold flex justify-between">
               Total :{" "}
               <span>
@@ -330,7 +335,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
           </Link> */}
           <button
             type="submit"
-            className="btn_primary__v1 !w-full justify-center mt-5"
+            className="btn_primary__v1 !w-full justify-center mt-2"
           >
             <LocalizeText croatianText="Pošalji" englishText="Send" />
             <svg
