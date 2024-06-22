@@ -36,16 +36,16 @@ export default async function Page({ params }: { params: Params }) {
   > = {
 
     em: ({ children }) => (
-      <span className="text-dark-2 text-sm">
+      <span className="text-dark-2 ">
         {children}
       </span>
     ),
 
-    paragraph: ({ children }) => <p className="text-dark-2 text-sm">{children}</p>,
+    paragraph: ({ children }) => <p className="text-dark-2 ">{children}</p>,
     strong: ({ children }) => (
-      <span className=" text-dark-2 text-sm">{children}</span>
+      <span className=" text-dark-2 ">{children}</span>
     ),
-    list: ({ children }) => <ul className=" text-sm">{children}</ul>,
+    list: ({ children }) => <ul className="  text-dark-2">{children}</ul>,
 
   };
   const photos = page.data.gallery.map((photo) => ({
