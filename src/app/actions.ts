@@ -24,7 +24,7 @@ export async function submitBooking(
               Price: ${price}`;
 
   const data = {
-    to: "skruzic@gmail.com",
+    to: "info@ursus.com.hr",
     from: "ursusagencija@gmail.com",
     replyTo: formData.get("email") as string,
     subject: "Ursus Travel & Accommodation - Accommodation",
@@ -58,7 +58,7 @@ export async function submitTourBooking(
               Tour: https://ursus.com.hr${url}`;
 
   const data = {
-    to: "skruzic@gmail.com",
+    to: "info@ursus.com.hr",
     from: "ursusagencija@gmail.com",
     replyTo: formData.get("email") as string,
     subject: "Ursus Travel & Accommodation - Tour",
@@ -86,7 +86,7 @@ export async function submitTransferBooking(formData: FormData) {
               Passengers: ${formData.get("passengerCount")}`;
 
   const data = {
-    to: "skruzic@gmail.com",
+    to: "info@ursus.com.hr",
     from: "ursusagencija@gmail.com",
     replyTo: formData.get("email") as string,
     subject: "Ursus Travel & Accommodation - Transfer",

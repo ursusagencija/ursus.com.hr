@@ -12,7 +12,7 @@ export async function POST(req: any) {
               Phone: ${body.phone}\r\n        
               Message: ${body.message}`;
     const data = {
-        to: "crashaw@gmail.com",
+        to: "info@ursus.com.hr",
         from: "ursusagencija@gmail.com",
         replyTo: body.email,
         subject: "Ursus Travel & Accommodation - Upit s web stranice",
