@@ -114,7 +114,7 @@ export default async function Page({ params }: { params: Params }) {
           <div className="grid grid-cols-12 gap-base">
             <div className="lg:col-span-8 col-span-12">
               <div className="pack__disc" id="Information">
-                <div className="flex justify-between items-center gap-2 flex-wrap lg:pt-8 pt-4 lg:pb-4">
+                <div className="flex justify-between items-center gap-2 flex-wrap lg:pt-8 pt-4 pb-4">
                   {/* <h2 className="font-sans lg:text-[45px] md:text-xl text-xl font-semibold !pointer-events-none !mt-0 !mb-0 pb-4 md:pb-0">
                     <LocalizeText croatianText="od" englishText="from" />{" "}
                     {lowestPrice()}€

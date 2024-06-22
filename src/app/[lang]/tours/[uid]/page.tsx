@@ -39,14 +39,15 @@ export default async function Page({ params }: { params: Params }) {
     string,
     React.ComponentType<{ children: React.ReactNode }>
   > = {
-    em: ({ children }) => (
-      <span className="block lg:text-2md text-md text-dark-2 font-medium leading-[1.5] font-sans">
-        {children}
-      </span>
-    ),
+    // em: ({ children }) => (
+    //   <span className="text-md text-dark-2 font-medium leading-[1.5]">
+    //     {children}
+    //   </span>
+    // ),
 
-    paragraph: ({ children }) => <p className="text-md">{children}</p>,
-    strong: ({ children }) => <span className="text-md">{children}</span>,
+    // paragraph: ({ children }) => <p className="text-xl leading-[1.5]">{children}</p>,
+    // strong: ({ children }) => <span className="text-md ">{children}</span>,
+
   };
   const includedItems = page.data.price_includes.map((item) => item.included);
   const excludedItems = page.data.price_excludes.map((item) => item.excluded);
