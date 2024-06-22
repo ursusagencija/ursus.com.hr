@@ -44,8 +44,9 @@ const AccomodationList = async ({
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className="my-12 lg:my-20"
+
     >
-      <div className="container pt-4">
+      <div className="container pt-4 " id="search-results">
         <div className="text-center lg:pb-[60px] pb-[40px]">
           <h5 className="section-sub-title-v1 variant-1">
             {slice.primary.overtitle}
