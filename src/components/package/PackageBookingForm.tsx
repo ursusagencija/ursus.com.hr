@@ -244,6 +244,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
             </label>
             <input
               name="name"
+              required
               className="border border-stock-1 lg:h-[40px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start"
             />
           </div>
@@ -256,11 +257,14 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
                 E-mail
               </label>
               <input
+
+                required
                 name="email"
                 className="border border-stock-1 lg:h-[40px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start"
               />
             </div>
             <div className="mt-2">
+
               <label
                 htmlFor="phone"
                 className="mb-1 text-dark-3 capitalize block"
@@ -268,6 +272,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
                 Phone
               </label>
               <input
+                required
                 name="phone"
                 className="border border-stock-1 lg:h-[40px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start"
               />
