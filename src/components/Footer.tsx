@@ -44,7 +44,8 @@ const Footer = () => {
 
 
                 </ul>
-                <Image src="/assets/images/uhpa.png" alt="credit cards" width={76} height={50} className="mx-auto mt-8" />
+                <Image src="/assets/images/uhpa.png" alt="uhpa" width={76} height={50} className="mx-auto mt-8" />
+                <div className="flex items-center justify-center mt-3 text-sm"> <a href="https://killerclick.com">Web by:<br /><Image src="/assets/images/kc-logo.svg" alt="web by killer click" width={76} height={50} className="mx-auto" /></a></div>
 
 
 
