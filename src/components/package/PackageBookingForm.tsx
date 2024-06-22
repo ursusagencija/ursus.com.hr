@@ -115,10 +115,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
         >
           <h4 className="lg:text-xl text-lg text-primary-1 font-semibold">
             {" "}
-            <LocalizeText
-              croatianText="Provjerite dostuponost"
-              englishText="Check Availability"
-            />
+            <LocalizeText croatianText="Rezervirajte" englishText="Book Now" />
           </h4>
           <div className="mt-2">
             <label
@@ -143,12 +140,8 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
             />
           </div>
 
-
           <div className="js-form-counters mt-2 relative">
-            <label
-              htmlFor="tourTime"
-              className="mb-1 text-dark-3 block"
-            >
+            <label htmlFor="tourTime" className="mb-1 text-dark-3 block">
               People
             </label>
             <button
@@ -257,14 +250,12 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
                 E-mail
               </label>
               <input
-
                 required
                 name="email"
                 className="border border-stock-1 lg:h-[40px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start"
               />
             </div>
             <div className="mt-2">
-
               <label
                 htmlFor="phone"
                 className="mb-1 text-dark-3 capitalize block"

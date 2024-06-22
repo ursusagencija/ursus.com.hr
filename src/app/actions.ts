@@ -51,7 +51,6 @@ export async function submitTourBooking(
   date: Date | null,
   people: string,
   url: string,
-  price: string,
   formData: FormData
 ) {
   const message = `
@@ -61,8 +60,7 @@ export async function submitTourBooking(
               Message: ${formData.get("message")}\r\n
               Date: ${format(date!, "do MMM yyyy")}\r\n
               People: ${people}\r\n
-              Tour: https://ursus.com.hr${url}\r\n
-              Price: ${price}`;
+              Tour: https://ursus.com.hr${url}`;
 
   const data = {
     to: "skruzic@gmail.com",
