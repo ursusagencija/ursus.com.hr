@@ -80,7 +80,7 @@ export default async function Page({ params }: { params: Params }) {
 
   return (
     <>
-      <div className="relative h-[50vh] md:h-[60vh]">
+      <div className="relative h-[50vh] md:h-[60vh] flex justify-center flex-col">
         <PrismicNextImage
           field={page.data.cover_image}
           priority
@@ -90,7 +90,7 @@ export default async function Page({ params }: { params: Params }) {
         />
         <div className="bg-gradient-to-r from-primary-1/30 to-primary-1/50 absolute inset-0" />
 
-        <div className="lg:py-56 py-20 relative overflow-hidden">
+        <div className=" relative overflow-hidden">
           <div className="container relative z-2">
             <nav aria-label="breadcrumb">
               <ol className="breadcrumb">
@@ -108,7 +108,7 @@ export default async function Page({ params }: { params: Params }) {
               </ol>
             </nav>
 
-            <h1 className="xl:text-[54px] mt-2 lg:text-4xl md:text-2xl text-[30px] text-white leading-[1.3] font-medium max-w-[640px]">
+            <h1 className=" mt-2 2xl:text-4xl lg:text-3xl  md:text-2xl text-[30px] text-white leading-[1.3] font-medium max-w-[640px]">
               {page.data.heading}
             </h1>
           </div>
@@ -159,7 +159,7 @@ export default async function Page({ params }: { params: Params }) {
                         croatianText="Kupatilo"
                         englishText="Bathrooms"
                       />{" "}
-                      {page.data.beds}
+                      {page.data.bathrooms}
                     </li>
                     <li>
                       <i className="bi bi-coin" />
