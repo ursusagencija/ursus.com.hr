@@ -1,6 +1,7 @@
 "use client";
 
 import Card from "@/components/Card";
+import LocalizeText from "@/components/utility/LocalizeText";
 import { hasOverlap } from "@/lib/utils";
 import { useSearch } from "@/providers/SearchProvider";
 import { Content } from "@prismicio/client";
@@ -27,8 +28,8 @@ export const AccommodationSingle = ({ showAll, accommodations }: Props) => {
 
     if (filteredByDate.length === 0) {
       return (
-        <div className="text-lg col-span-3 flex justify-center">
-          No accommodations found! Please refine the search criteria.
+        <div className="text-lg col-span-3 flex font-medium justify-center text-center text-primary-1 rounded-md p-2 bg-gray-100">
+          <LocalizeText croatianText="Nije pronađen dostupan smještaj koji odgovara vašim kriterijima pretrage." englishText="No available accommodation found matching your search criteria." />
         </div>
       );
     }
