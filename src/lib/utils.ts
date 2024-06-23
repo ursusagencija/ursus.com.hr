@@ -71,5 +71,5 @@ export const formatCurrency = (amount: number) => {
   });
   const formatted = formatter.format(amount);
 
-  return formatted === "€0" ? "Select dates to get price" : formatter.format(amount);
+  return formatted === "€0" ? "Select dates to get price" : formatted;
 };
