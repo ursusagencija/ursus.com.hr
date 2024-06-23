@@ -159,7 +159,7 @@ export default async function Page({ params }: { params: Params }) {
                         croatianText="Kupatilo"
                         englishText="Bathrooms"
                       />{" "}
-                      {page.data.beds}
+                      {page.data.bathrooms}
                     </li>
                     <li>
                       <i className="bi bi-coin" />
