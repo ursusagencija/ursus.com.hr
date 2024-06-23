@@ -25,6 +25,14 @@ export const AccommodationSingle = ({ showAll, accommodations }: Props) => {
       return !hasOverlap(dateRange, item.occupiedDates);
     });
 
+    if (filteredByDate.length === 0) {
+      return (
+        <div className="text-lg col-span-3 flex justify-center">
+          No accommodations found! Please refine the search criteria.
+        </div>
+      );
+    }
+
     return filteredByDate.map((item) => {
       const lowestPrice = () => {
         const prices = item.data.pricing
