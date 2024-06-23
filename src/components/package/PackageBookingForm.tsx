@@ -305,7 +305,6 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
                     query.dateRange[1]!
                   )
                 )}
-
               </span>
             </div>
           </div>
