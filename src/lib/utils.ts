@@ -69,6 +69,7 @@ export const formatCurrency = (amount: number) => {
     currency: "EUR",
     maximumFractionDigits: 0,
   });
+  const formatted = formatter.format(amount);
 
-  return formatter.format(amount);
+  return formatted === "€0" ? "Select dates to get price" : formatter.format(amount);
 };

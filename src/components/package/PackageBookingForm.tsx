@@ -293,8 +293,8 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
                         </div>
                     </div> */}
           <div className="pt-2 border-t border-stock-1 mt-6">
-            <div className="font-sans text-dark-1 text-2md font-semibold flex justify-between">
-              Total :{" "}
+            <div className="font-sans text-primary-1 text-2md font-semibold flex justify-between">
+              Total:{" "}
               <span>
                 {formatCurrency(
                   computePrice(
@@ -303,6 +303,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
                     query.dateRange[1]!
                   )
                 )}
+
               </span>
             </div>
           </div>
