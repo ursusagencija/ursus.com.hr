@@ -78,7 +78,7 @@ const TourBookingForm = () => {
               Date
             </label>
             <DatePicker
-              form="bookingForm"
+              required
               dateFormat="do MMM yyyy"
               minDate={new Date()}
               selected={date}

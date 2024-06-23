@@ -1,16 +1,17 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import LocalizeText from "../utility/LocalizeText";
-import { useSearch } from "@/providers/SearchProvider";
-import { computePrice, formatCurrency } from "@/lib/utils";
 import { Content } from "@prismicio/client";
 import { eachDayOfInterval, isSameDay } from "date-fns";
-import { submitBooking } from "@/app/actions";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import DatePicker from "react-datepicker";
+
+import { submitBooking } from "@/app/actions";
+import LocalizeText from "@/components/utility/LocalizeText";
+import { computePrice, formatCurrency } from "@/lib/utils";
+import { useSearch } from "@/providers/SearchProvider";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 type Props = {
   excludeDates: Date[];
@@ -59,6 +60,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
   const isSelectable = (date: Date) => {
     if (!startDate) return true;
     if (isDateExcluded(date)) return false;
+    if (isSameDay(date, startDate)) return false;
 
     if (startDate && !endDate) {
       const range = eachDayOfInterval({ start: startDate, end: date });
@@ -125,8 +127,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
               Date
             </label>
             <DatePicker
-              //disabled
-              form="bookingForm"
+              required
               dateFormat="do MMM yyyy"
               minDate={new Date()}
               selectsRange={true}
@@ -251,6 +252,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
               </label>
               <input
                 required
+                type="email"
                 name="email"
                 className="border border-stock-1 lg:h-[40px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start"
               />

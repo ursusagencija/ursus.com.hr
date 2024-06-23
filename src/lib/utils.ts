@@ -44,7 +44,10 @@ export const computePrice = (
 ) => {
   let total = 0;
 
-  const days = eachDayOfInterval({ start: startDate, end: endDate });
+  const days = eachDayOfInterval({
+    start: startDate,
+    end: subDays(endDate, 1), // Zadnjeg dana nema, gledamo nocenja
+  });
 
   days.forEach((currentDate) => {
     for (let period of pricing) {

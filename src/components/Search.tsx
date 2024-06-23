@@ -106,7 +106,10 @@ export default function Search() {
             onClick={onSubmit}
             className="block lg:w-auto w-full flex-grow text-center bg-primary-1 lg:h-17 h-14  font-medium text-md text-white hover:bg-secondary-1 duration-300"
           >
-            <LocalizeText englishText="Show Available" croatianText="Prikaži slobodne" />
+            <LocalizeText
+              englishText="Show Available"
+              croatianText="Prikaži slobodne"
+            />
           </button>
         </div>
       </div>
