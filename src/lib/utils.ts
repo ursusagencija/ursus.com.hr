@@ -1,5 +1,6 @@
 import ical from "@/lib/cal-parser";
 import {
+  addDays,
   eachDayOfInterval,
   isSameDay,
   isWithinInterval,
@@ -14,8 +15,8 @@ export const occupiedDatesFromIcal = async (url: string) => {
   const text = await res.text();
 
   ical(text).forEach((e) => {
-    const startDate = e.startDate!;
-    const endDate = subDays(e.endDate!, 1);
+    const startDate = addDays(e.startDate!, 1); // Jedan dan dodajemo jer to moze biti zadnji dan (odlazak)
+    const endDate = subDays(e.endDate!, 1); // Jedan dan odbijamo, jer se ne racuna u broj nocenja
 
     const interval = eachDayOfInterval({
       start: startDate,
