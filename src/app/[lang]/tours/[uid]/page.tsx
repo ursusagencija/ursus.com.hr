@@ -7,25 +7,16 @@ import { components } from "@/slices";
 import { PrismicNextImage } from "@prismicio/next";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import DetailsSidebar from "@/components/forms/DetailsSidebar";
-import Breadcrumb from "@/components/layout/Breadcrumb";
-import InstagramFeed from "@/components/layout/InstagramFeed";
-import PackageGallary from "@/components/package/PackageGallary";
-import PackageDetailsData from "@/constant/Package/PackageDetailsData";
-import PackageBookingForm from "@/components/package/PackageBookingForm";
+import Services from "@/components/Services";
 import LocalizeText from "@/components/utility/LocalizeText";
 import { PrismicRichText } from "@prismicio/react";
 
-import PackageDetailsSlider from "@/components/package/PackageDetailsSlider";
+
 import TickList from "@/components/TickList";
 import Itinerary from "@/components/Itinerary";
 import Faq from "@/components/Faq";
 import PhotoGallery from "@/components/PhotoGallery";
 import TourBookingForm from "@/components/package/TourBookingForm";
-
-const DynamicMap = dynamic(() => import("@/components/package/PackageMap"), {
-  ssr: false,
-});
 
 type Params = { uid: string; lang: string };
 
@@ -34,6 +25,7 @@ export default async function Page({ params }: { params: Params }) {
   const page = await client
     .getByUID("tours_single", params.uid, { lang: params.lang })
     .catch(() => notFound());
+  const services = await client.getByType("services", { lang: params.lang });
 
   const rtfComponents: Record<
     string,
@@ -195,6 +187,7 @@ export default async function Page({ params }: { params: Params }) {
         </div>
       </div>
       <SliceZone slices={page.data.slices} components={components} />
+      <Services data={services.results[0].data} />
     </>
   );
 }

@@ -6,7 +6,6 @@ import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import { PrismicNextImage } from "@prismicio/next";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import PackageBookingForm from "@/components/package/PackageBookingForm";
 import LocalizeText from "@/components/utility/LocalizeText";
 import { PrismicRichText } from "@prismicio/react";
@@ -14,9 +13,8 @@ import PhotoGallery from "@/components/PhotoGallery";
 import { eachDayOfInterval, subDays } from "date-fns";
 import ical from "@/lib/cal-parser";
 import { Calendar } from "@/components/Calendar";
-import { computePrice } from "@/lib/utils";
-import { list } from "postcss";
 import PartialDiv from "@/components/PartialDiv";
+import Services from "@/components/Services";
 
 // const DynamicMap = dynamic(() => import('@/components/package/PackageMap'), {
 //     ssr: false
@@ -29,6 +27,9 @@ export default async function Page({ params }: { params: Params }) {
   const page = await client
     .getByUID("accomodation_single", params.uid, { lang: params.lang })
     .catch(() => notFound());
+
+  const services = await client.getByType("services", { lang: params.lang });
+
 
   const rtfComponents: Record<
     string,
@@ -253,6 +254,9 @@ export default async function Page({ params }: { params: Params }) {
       </div>
 
       <SliceZone slices={page.data.slices} components={components} />
+      <Services data={services.results[0].data} />
+
+
     </>
   );
 }

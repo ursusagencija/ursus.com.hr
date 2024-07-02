@@ -1,0 +1,145 @@
+{
+  "format": "custom",
+  "id": "services",
+  "label": "Services",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "heading": {
+        "type": "Text",
+        "config": {
+          "label": "Heading",
+          "placeholder": ""
+        }
+      },
+      "overtitle": {
+        "type": "Text",
+        "config": {
+          "label": "Overtitle",
+          "placeholder": ""
+        }
+      },
+      "service1_heading": {
+        "type": "Text",
+        "config": {
+          "label": "Service1 Heading",
+          "placeholder": ""
+        }
+      },
+      "service1_subtitle": {
+        "type": "Text",
+        "config": {
+          "label": "Service1 Subtitle",
+          "placeholder": ""
+        }
+      },
+      "service1_image": {
+        "type": "Image",
+        "config": {
+          "label": "Service1 Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "service1_link": {
+        "type": "Link",
+        "config": {
+          "label": "Service1 Link",
+          "placeholder": "",
+          "select": null
+        }
+      },
+      "service2_heading": {
+        "type": "Text",
+        "config": {
+          "label": "Service2 Heading",
+          "placeholder": ""
+        }
+      },
+      "service2_subtitle": {
+        "type": "Text",
+        "config": {
+          "label": "Service2 Subtitle",
+          "placeholder": ""
+        }
+      },
+      "service2_image": {
+        "type": "Image",
+        "config": {
+          "label": "Service2 Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "service2_link": {
+        "type": "Link",
+        "config": {
+          "label": "Service2 Link",
+          "placeholder": "",
+          "select": null
+        }
+      },
+      "service3_heading": {
+        "type": "Text",
+        "config": {
+          "label": "Service3 Heading",
+          "placeholder": ""
+        }
+      },
+      "service3_subtitle": {
+        "type": "Text",
+        "config": {
+          "label": "Service3 Subtitle",
+          "placeholder": ""
+        }
+      },
+      "service3_image": {
+        "type": "Image",
+        "config": {
+          "label": "Service3 Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "service3_link": {
+        "type": "Link",
+        "config": {
+          "label": "Service3 Link",
+          "placeholder": "",
+          "select": null
+        }
+      },
+      "service4_heading": {
+        "type": "Text",
+        "config": {
+          "label": "Service4 Heading",
+          "placeholder": ""
+        }
+      },
+      "service4_subtitle": {
+        "type": "Text",
+        "config": {
+          "label": "Service4 Subtitle",
+          "placeholder": ""
+        }
+      },
+      "service4_image": {
+        "type": "Image",
+        "config": {
+          "label": "Service4 Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "service4_link": {
+        "type": "Link",
+        "config": {
+          "label": "Service4 Link",
+          "placeholder": "",
+          "select": null
+        }
+      }
+    }
+  }
+}

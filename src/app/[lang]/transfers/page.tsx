@@ -16,7 +16,6 @@ export default async function Page({
     const page = await client.getSingle("transfers", {
         lang,
     });
-
     return <>
         <HeroSimple heading={page.data.heading} image={page.data.image} />
         <div className="container">

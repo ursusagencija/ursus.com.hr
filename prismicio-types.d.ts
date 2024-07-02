@@ -780,6 +780,225 @@ export type PrivacyPolicyDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Content for Services documents
+ */
+interface ServicesDocumentData {
+  /**
+   * Heading field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.heading
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Overtitle field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.overtitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  overtitle: prismic.KeyTextField;
+
+  /**
+   * Service1 Heading field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.service1_heading
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  service1_heading: prismic.KeyTextField;
+
+  /**
+   * Service1 Subtitle field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.service1_subtitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  service1_subtitle: prismic.KeyTextField;
+
+  /**
+   * Service1 Image field in *Services*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.service1_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  service1_image: prismic.ImageField<never>;
+
+  /**
+   * Service1 Link field in *Services*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.service1_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  service1_link: prismic.LinkField;
+
+  /**
+   * Service2 Heading field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.service2_heading
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  service2_heading: prismic.KeyTextField;
+
+  /**
+   * Service2 Subtitle field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.service2_subtitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  service2_subtitle: prismic.KeyTextField;
+
+  /**
+   * Service2 Image field in *Services*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.service2_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  service2_image: prismic.ImageField<never>;
+
+  /**
+   * Service2 Link field in *Services*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.service2_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  service2_link: prismic.LinkField;
+
+  /**
+   * Service3 Heading field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.service3_heading
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  service3_heading: prismic.KeyTextField;
+
+  /**
+   * Service3 Subtitle field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.service3_subtitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  service3_subtitle: prismic.KeyTextField;
+
+  /**
+   * Service3 Image field in *Services*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.service3_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  service3_image: prismic.ImageField<never>;
+
+  /**
+   * Service3 Link field in *Services*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.service3_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  service3_link: prismic.LinkField;
+
+  /**
+   * Service4 Heading field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.service4_heading
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  service4_heading: prismic.KeyTextField;
+
+  /**
+   * Service4 Subtitle field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.service4_subtitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  service4_subtitle: prismic.KeyTextField;
+
+  /**
+   * Service4 Image field in *Services*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.service4_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  service4_image: prismic.ImageField<never>;
+
+  /**
+   * Service4 Link field in *Services*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.service4_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  service4_link: prismic.LinkField;
+}
+
+/**
+ * Services document from Prismic
+ *
+ * - **API ID**: `services`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ServicesDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ServicesDocumentData>,
+    "services",
+    Lang
+  >;
+
 type TermsAndConditionsDocumentDataSlicesSlice = HeroSlice | ContentSlice;
 
 /**
@@ -1360,6 +1579,7 @@ export type AllDocumentTypes =
   | ForRentersDocument
   | HomepageDocument
   | PrivacyPolicyDocument
+  | ServicesDocument
   | TermsAndConditionsDocument
   | ToursDocument
   | ToursSingleDocument
@@ -1834,6 +2054,8 @@ declare module "@prismicio/client" {
       PrivacyPolicyDocument,
       PrivacyPolicyDocumentData,
       PrivacyPolicyDocumentDataSlicesSlice,
+      ServicesDocument,
+      ServicesDocumentData,
       TermsAndConditionsDocument,
       TermsAndConditionsDocumentData,
       TermsAndConditionsDocumentDataSlicesSlice,
