@@ -10,7 +10,7 @@ import PackageBookingForm from "@/components/package/PackageBookingForm";
 import LocalizeText from "@/components/utility/LocalizeText";
 import { PrismicRichText } from "@prismicio/react";
 import PhotoGallery from "@/components/PhotoGallery";
-import { eachDayOfInterval, subDays } from "date-fns";
+import { addDays, eachDayOfInterval, subDays } from "date-fns";
 import ical from "@/lib/cal-parser";
 import { Calendar } from "@/components/Calendar";
 import PartialDiv from "@/components/PartialDiv";
@@ -35,19 +35,11 @@ export default async function Page({ params }: { params: Params }) {
     string,
     React.ComponentType<{ children: React.ReactNode }>
   > = {
-
-    em: ({ children }) => (
-      <span className="text-dark-2 ">
-        {children}
-      </span>
-    ),
+    em: ({ children }) => <span className="text-dark-2 ">{children}</span>,
 
     paragraph: ({ children }) => <p className="text-dark-2 ">{children}</p>,
-    strong: ({ children }) => (
-      <span className=" text-dark-2 ">{children}</span>
-    ),
+    strong: ({ children }) => <span className=" text-dark-2 ">{children}</span>,
     list: ({ children }) => <ul className="  text-dark-2">{children}</ul>,
-
   };
   const photos = page.data.gallery.map((photo) => ({
     src: photo.photo?.url || "",
@@ -68,7 +60,7 @@ export default async function Page({ params }: { params: Params }) {
   const text = await res.text();
 
   ical(text).forEach((event) => {
-    const startDate = event.startDate!;
+    const startDate = addDays(event.startDate!, 1);
     const endDate = subDays(event.endDate!, 1);
 
     const interval = eachDayOfInterval({
@@ -170,7 +162,6 @@ export default async function Page({ params }: { params: Params }) {
                       />{" "}
                       {lowestPrice()}€
                     </li>
-
                   </ul>
                 </div>
                 <PrismicRichText
