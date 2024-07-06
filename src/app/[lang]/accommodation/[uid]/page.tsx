@@ -30,7 +30,6 @@ export default async function Page({ params }: { params: Params }) {
 
   const services = await client.getByType("services", { lang: params.lang });
 
-
   const rtfComponents: Record<
     string,
     React.ComponentType<{ children: React.ReactNode }>
@@ -56,7 +55,7 @@ export default async function Page({ params }: { params: Params }) {
 
   let dates: Date[] = [];
 
-  const res = await fetch(page.data.ical as string);
+  const res = await fetch(page.data.ical as string, { cache: "no-store" });
   const text = await res.text();
 
   ical(text).forEach((event) => {
@@ -246,8 +245,6 @@ export default async function Page({ params }: { params: Params }) {
 
       <SliceZone slices={page.data.slices} components={components} />
       <Services data={services.results[0].data} />
-
-
     </>
   );
 }
