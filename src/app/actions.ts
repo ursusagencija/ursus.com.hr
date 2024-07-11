@@ -6,6 +6,8 @@ import { redirect } from "next/navigation";
 
 mail.setApiKey(process.env.SENDGRID_API_KEY || "");
 
+const toEmail = "officeursus@gmail.com"
+
 export async function submitBooking(
   dateRange: [Date | null, Date | null],
   people: string,
@@ -24,13 +26,16 @@ export async function submitBooking(
               Price: ${price}`;
 
   const data = {
-    to: "info@ursus.com.hr",
+    // to: "info@ursus.com.hr",
+    to: toEmail,
     from: "ursusagencija@gmail.com",
     replyTo: formData.get("email") as string,
     subject: "Ursus Travel & Accommodation - Accommodation",
     text: message,
     html: message.replace(/\r\n/g, "<br>"),
   };
+
+
 
   try {
     await mail.send(data);
@@ -58,7 +63,8 @@ export async function submitTourBooking(
               Tour: https://ursus.com.hr${url}`;
 
   const data = {
-    to: "info@ursus.com.hr",
+    // to: "info@ursus.com.hr",
+    to: toEmail,
     from: "ursusagencija@gmail.com",
     replyTo: formData.get("email") as string,
     subject: "Ursus Travel & Accommodation - Tour",
@@ -86,7 +92,8 @@ export async function submitTransferBooking(formData: FormData) {
               Passengers: ${formData.get("passengerCount")}`;
 
   const data = {
-    to: "info@ursus.com.hr",
+    // to: "info@ursus.com.hr",
+    to: toEmail,
     from: "ursusagencija@gmail.com",
     replyTo: formData.get("email") as string,
     subject: "Ursus Travel & Accommodation - Transfer",
