@@ -59,7 +59,8 @@ export default async function Page({ params }: { params: Params }) {
   const text = await res.text();
 
   ical(text).forEach((event) => {
-    const startDate = addDays(event.startDate!, 1);
+    //const startDate = addDays(event.startDate!, 1);
+    const startDate = event.startDate!;
     const endDate = subDays(event.endDate!, 1);
 
     const interval = eachDayOfInterval({

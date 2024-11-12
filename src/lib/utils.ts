@@ -4,6 +4,7 @@ import {
   eachDayOfInterval,
   isSameDay,
   isWithinInterval,
+  parse,
   subDays,
 } from "date-fns";
 import { Content } from "@prismicio/client";
@@ -15,7 +16,8 @@ export const occupiedDatesFromIcal = async (url: string) => {
   const text = await res.text();
 
   ical(text).forEach((e) => {
-    const startDate = addDays(e.startDate!, 1); // Jedan dan dodajemo jer to moze biti zadnji dan (odlazak)
+    //const startDate = addDays(e.startDate!, 1); // Jedan dan dodajemo jer to moze biti zadnji dan (odlazak)
+    const startDate = e.startDate!;
     const endDate = subDays(e.endDate!, 1); // Jedan dan odbijamo, jer se ne racuna u broj nocenja
 
     const interval = eachDayOfInterval({
@@ -54,8 +56,8 @@ export const computePrice = (
     for (let period of pricing) {
       if (
         isWithinInterval(currentDate, {
-          start: period.period_start!,
-          end: period.period_end!,
+          start: parse(period.period_start!, "yyyy-MM-dd", new Date()),
+          end: parse(period.period_end!, "yyyy-MM-dd", new Date()),
         })
       ) {
         total += period.price as number;

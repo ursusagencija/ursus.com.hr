@@ -58,9 +58,9 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
   };
 
   const isSelectable = (date: Date) => {
-    if (!startDate) return true;
+    //if (!startDate) return true;
     if (isDateExcluded(date)) return false;
-    if (isSameDay(date, startDate)) return false;
+    if (startDate && isSameDay(date, startDate)) return false;
 
     if (startDate && !endDate) {
       const range = eachDayOfInterval({ start: startDate, end: date });
