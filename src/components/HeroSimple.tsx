@@ -8,10 +8,11 @@ export default function HeroSimple({ image, heading, children }: { image: any, h
             <PrismicNextImage
                 field={image}
                 fill
-                priority
-                style={{
-                    objectFit: "cover",
-                }}
+                priority // High fetch priority for LCP
+                sizes="(max-width: 768px) 100vw, 
+               (max-width: 1200px) 50vw, 
+               33vw" // Responsive sizes
+                style={{ objectFit: 'cover' }} // Ensure it covers the container
             />
             <div className="pb-28 lg:pb-24 lg:pt-[260px] pt-28 relative z-3">
                 <div className="container">
