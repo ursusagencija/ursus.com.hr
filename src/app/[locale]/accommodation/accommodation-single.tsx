@@ -1,7 +1,8 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import Card from "@/components/Card";
-import LocalizeText from "@/components/utility/LocalizeText";
 import { hasOverlap } from "@/lib/utils";
 import { useSearch } from "@/providers/SearchProvider";
 import { Content } from "@prismicio/client";
@@ -14,6 +15,8 @@ type Props = {
 };
 
 export const AccommodationSingle = ({ showAll, accommodations }: Props) => {
+  const t = useTranslations("accommodation");
+
   const {
     query: { dateRange, people },
   } = useSearch();
@@ -29,7 +32,7 @@ export const AccommodationSingle = ({ showAll, accommodations }: Props) => {
     if (filteredByDate.length === 0) {
       return (
         <div className="text-lg col-span-3 flex font-medium justify-center text-center text-primary-1 rounded-md p-2 bg-gray-100">
-          <LocalizeText croatianText="Nije pronađen dostupan smještaj koji odgovara vašim kriterijima pretrage." englishText="No available accommodation found matching your search criteria." />
+          {t("no-available")}
         </div>
       );
     }

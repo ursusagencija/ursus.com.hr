@@ -1,9 +1,10 @@
 import React from "react";
-import LocalizeText from "./utility/LocalizeText";
-import Link from "next/link";
 import { submitTransferBooking } from "@/app/actions";
+import { getTranslations } from "next-intl/server";
 
-export default function TransferContactForm() {
+export default async function TransferContactForm() {
+  const t = await getTranslations("transfers");
+
   return (
     <div className="my-8">
       <form
@@ -12,16 +13,13 @@ export default function TransferContactForm() {
         className="lg:px-base px-5 lg:pt-6 lg:pb-base pt-4 pb-5 bg-white border-primary-1 border"
       >
         <h4 className="lg:text-xl text-lg text-dark-1 font-semibold">
-          <LocalizeText
-            croatianText="Upit za transfer"
-            englishText="Transfer Request"
-          />
+          {t("request")}
         </h4>
 
         <div className="grid md:grid-cols-3 gap-x-4">
           <div className="mt-5 lg:mt-6">
             <label htmlFor="name" className="mb-2 text-dark-3 capitalize block">
-              <LocalizeText croatianText="Name" englishText="Name" />
+              {t("name")}
             </label>
             <input
               type="text"
@@ -36,10 +34,7 @@ export default function TransferContactForm() {
               htmlFor="flyingFrom"
               className="mb-2 text-dark-3 capitalize block"
             >
-              <LocalizeText
-                croatianText="Flying From"
-                englishText="Flying From"
-              />
+              {t("from")}
             </label>
             <input
               type="text"
@@ -54,7 +49,7 @@ export default function TransferContactForm() {
               htmlFor="flyingTo"
               className="mb-2 text-dark-3 capitalize block"
             >
-              <LocalizeText croatianText="Flying To" englishText="Flying To" />
+              {t("to")}
             </label>
             <input
               type="text"
@@ -69,10 +64,7 @@ export default function TransferContactForm() {
               htmlFor="flightDateTime"
               className="mb-2 text-dark-3 capitalize block"
             >
-              <LocalizeText
-                croatianText="Flight Date and Time"
-                englishText="Flight Date and Time"
-              />
+              {t("date")}
             </label>
             <input
               type="datetime-local"
@@ -87,10 +79,7 @@ export default function TransferContactForm() {
               htmlFor="flightNumber"
               className="mb-2 text-dark-3 capitalize block"
             >
-              <LocalizeText
-                croatianText="Flight Number"
-                englishText="Flight Number"
-              />
+              {t("flight-number")}
             </label>
             <input
               type="text"
@@ -105,10 +94,7 @@ export default function TransferContactForm() {
               htmlFor="passengerCount"
               className="mb-2 text-dark-3 capitalize block"
             >
-              <LocalizeText
-                croatianText="Number of Passengers"
-                englishText="Number of Passengers"
-              />
+              {t("number-of-passengers")}
             </label>
             <input
               type="number"
@@ -123,7 +109,7 @@ export default function TransferContactForm() {
               htmlFor="email"
               className="mb-2 text-dark-3 capitalize block"
             >
-              <LocalizeText croatianText="Email" englishText="Email" />
+              {t("email")}
             </label>
             <input
               type="email"
@@ -138,10 +124,7 @@ export default function TransferContactForm() {
               htmlFor="phoneNumber"
               className="mb-2 text-dark-3 capitalize block"
             >
-              <LocalizeText
-                croatianText="Phone Number"
-                englishText="Phone Number"
-              />
+              {t("phone")}
             </label>
             <input
               type="tel"
@@ -157,10 +140,7 @@ export default function TransferContactForm() {
             htmlFor="additionalInfo"
             className="mb-2 text-dark-3 capitalize block"
           >
-            <LocalizeText
-              croatianText="Additional Information"
-              englishText="Additional Information"
-            />
+            {t("additional-info")}
           </label>
           <textarea
             id="additionalInfo"
@@ -232,7 +212,7 @@ export default function TransferContactForm() {
           type="submit"
           className="btn_primary__v1 !w-full justify-center mt-5"
         >
-          <LocalizeText croatianText="Pošalji upit" englishText="Send" />
+          {t("submit")}
           <svg
             width={20}
             height={20}

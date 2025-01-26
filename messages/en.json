@@ -1,0 +1,108 @@
+{
+    "navbar": {
+        "home": "Home",
+        "accommodation": "Accommodation",
+        "tours": "Tours",
+        "transfers": "Transfers",
+        "for-renters": "For renters",
+        "catering": "Catering",
+        "about-us": "About us",
+        "contact": "Contact"
+    },
+    "footer": {
+        "office": "Office",
+        "summer-season": "Summer Season",
+        "off-season": "Off Season",
+        "june-september": "June - September",
+        "october-may": "October - May",
+        "hours-summer": "Monday to Sunday: 9am - 5pm",
+        "hours-off": "Monday to Friday: 9am - 5pm",
+        "terms": "Terms and Conditions",
+        "privacy": "Privacy Policy"
+    },
+    "accommodation": {
+        "show-all": "Show all",
+        "no-available": "No available accommodation found matching your search criteria.",
+        "accommodation": "Accommodation",
+        "details": "Details",
+        "guests": "Guests",
+        "bedrooms": "Bedrooms",
+        "beds": "Beds",
+        "bathrooms": "Bathrooms",
+        "price-from": "Price from",
+        "amenities": "Amenities",
+        "distances": "Distances",
+        "house-rules": "House Rules"
+    },
+    "tours": {
+        "show-all": "Show all",
+        "tours": "Tours",
+        "details": "Details",
+        "duration": "Duration",
+        "min-age": "Min. age",
+        "location": "Location",
+        "includes": "Includes",
+        "excludes": "Excludes",
+        "itinerary": "Itinerary",
+        "faq": "Frequently Asked Questions",
+        "gallery": "Gallery"
+    },
+    "contact": {
+        "get-in-touch": "Get in Touch",
+        "feel-free": "Feel Free to Contact with Us",
+        "our-location": "Our Location",
+        "office": "Office",
+        "company-info": "Company Info",
+        "address": "Address",
+        "vat-number": "VAT Number",
+        "ceo": "CEO",
+        "your-name": "Your Name",
+        "your-email": "Your Email",
+        "your-phone": "Your Phone Number",
+        "your-message": "Your Message",
+        "submit": "Submit"
+    },
+    "message-sent": {
+        "success": "Message sent successfully",
+        "contact-soon": "We will be in contact shortly."
+    },
+    "search": {
+        "person": "{count, plural, =1 {Person} other {People}}",
+        "select-date": "Select Date",
+        "show-available": "Show Available"
+    },
+    "transfers": {
+        "request": "Transfer Request",
+        "name": "Name",
+        "from": "Flying From",
+        "to": "Flying To",
+        "date": "Flight Date and Time",
+        "flight-number": "Flight Number",
+        "number-of-passangers": "Number of Passengers",
+        "email": "Email",
+        "phone": "Phone Number",
+        "additional-info": "Additional Information",
+        "submit": "Submit"
+    },
+    "booking": {
+        "book-now": "Book Now",
+        "check-availability": "Check Availability",
+        "date": "Date",
+        "select-date": "Select Date",
+        "guests": "Guests",
+        "adults": "adults",
+        "children": "children",
+        "name": "Name",
+        "email": "E-mail",
+        "phone": "Phone",
+        "message": "Message",
+        "total": "Total",
+        "select-dates-price": "Select dates to see the price",
+        "submit": "Submit"
+    },
+    "card": {
+        "people": "{count, plural, =1 {# person} other {# people}}",
+        "bedrooms": "{count, plural, =0 {Studio apartment} =1 {# bedroom} other {# bedrooms}}",
+        "from": "From"
+    }
+}

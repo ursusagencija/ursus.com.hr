@@ -1,40 +1,11 @@
-// ./src/middleware.ts
+import createMiddleware from "next-intl/middleware";
+import { routing } from "./i18n/routing";
 
-import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/prismicio';
-
-export async function middleware(request: NextRequest) {
-  const client = createClient();
-  const repository = await client.getRepository();
-
-  const locales = repository.languages.map((lang) => lang.id);
-  const defaultLocale = locales[0];
-
-  // Check if there is any supported locale in the pathname
-  const { pathname } = request.nextUrl;
-
-  const pathnameIsMissingLocale = locales.every(
-    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
-  );
-
-  // Redirect to default locale if there is no supported locale prefix
-  if (pathnameIsMissingLocale) {
-    return NextResponse.rewrite(
-      new URL(`/${defaultLocale}${pathname}`, request.url)
-    );
-  }
-}
+export default createMiddleware(routing, {
+  localeDetection: false,
+});
 
 export const config = {
-  // Don’t change the URL of Next.js assets starting with _next
-  // matcher: ['/((?!_next).*)'],
-  // All URLs not starting with /de or /it that are not a file.
-  matcher: [
-    // All URLs not starting with /de or /it that are not a file.
-    '/((?!(?:en|hr|api|_next/static|_next/image)(?:/|$))(?!.*\\.[^.]*$).*/?)',
-    '/',
-  ],
   // Match only internationalized pathnames
-  // matcher: ['/', '/(hr|en)/:path*']
-
+  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
 };

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import Select from "react-select";
@@ -7,7 +8,6 @@ import Select from "react-select";
 import { useSearch } from "@/providers/SearchProvider";
 
 import "react-datepicker/dist/react-datepicker.css";
-import LocalizeText from "./utility/LocalizeText";
 
 export default function Search() {
   const { query, updateQuery } = useSearch();
@@ -15,17 +15,19 @@ export default function Search() {
   const [startDate, endDate] = dateRange;
   const [people, setPeople] = useState(query.people);
 
+  const t = useTranslations("search");
+
   const peopleOptions = [
-    { value: 1, label: "1 Person" },
-    { value: 2, label: "2 People" },
-    { value: 3, label: "3 People" },
-    { value: 4, label: "4 People" },
-    { value: 5, label: "5 People" },
-    { value: 6, label: "6 People" },
-    { value: 7, label: "7 People" },
-    { value: 8, label: "8 People" },
-    { value: 9, label: "9 People" },
-    { value: 10, label: "10+ People" },
+    { value: 1, label: `1 ${t("person", { count: 1 })}` },
+    { value: 2, label: `2 ${t("person", { count: 2 })}` },
+    { value: 3, label: `3 ${t("person", { count: 3 })}` },
+    { value: 4, label: `4 ${t("person", { count: 4 })}` },
+    { value: 5, label: `5 ${t("person", { count: 5 })}` },
+    { value: 6, label: `6 ${t("person", { count: 6 })}` },
+    { value: 7, label: `7 ${t("person", { count: 7 })}` },
+    { value: 8, label: `8 ${t("person", { count: 8 })}` },
+    { value: 9, label: `9 ${t("person", { count: 9 })}` },
+    { value: 10, label: `10+ ${t("person", { count: 10 })}` },
   ];
 
   const onSubmit = () => {
@@ -52,7 +54,7 @@ export default function Search() {
               onChange={(update: any) => {
                 setDateRange(update);
               }}
-              placeholderText="Select Date"
+              placeholderText={t("select-date")}
               className="search__daterange lg:h-17 h-14 pr-4 lg:pl-[60px] pl-[50px] lg:text-md text-base w-full placeholder:text-dark-2 font-medium outline-none !font-sans"
             />
             <div className="absolute top-1/2 -translate-y-1/2 left-5 lg:left-base max-w-[20px] text-secondary-1">
@@ -106,10 +108,7 @@ export default function Search() {
             onClick={onSubmit}
             className="block lg:w-auto w-full flex-grow text-center bg-primary-1 lg:h-17 h-14  font-medium text-md text-white hover:bg-secondary-1 duration-300"
           >
-            <LocalizeText
-              englishText="Show Available"
-              croatianText="Prikaži slobodne"
-            />
+            {t("show-available")}
           </button>
         </div>
       </div>

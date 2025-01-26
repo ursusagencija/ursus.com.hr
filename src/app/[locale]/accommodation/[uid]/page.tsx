@@ -1,34 +1,33 @@
+import { PrismicNextImage } from "@prismicio/next";
+import { PrismicRichText, SliceZone } from "@prismicio/react";
+import { eachDayOfInterval, subDays } from "date-fns";
 import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { SliceZone } from "@prismicio/react";
 
+import { Calendar } from "@/components/Calendar";
+import PackageBookingForm from "@/components/package/PackageBookingForm";
+import PartialDiv from "@/components/PartialDiv";
+import PhotoGallery from "@/components/PhotoGallery";
+import Services from "@/components/Services";
+import { Link } from "@/i18n/routing";
+import ical from "@/lib/cal-parser";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
-import { PrismicNextImage } from "@prismicio/next";
-import Link from "next/link";
-import PackageBookingForm from "@/components/package/PackageBookingForm";
-import LocalizeText from "@/components/utility/LocalizeText";
-import { PrismicRichText } from "@prismicio/react";
-import PhotoGallery from "@/components/PhotoGallery";
-import { addDays, eachDayOfInterval, subDays } from "date-fns";
-import ical from "@/lib/cal-parser";
-import { Calendar } from "@/components/Calendar";
-import PartialDiv from "@/components/PartialDiv";
-import Services from "@/components/Services";
 
 // const DynamicMap = dynamic(() => import('@/components/package/PackageMap'), {
 //     ssr: false
 // });
 
-type Params = { uid: string; lang: string };
+type Params = { uid: string; locale: string };
 
 export default async function Page({ params }: { params: Params }) {
   const client = createClient();
   const page = await client
-    .getByUID("accomodation_single", params.uid, { lang: params.lang })
+    .getByUID("accomodation_single", params.uid, { lang: params.locale })
     .catch(() => notFound());
 
-  const services = await client.getByType("services", { lang: params.lang });
+  const services = await client.getByType("services", { lang: params.locale });
 
   const rtfComponents: Record<
     string,
@@ -71,6 +70,8 @@ export default async function Page({ params }: { params: Params }) {
     dates = [...dates, ...interval];
   });
 
+  const t = await getTranslations("accommodation");
+
   return (
     <>
       <div className="relative h-[50vh] md:h-[60vh] flex justify-center flex-col">
@@ -88,16 +89,9 @@ export default async function Page({ params }: { params: Params }) {
             <nav aria-label="breadcrumb">
               <ol className="breadcrumb">
                 <li>
-                  <Link href="/accommodation">
-                    <LocalizeText
-                      croatianText="Smještaj"
-                      englishText="Accommodation"
-                    />
-                  </Link>
+                  <Link href="/accommodation">{t("accommodation")}</Link>
                 </li>
-                <li className="active_page">
-                  <LocalizeText croatianText="Detalji" englishText="Details" />
-                </li>
+                <li className="active_page">{t("details")}</li>
               </ol>
             </nav>
 
@@ -113,54 +107,27 @@ export default async function Page({ params }: { params: Params }) {
             <div className="lg:col-span-8 col-span-12">
               <div className="pack__disc" id="Information">
                 <div className="flex justify-between items-center gap-2 flex-wrap lg:pt-8 pt-4 pb-4">
-                  {/* <h2 className="font-sans lg:text-[45px] md:text-xl text-xl font-semibold !pointer-events-none !mt-0 !mb-0 pb-4 md:pb-0">
-                    <LocalizeText croatianText="od" englishText="from" />{" "}
-                    {lowestPrice()}€
-                    <span className="lg:text-lg text-md font-normal">
-                      <LocalizeText croatianText="po osobi" englishText="per person" />
-                    </span>{" "}
-                  </h2> */}
                   <ul className="pack__list">
                     <li>
                       {" "}
                       <i className="bi bi-person" />
-                      <LocalizeText
-                        croatianText="Gosti"
-                        englishText="Guests"
-                      />{" "}
-                      {page.data.guests}
+                      {t("guests")} {page.data.guests}
                     </li>
                     <li>
-                      <i className="bi bi-usb-mini" />{" "}
-                      <LocalizeText
-                        croatianText="Spavaće Sobe"
-                        englishText="Bedrooms"
-                      />{" "}
+                      <i className="bi bi-usb-mini" /> {t("bedrooms")}{" "}
                       {page.data.bedrooms}
                     </li>
                     <li>
                       <i className="bi bi-tablet-landscape" />
-                      <LocalizeText
-                        croatianText="Kreveti"
-                        englishText="Beds"
-                      />{" "}
-                      {page.data.beds}
+                      {t("beds")} {page.data.beds}
                     </li>
                     <li>
                       <i className="bi bi-droplet" />
-                      <LocalizeText
-                        croatianText="Kupatilo"
-                        englishText="Bathrooms"
-                      />{" "}
-                      {page.data.bathrooms}
+                      {t("bathrooms")} {page.data.bathrooms}
                     </li>
                     <li>
                       <i className="bi bi-coin" />
-                      <LocalizeText
-                        croatianText="cijena do"
-                        englishText="price from"
-                      />{" "}
-                      {lowestPrice()}€
+                      {t("price-from")} {lowestPrice()}€
                     </li>
                   </ul>
                 </div>
@@ -172,10 +139,7 @@ export default async function Page({ params }: { params: Params }) {
                 <ul className="mt-base">
                   <li className="lg:flex lg:pt-6 pt-5 pb-5 lg:pb-6 border-t border-stock-1 last:border-b">
                     <div className="lg:w-1/3 lg:text-2md text-md text-dark-2 font-medium">
-                      <LocalizeText
-                        croatianText="Značajke"
-                        englishText="Amenity"
-                      />
+                      {t("amenities")}
                     </div>
                     <div className="lg:w-2/3 lg:mt-0 mt-4">
                       <ul className="lg:grid flex flex-wrap grid-cols-2 lg:gap-y-5 gap-y-3 gap-x-3">
@@ -196,12 +160,7 @@ export default async function Page({ params }: { params: Params }) {
                 </ul>
 
                 <div className="lg:pt-10 pt-8" id="distances">
-                  <h3>
-                    <LocalizeText
-                      croatianText="Udaljenosti"
-                      englishText="Distances"
-                    />
-                  </h3>
+                  <h3>{t("distances")}</h3>
                   <PrismicRichText
                     field={page.data.distances}
                     components={rtfComponents}
@@ -216,12 +175,7 @@ export default async function Page({ params }: { params: Params }) {
                 )}
                 <Calendar excludeDates={dates} />
                 <div className="lg:pt-10 pt-8" id="rules">
-                  <h3>
-                    <LocalizeText
-                      croatianText="Kućna pravila"
-                      englishText="House Rules"
-                    />
-                  </h3>
+                  <h3>{t("house-rules")}</h3>
 
                   <PartialDiv>
                     <PrismicRichText
@@ -257,7 +211,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const client = createClient();
   const page = await client
-    .getByUID("accomodation_single", params.uid, { lang: params.lang })
+    .getByUID("accomodation_single", params.uid, { lang: params.locale })
     .catch(() => notFound());
 
   return {

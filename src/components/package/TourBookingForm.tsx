@@ -1,16 +1,17 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import LocalizeText from "../utility/LocalizeText";
-import { useSearch } from "@/providers/SearchProvider";
-import { formatCurrency } from "@/lib/utils";
-import { Content } from "@prismicio/client";
+
 import { submitTourBooking } from "@/app/actions";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/routing";
+import { useSearch } from "@/providers/SearchProvider";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const TourBookingForm = () => {
+  const t = useTranslations("booking");
   const path = usePathname();
   const { query } = useSearch();
 
@@ -68,14 +69,11 @@ const TourBookingForm = () => {
         >
           <h4 className="lg:text-xl text-lg text-primary-1 font-semibold">
             {" "}
-            <LocalizeText
-              croatianText="Provjerite dostuponost"
-              englishText="Check Availability"
-            />
+            {t("check-availability")}
           </h4>
           <div className="mt-2">
             <label htmlFor="date" className="mb-1 text-dark-3 capitalize block">
-              Date
+              {t("date")}
             </label>
             <DatePicker
               required
@@ -83,7 +81,7 @@ const TourBookingForm = () => {
               minDate={new Date()}
               selected={date}
               onChange={(d) => setDate(d!)}
-              placeholderText="Select Date"
+              placeholderText={t("select-date")}
               className="search__daterange border border-stock-1 lg:h-[40px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start z-50"
             />
           </div>
@@ -92,7 +90,7 @@ const TourBookingForm = () => {
               htmlFor="tourTime"
               className="mb-1 text-dark-3 capitalize block"
             >
-              People
+              {t("guests")}
             </label>
             <button
               aria-label="count button"
@@ -101,8 +99,10 @@ const TourBookingForm = () => {
               className="w-full bg-transparent border border-stock-1 lg:h-[40px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 flex items-center common_dropdown__btn"
             >
               <div>
-                <span className="js-count-adult">{guest.adult}</span> adults -
-                <span className="js-count-child"> {guest.child}</span> children
+                <span className="js-count-adult">{guest.adult}</span>{" "}
+                {t("adults")} -
+                <span className="js-count-child"> {guest.child}</span>{" "}
+                {t("children")}
               </div>
             </button>
             {/* count dropdown */}
@@ -114,7 +114,7 @@ const TourBookingForm = () => {
                 className="js-counter flex justify-between items-center"
                 data-value-change=".js-count-adult"
               >
-                <p className="text-dark-1">Adult</p>
+                <p className="text-dark-1 capitalize">{t("adults")}</p>
                 <div className="flex items-center space-x-4">
                   <button
                     onClick={() => minusGuest("adult")}
@@ -142,7 +142,7 @@ const TourBookingForm = () => {
                 className="js-counter flex justify-between items-center"
                 data-value-change=".js-count-child"
               >
-                <p className="text-dark-1">Children</p>
+                <p className="text-dark-1 capitalize">{t("children")}</p>
                 <div className="flex items-center space-x-4">
                   <button
                     onClick={() => minusGuest("child")}
@@ -182,7 +182,7 @@ const TourBookingForm = () => {
           </div>
           <div className="mt-2">
             <label htmlFor="name" className="mb-1 text-dark-3 capitalize block">
-              Name
+              {t("name")}
             </label>
             <input
               name="name"
@@ -195,7 +195,7 @@ const TourBookingForm = () => {
                 htmlFor="email"
                 className="mb-1 text-dark-3 capitalize block"
               >
-                E-mail
+                {t("email")}
               </label>
               <input
                 name="email"
@@ -207,7 +207,7 @@ const TourBookingForm = () => {
                 htmlFor="phone"
                 className="mb-1 text-dark-3 capitalize block"
               >
-                Phone
+                {t("phone")}
               </label>
               <input
                 name="phone"
@@ -220,7 +220,7 @@ const TourBookingForm = () => {
               htmlFor="message"
               className="mb-1 text-dark-3 capitalize block"
             >
-              Message
+              {t("message")}
             </label>
             <textarea
               name="message"
@@ -232,7 +232,7 @@ const TourBookingForm = () => {
             type="submit"
             className="btn_primary__v1 !w-full justify-center mt-2"
           >
-            <LocalizeText croatianText="Pošalji" englishText="Send" />
+            {t("submit")}
             <svg
               width={20}
               height={20}

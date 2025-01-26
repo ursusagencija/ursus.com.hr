@@ -1,11 +1,10 @@
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import { createClient } from "@/prismicio";
-import Card from "@/components/Card";
-import LinkBuilderWithLocale from "@/components/utility/LinkBuilderWithLocale";
-import LocalizeText from "@/components/utility/LocalizeText";
 import { occupiedDatesFromIcal } from "@/lib/utils";
-import { AccommodationSingle } from "@/app/[lang]/accommodation/accommodation-single";
+import { AccommodationSingle } from "@/app/[locale]/accommodation/accommodation-single";
+import { Link } from "@/i18n/routing";
+import { getTranslations } from "next-intl/server";
 
 /**
  * Props for `AccomodationList`.
@@ -39,12 +38,13 @@ const AccomodationList = async ({
     }
   });
 
+  const t = await getTranslations("accommodation");
+
   return (
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className="my-12 lg:my-20"
-
     >
       <div className="container pt-4 " id="search-results">
         <div className="text-center lg:pb-[60px] pb-[40px]">
@@ -95,12 +95,12 @@ const AccomodationList = async ({
         </div>
         {slice.primary.limit !== "No limit" ? (
           <div className="text-center mt-8">
-            <LinkBuilderWithLocale
-              path="/accommodation"
+            <Link
+              href="/accommodation"
               className="hover:bg-primary-1 hover:text-white transition-colors duration-200 py-2 px-4 text-primary-1 border border-primary-1"
             >
-              <LocalizeText croatianText="Prikaži sve" englishText="Show all" />
-            </LinkBuilderWithLocale>
+              {t("show-all")}
+            </Link>
           </div>
         ) : null}
       </div>

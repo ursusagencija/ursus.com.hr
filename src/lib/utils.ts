@@ -8,6 +8,7 @@ import {
   subDays,
 } from "date-fns";
 import { Content } from "@prismicio/client";
+import { useTranslations } from "next-intl";
 
 export const occupiedDatesFromIcal = async (url: string) => {
   const dates: Date[] = [];
@@ -77,5 +78,7 @@ export const formatCurrency = (amount: number) => {
   });
   const formatted = formatter.format(amount);
 
-  return formatted === "€0" ? "Select dates to get price" : formatted;
+  const t = useTranslations("booking");
+
+  return formatted === "€0" ? t("select-dates-price") : formatted;
 };

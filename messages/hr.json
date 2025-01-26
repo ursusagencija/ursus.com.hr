@@ -1,0 +1,108 @@
+{
+    "navbar": {
+        "home": "Naslovnica",
+        "accommodation": "Smještaj",
+        "tours": "Ture",
+        "transfers": "Transfer",
+        "for-renters": "Za iznajmljivače",
+        "catering": "Catering",
+        "about-us": "O nama",
+        "contact": "Kontakt"
+    },
+    "footer": {
+        "office": "Ured",
+        "summer-season": "Ljetna sezona",
+        "off-season": "Van sezone",
+        "june-september": "Lipanj - Rujan",
+        "october-may": "Listopad - Svibanj",
+        "hours-summer": "Ponedjeljak - Nedjelja 09:00 - 17:00",
+        "hours-off": "Ponedjeljak - Petak 09:00 - 17:00",
+        "terms": "Uvjeti korištenja",
+        "privacy": "Politika privatnosti"
+    },
+    "accommodation": {
+        "show-all": "Prikaži sve",
+        "no-available": "Nije pronađen dostupan smještaj koji odgovara vašim kriterijima pretrage.",
+        "accommodation": "Smještaj",
+        "details": "Detalji",
+        "guests": "Gosti",
+        "bedrooms": "Spavaće sobe",
+        "beds": "Kreveti",
+        "bathrooms": "Kupaonice",
+        "price-from": "Cijena od",
+        "amenities": "Značajke",
+        "distances": "Udaljenosti",
+        "house-rules": "Kućna pravila"
+    },
+    "tours": {
+        "show-all": "Prikaži sve",
+        "tours": "Izleti",
+        "details": "Detalji",
+        "duration": "Trajanje",
+        "min-age": "Min. starost",
+        "location": "Lokacija",
+        "includes": "Uključuje",
+        "excludes": "Ne uključuje",
+        "itinerary": "Itinerar",
+        "faq": "Često postavljana pitanja",
+        "gallery": "Galerija"
+    },
+    "contact": {
+        "get-in-touch": "Stupite u kontakt",
+        "feel-free": "Slobodno nas kontaktirajte",
+        "our-location": "Naša lokacija",
+        "office": "Ured",
+        "company-info": "Podaci o firmi",
+        "address": "Adresa",
+        "vat-number": "OIB",
+        "ceo": "Direktor",
+        "your-name": "Vaše ime",
+        "your-email": "Vaš e-mail",
+        "your-phone": "Vaš telefon",
+        "your-message": "Vaša poruka",
+        "submit": "Pošalji"
+    },
+    "message-sent": {
+        "success": "Poruka uspješno poslana",
+        "contact-soon": "Uskoro ćemo vam se javiti."
+    },
+    "search": {
+        "person": "{count, plural, few {osobe} other {osoba}}",
+        "select-date": "Odaberi datum",
+        "show-available": "Prikaži dostupno"
+    },
+    "transfers": {
+        "request": "Upit za transfer",
+        "name": "Ime",
+        "from": "Let iz",
+        "to": "Let u",
+        "date": "Datum i vrijeme leta",
+        "flight-number": "Broj leta",
+        "number-of-passengers": "Broj putnika",
+        "email": "Email",
+        "phone": "Telefon",
+        "additional-info": "Dodatne informacije",
+        "submit": "Pošalji"
+    },
+    "booking": {
+        "book-now": "Rezervirajte",
+        "check-availability": "Provjerite dostupnost",
+        "date": "Datum",
+        "select-date": "Odaberite datum",
+        "guests": "Gosti",
+        "adults": "odrasli",
+        "children": "djeca",
+        "name": "Ime",
+        "email": "E-mail",
+        "phone": "Telefon",
+        "message": "Poruka",
+        "total": "Ukupno",
+        "select-dates-price": "Prvo odaberite datum",
+        "submit": "Pošalji"
+    },
+    "card": {
+        "people": "{count, plural, =1 {# osoba} few {# osobe} other {# osoba}}",
+        "bedrooms": "{count, plural, =0 {Studio apartman} =1 {# soba} few {# sobe} other {# soba}}",
+        "from": "Od"
+    }
+}

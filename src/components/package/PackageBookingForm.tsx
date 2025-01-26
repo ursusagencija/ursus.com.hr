@@ -2,12 +2,12 @@
 
 import { Content } from "@prismicio/client";
 import { eachDayOfInterval, isSameDay } from "date-fns";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 
 import { submitBooking } from "@/app/actions";
-import LocalizeText from "@/components/utility/LocalizeText";
+import { usePathname } from "@/i18n/routing";
 import { computePrice, formatCurrency } from "@/lib/utils";
 import { useSearch } from "@/providers/SearchProvider";
 
@@ -19,6 +19,7 @@ type Props = {
 };
 
 const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
+  const t = useTranslations("booking");
   const path = usePathname();
   const { query, updateQuery } = useSearch();
 
@@ -116,15 +117,14 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
           className="lg:px-base px-2 lg:pt-4 lg:pb-base pt-2 pb-3 bg-white border-primary-1 border"
         >
           <h4 className="lg:text-xl text-lg text-primary-1 font-semibold">
-            {" "}
-            <LocalizeText croatianText="Rezervirajte" englishText="Book Now" />
+            {t("book-now")}
           </h4>
           <div className="mt-2">
             <label
               htmlFor="tourTime"
               className="mb-1 text-dark-3 capitalize block"
             >
-              Date
+              {t("date")}
             </label>
             <DatePicker
               required
@@ -136,14 +136,14 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
               excludeDates={excludeDates}
               filterDate={isSelectable}
               onChange={handleDateChange}
-              placeholderText="Select Date"
+              placeholderText={t("select-date")}
               className="search__daterange border border-stock-1 lg:h-[40px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 w-full placeholder:text-dark-2 outline-none !font-sans text-start z-50"
             />
           </div>
 
           <div className="js-form-counters mt-2 relative">
             <label htmlFor="tourTime" className="mb-1 text-dark-3 block">
-              People
+              {t("guests")}
             </label>
             <button
               aria-label="count button"
@@ -152,8 +152,10 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
               className="w-full bg-transparent border border-stock-1 lg:h-[40px] h-12 px-5 py-2 text-dark-2 focus:border-primary-1 flex items-center common_dropdown__btn"
             >
               <div>
-                <span className="js-count-adult">{guest.adult}</span> adults -
-                <span className="js-count-child"> {guest.child}</span> children
+                <span className="js-count-adult">{guest.adult}</span>{" "}
+                {t("adults")} -
+                <span className="js-count-child"> {guest.child}</span>{" "}
+                {t("children")}
               </div>
             </button>
             {/* count dropdown */}
@@ -165,7 +167,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
                 className="js-counter flex justify-between items-center"
                 data-value-change=".js-count-adult"
               >
-                <p className="text-dark-1">Adult</p>
+                <p className="text-dark-1 capitalize">{t("adults")}</p>
                 <div className="flex items-center space-x-4">
                   <button
                     onClick={() => minusGuest("adult")}
@@ -193,7 +195,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
                 className="js-counter flex justify-between items-center"
                 data-value-change=".js-count-child"
               >
-                <p className="text-dark-1">Children</p>
+                <p className="text-dark-1 capitalize">{t("children")}</p>
                 <div className="flex items-center space-x-4">
                   <button
                     onClick={() => minusGuest("child")}
@@ -234,7 +236,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
 
           <div className="mt-2">
             <label htmlFor="name" className="mb-1 text-dark-3 capitalize block">
-              Name
+              {t("name")}
             </label>
             <input
               name="name"
@@ -248,7 +250,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
                 htmlFor="email"
                 className="mb-1 text-dark-3 capitalize block"
               >
-                E-mail
+                {t("email")}
               </label>
               <input
                 required
@@ -262,7 +264,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
                 htmlFor="phone"
                 className="mb-1 text-dark-3 capitalize block"
               >
-                Phone
+                {t("phone")}
               </label>
               <input
                 required
@@ -276,7 +278,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
               htmlFor="message"
               className="mb-1 text-dark-3 capitalize block"
             >
-              Message
+              {t("message")}
             </label>
             <textarea
               name="message"
@@ -296,7 +298,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
                     </div> */}
           <div className="pt-2 border-t border-stock-1 mt-6">
             <div className="font-sans text-primary-1 text-2md font-semibold flex justify-between">
-              Total:{" "}
+              {t("total")}:{" "}
               <span>
                 {formatCurrency(
                   computePrice(
@@ -335,7 +337,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
             type="submit"
             className="btn_primary__v1 !w-full justify-center mt-2"
           >
-            <LocalizeText croatianText="Pošalji" englishText="Send" />
+            {t("submit")}
             <svg
               width={20}
               height={20}

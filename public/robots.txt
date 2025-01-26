@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://ursus.com.hr
+
+# Sitemaps
+Sitemap: https://ursus.com.hr/sitemap.xml

@@ -4,15 +4,14 @@ import { Metadata } from "next";
 import { SliceZone } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
-import Link from "next/link";
 
 export async function generateMetadata({
-  params: { lang },
+  params: { locale },
 }: {
-  params: { lang: string };
+  params: { locale: string };
 }): Promise<Metadata> {
   const client = createClient();
-  const page = await client.getSingle("accomodation", { lang });
+  const page = await client.getSingle("accomodation", { lang: locale });
 
   return {
     title: page.data.meta_title,
@@ -21,13 +20,13 @@ export async function generateMetadata({
 }
 
 export default async function Index({
-  params: { lang },
+  params: { locale },
 }: {
-  params: { lang: string };
+  params: { locale: string };
 }) {
   const client = createClient();
   const home = await client.getSingle("accomodation", {
-    lang,
+    lang: locale,
   });
 
   return <SliceZone slices={home.data.slices} components={components} />;

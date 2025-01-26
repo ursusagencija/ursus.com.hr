@@ -1,31 +1,27 @@
+import { Link } from "@/i18n/routing";
+import { PrismicNextImage } from "@prismicio/next";
+import { PrismicRichText, SliceZone } from "@prismicio/react";
 import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { SliceZone } from "@prismicio/react";
 
+import Faq from "@/components/Faq";
+import Itinerary from "@/components/Itinerary";
+import PhotoGallery from "@/components/PhotoGallery";
+import Services from "@/components/Services";
+import TickList from "@/components/TickList";
+import TourBookingForm from "@/components/package/TourBookingForm";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
-import { PrismicNextImage } from "@prismicio/next";
-import Link from "next/link";
-import dynamic from "next/dynamic";
-import Services from "@/components/Services";
-import LocalizeText from "@/components/utility/LocalizeText";
-import { PrismicRichText } from "@prismicio/react";
 
-
-import TickList from "@/components/TickList";
-import Itinerary from "@/components/Itinerary";
-import Faq from "@/components/Faq";
-import PhotoGallery from "@/components/PhotoGallery";
-import TourBookingForm from "@/components/package/TourBookingForm";
-
-type Params = { uid: string; lang: string };
+type Params = { uid: string; locale: string };
 
 export default async function Page({ params }: { params: Params }) {
   const client = createClient();
   const page = await client
-    .getByUID("tours_single", params.uid, { lang: params.lang })
+    .getByUID("tours_single", params.uid, { lang: params.locale })
     .catch(() => notFound());
-  const services = await client.getByType("services", { lang: params.lang });
+  const services = await client.getByType("services", { lang: params.locale });
 
   const rtfComponents: Record<
     string,
@@ -47,6 +43,8 @@ export default async function Page({ params }: { params: Params }) {
     height: Number(photo.photo.dimensions?.height),
   }));
 
+  const t = await getTranslations("tours");
+
   return (
     <>
       <div className="relative h-[30vh] md:h-[60vh]">
@@ -64,13 +62,9 @@ export default async function Page({ params }: { params: Params }) {
             <nav aria-label="breadcrumb">
               <ol className="breadcrumb">
                 <li>
-                  <Link href="/tours">
-                    <LocalizeText croatianText="Izleti" englishText="Tours" />
-                  </Link>
+                  <Link href="/tours">{t("tours")}</Link>
                 </li>
-                <li className="active_page">
-                  <LocalizeText croatianText="Detalji" englishText="Details" />
-                </li>
+                <li className="active_page">{t("details")}</li>
               </ol>
             </nav>
 
@@ -87,17 +81,17 @@ export default async function Page({ params }: { params: Params }) {
             <div className="p-2">
               <ul className="flex flex-col md:flex-row gap-2 text-md flex-wrap items-start">
                 <li className="flex items-center gap-2 px-2">
-                  <i className="bi bi-clock" /> Duration{" "}
+                  <i className="bi bi-clock" /> {t("duration")}:{" "}
                   <strong>{page.data.duration}</strong>
                 </li>
                 <li className="flex items-center gap-2 px-2">
                   {" "}
                   <i className="bi bi-person" />
-                  Min. age: <strong>{page.data.min_age}</strong>
+                  {t("min-age")}: <strong>{page.data.min_age}</strong>
                 </li>
                 <li className="flex items-center gap-2 px-2">
                   <i className="bi bi-map" />
-                  Location: <strong>{page.data.location}</strong>
+                  {t("location")}: <strong>{page.data.location}</strong>
                 </li>
                 <li className="flex items-center gap-2 px-2">
                   <i className="bi bi-coin" />
@@ -122,10 +116,7 @@ export default async function Page({ params }: { params: Params }) {
                   {includedItems.length > 0 && (
                     <li className="lg:flex lg:pt-6 pt-5 pb-5 lg:pb-6 border-t border-stock-1 last:border-b">
                       <div className="lg:w-1/3 lg:text-2md text-md text-dark-2 font-medium">
-                        <LocalizeText
-                          croatianText="Uključuje"
-                          englishText="Includes"
-                        />
+                        {t("includes")}
                       </div>
                       <div className="lg:w-2/3 lg:mt-0 mt-4">
                         <TickList itemList={includedItems} />
@@ -134,10 +125,7 @@ export default async function Page({ params }: { params: Params }) {
                   )}
                   <li className="lg:flex lg:pt-6 pt-5 pb-5 lg:pb-6 border-t border-stock-1 last:border-b">
                     <div className="lg:w-1/3 lg:text-2md text-md text-dark-2 font-medium">
-                      <LocalizeText
-                        croatianText="Ne uključuje"
-                        englishText="Excludes"
-                      />
+                      {t("excludes")}
                     </div>
                     <div className="lg:w-2/3 lg:mt-0 mt-4">
                       <TickList itemList={excludedItems} />
@@ -146,33 +134,16 @@ export default async function Page({ params }: { params: Params }) {
                 </ul>
 
                 <div className="lg:pt-10 pt-8">
-                  <h3>
-                    <LocalizeText
-                      croatianText="Itinerar"
-                      englishText="Itinerary"
-                    />
-                  </h3>
-                  {/* <p>Duis id interdum ex, eu accumsan massa. Fusce vel nibh diam. Nulla ultrices ex at erat
-                                    pharetra, vitae viverra mauris condimentum. Sed ullamcorper dignissim enim, vel egestas
-                                    lacus tincidunt ac. Duis id interdum ex, eu accumsan massa. Fusce vel nibh diam.</p> */}
+                  <h3>{t("itinerary")}</h3>
+
                   <Itinerary itinerary={page.data.itinerary} />
                 </div>
                 <div className="pt-2">
-                  <h3>
-                    <LocalizeText
-                      croatianText="Često postavljana pitanja"
-                      englishText="Frequently Asked Questions"
-                    />
-                  </h3>
+                  <h3>{t("faq")}</h3>
                   <Faq faqList={page.data.faq} />
                 </div>
                 <div className="lg:pt-10 pt-8">
-                  <h3>
-                    <LocalizeText
-                      croatianText="Galerija"
-                      englishText="Gallery"
-                    />
-                  </h3>
+                  <h3>{t("gallery")}</h3>
 
                   <PhotoGallery photos={photos} overtitle="" heading="" />
                 </div>
@@ -199,7 +170,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const client = createClient();
   const page = await client
-    .getByUID("tours_single", params.uid, { lang: params.lang })
+    .getByUID("tours_single", params.uid, { lang: params.locale })
     .catch(() => notFound());
 
   return {

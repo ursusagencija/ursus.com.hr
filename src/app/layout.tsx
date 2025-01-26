@@ -9,8 +9,6 @@ import ContactBar from "@/components/ContactBar";
 import SearchProvider from "@/providers/SearchProvider";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
-
-
 /*Configure Google Fonts*/
 const jost = Jost({
   weight: ["200", "300", "400", "500", "600", "700"],
@@ -32,30 +30,16 @@ const satisfy = Satisfy({
 
 export default function RootLayout({
   children,
-  params,
 }: {
   children: React.ReactNode;
-  params: { lang: string };
 }) {
   return (
     <html
-      lang={params.lang}
+      lang="en"
       className={`${jost.variable} ${playfairDisplay.variable} ${satisfy.variable}`}
     >
       <GoogleAnalytics />
-      <body>
-        <SearchProvider>
-          <Header variant="transparent" />
-          <main className="">{children}</main>
-          <Footer />
-          <ContactBar number="385912004400" />
-        </SearchProvider>
-
-      </body>
+      <body>{children}</body>
     </html>
   );
-}
-
-export async function generateStaticParams() {
-  return [{ lang: "en" }, { lang: "hr" }];
 }
