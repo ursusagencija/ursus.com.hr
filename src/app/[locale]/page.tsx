@@ -1,33 +1,33 @@
 // ./src/app/[lang]/page.tsx
 
-import { Metadata } from 'next';
-import { SliceZone } from '@prismicio/react';
-import { createClient } from '@/prismicio';
-import { components } from '@/slices';
+import { Metadata } from "next";
+import { SliceZone } from "@prismicio/react";
+import { createClient } from "@/prismicio";
+import { components } from "@/slices";
 
 export async function generateMetadata({
-    params: { lang },
+  params: { locale },
 }: {
-    params: { lang: string };
+  params: { locale: string };
 }): Promise<Metadata> {
-    const client = createClient();
-    const page = await client.getSingle('homepage', { lang });
+  const client = createClient();
+  const page = await client.getSingle("homepage", { lang: locale });
 
-    return {
-        title: page.data.meta_title,
-        description: page.data.meta_description,
-    };
+  return {
+    title: page.data.meta_title,
+    description: page.data.meta_description,
+  };
 }
 
 export default async function Index({
-    params: { lang },
+  params: { locale },
 }: {
-    params: { lang: string };
+  params: { locale: string };
 }) {
-    const client = createClient();
-    const home = await client.getSingle('homepage', {
-        lang,
-    });
+  const client = createClient();
+  const home = await client.getSingle("homepage", {
+    lang: locale,
+  });
 
-    return <SliceZone slices={home.data.slices} components={components} />;
+  return <SliceZone slices={home.data.slices} components={components} />;
 }

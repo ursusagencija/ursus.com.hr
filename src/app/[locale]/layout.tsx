@@ -37,5 +37,5 @@ export default async function LangLayout({
 }
 
 export async function generateStaticParams() {
-  return [{ lang: "en" }, { lang: "hr" }];
+  return [{ locale: "en" }, { locale: "hr" }];
 }
