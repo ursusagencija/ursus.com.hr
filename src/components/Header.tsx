@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import { Link, usePathname } from "@/i18n/routing";
+import { useLocale } from "next-intl";
 
 import LinkBuilderWithLocale from "./utility/LinkBuilderWithLocale";
 
@@ -43,10 +44,12 @@ const Header = ({
   }, []);
 
   const pathname = usePathname();
-  // const locale = pathname.split("/")[1] === "hr" ? "hr" : "en";
-  // console.log(locale);
+  const locale = useLocale();
 
   const t = useTranslations("navbar");
+
+  // Get the path without any locale prefix
+  const pathWithoutLocale = pathname.replace(/^\/(en|hr)/, '') || '/';
 
   return (
     <header
@@ -71,59 +74,31 @@ const Header = ({
           <div className="main-menu uppercase ml-4">
             <ul className="flex items-center nav-list">
               <li className="group/step-one">
-                {/* <LinkBuilderWithLocale path="/" className="nav-link">
-                  {locale === "hr" ? "Naslovnica" : "Home"}
-                </LinkBuilderWithLocale> */}
                 <Link href="/" className="nav-link">
                   {t("home")}
                 </Link>
               </li>
               <li className="group/step-one">
-                {/* <LinkBuilderWithLocale
-                  path={`/accommodation`}
-                  className="nav-link"
-                >
-                  {locale === "hr" ? "Smještaj" : "Accommodation"}
-                </LinkBuilderWithLocale> */}
                 <Link href="/accommodation" className="nav-link">
                   {t("accommodation")}
                 </Link>
               </li>
               <li className="group/step-one">
-                {/* <LinkBuilderWithLocale path={`/tours`} className="nav-link">
-                  {locale === "hr" ? "Ture" : "Tours"}
-                </LinkBuilderWithLocale> */}
                 <Link href="/tours" className="nav-link">
                   {t("tours")}
                 </Link>
               </li>
               <li className="group/step-one">
-                {/* <LinkBuilderWithLocale path={`/transfers`} className="nav-link">
-                  {locale === "hr" ? "Transfer" : "Transfers"}
-                </LinkBuilderWithLocale> */}
                 <Link href="/transfers" className="nav-link">
                   {t("transfers")}
                 </Link>
               </li>
               <li className="group/step-one">
-                {/* <LinkBuilderWithLocale
-                  path={`/for-renters`}
-                  className="nav-link"
-                >
-                  {locale === "hr" ? "Za iznajmljivače" : "For renters"}
-                </LinkBuilderWithLocale> */}
                 <Link href="/for-renters" className="nav-link">
                   {t("for-renters")}
                 </Link>
               </li>
               <li className="group/step-one">
-                {/* <a
-                  className="nav-link"
-                  href="https://ursuscatering.hr"
-                  target="_blank"
-                >
-                  Catering
-                </a> */}
                 <Link
                   href="https://ursuscatering.hr"
                   className="nav-link"
@@ -133,9 +108,6 @@ const Header = ({
                 </Link>
               </li>
               <li className="group/step-one">
-                {/* <LinkBuilderWithLocale path={`/about-us`} className="nav-link">
-                  {locale === "hr" ? "O nama" : "About Us"}
-                </LinkBuilderWithLocale> */}
                 <Link href="/about-us" className="nav-link">
                   {t("about-us")}
                 </Link>
@@ -143,13 +115,15 @@ const Header = ({
             </ul>
           </div>
         </div>
-        <div className="shrink-0">
-          {/* <LinkBuilderWithLocale
-            path={`/contact`}
-            className="btn_primary__v1 outlined"
-          >
-            {locale === "hr" ? "Kontakt" : "Contact"}
-          </LinkBuilderWithLocale> */}
+        <div className="shrink-0 flex items-center gap-4">
+          <div className="language-switcher flex items-center gap-2">
+            <Link href={pathWithoutLocale} locale="en" className={`text-sm hover:text-primary transition-colors ${locale === 'en' ? 'font-bold' : ''}`}>
+              EN
+            </Link>
+            <Link href={pathWithoutLocale} locale="hr" className={`text-sm hover:text-primary transition-colors ${locale === 'hr' ? 'font-bold' : ''}`}>
+              HR
+            </Link>
+          </div>
           <Link href="/contact" className="btn_primary__v1 outlined">
             {t("contact")}
           </Link>
@@ -167,12 +141,6 @@ const Header = ({
           />
         </Link>
         <div className="space-x-4 flex items-center">
-          {/* <Link href="/login" className="shrink-0 inline-flex justify-center items-center bg-primary-2 rounded-full h-10 w-10 text-white">
-                        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.45006 10.79 7.56006 8.84 7.56006 6.44C7.56006 3.99 9.54006 2 12.0001 2C14.4501 2 16.4401 3.99 16.4401 6.44C16.4301 8.84 14.5401 10.79 12.1601 10.87Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M7.15997 14.56C4.73997 16.18 4.73997 18.82 7.15997 20.43C9.90997 22.27 14.42 22.27 17.17 20.43C19.59 18.81 19.59 16.17 17.17 14.56C14.43 12.73 9.91997 12.73 7.15997 14.56Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                    </Link> */}
           <button
             className={`hamburger ${toggle ? "hum-active" : ""}`}
             id="hamburger"
@@ -187,15 +155,26 @@ const Header = ({
           id="mobile-menu"
           className={`mobil-menu ${toggle ? "mm-active" : ""}`}
         >
+          <div className="language-switcher flex items-center gap-2 justify-center mb-6 mt-4">
+            <Link 
+              href={pathWithoutLocale}
+              locale="en"
+              className={`text-sm hover:text-primary transition-colors ${locale === 'en' ? 'font-bold' : ''}`}
+              onClick={() => setToggle(false)}
+            >
+              EN
+            </Link>
+            <Link 
+              href={pathWithoutLocale}
+              locale="hr"
+              className={`text-sm hover:text-primary transition-colors ${locale === 'hr' ? 'font-bold' : ''}`}
+              onClick={() => setToggle(false)}
+            >
+              HR
+            </Link>
+          </div>
           <ul>
             <li className="group/step-one">
-              {/* <LinkBuilderWithLocale
-                path={`/`}
-                className="nav-link nav-link-sm"
-                onClick={() => setToggle(false)}
-              >
-                {locale === "hr" ? "Naslovnica" : "Home"}
-              </LinkBuilderWithLocale> */}
               <Link
                 href="/"
                 className="nav-link nav-link-sm"
@@ -205,13 +184,6 @@ const Header = ({
               </Link>
             </li>
             <li className="group/step-one">
-              {/* <LinkBuilderWithLocale
-                path={`/accommodation`}
-                className="nav-link nav-link-sm"
-                onClick={() => setToggle(false)}
-              >
-                {locale === "hr" ? "Smještaj" : "Accommodation"}
-              </LinkBuilderWithLocale> */}
               <Link
                 href="/accommodation"
                 className="nav-link nav-link-sm"
@@ -221,13 +193,6 @@ const Header = ({
               </Link>
             </li>
             <li className="group/step-one">
-              {/* <LinkBuilderWithLocale
-                path={`/tours`}
-                className="nav-link nav-link-sm"
-                onClick={() => setToggle(false)}
-              >
-                {locale === "hr" ? "Ture" : "Tours"}
-              </LinkBuilderWithLocale> */}
               <Link
                 href="/tours"
                 className="nav-link nav-link-sm"
@@ -237,13 +202,6 @@ const Header = ({
               </Link>
             </li>
             <li className="group/step-one">
-              {/* <LinkBuilderWithLocale
-                path={`/transfers`}
-                className="nav-link nav-link-sm"
-                onClick={() => setToggle(false)}
-              >
-                {locale === "hr" ? "Transfer" : "Transfers"}
-              </LinkBuilderWithLocale> */}
               <Link
                 href="/transfers"
                 className="nav-link nav-link-sm"
@@ -253,13 +211,6 @@ const Header = ({
               </Link>
             </li>
             <li className="group/step-one">
-              {/* <LinkBuilderWithLocale
-                path={`/for-renters`}
-                className="nav-link nav-link-sm"
-                onClick={() => setToggle(false)}
-              >
-                {locale === "hr" ? "Za iznajmljivače" : "For renters"}
-              </LinkBuilderWithLocale> */}
               <Link
                 href="/for-renters"
                 className="nav-link nav-link-sm"
@@ -269,13 +220,6 @@ const Header = ({
               </Link>
             </li>
             <li className="group/step-one">
-              {/* <a
-                className="nav-link nav-link-sm"
-                href="https://ursuscatering.hr"
-                target="_blank"
-              >
-                Catering
-              </a> */}
               <Link
                 href="https://ursuscatering.hr"
                 className="nav-link nav-link-sm"
@@ -286,13 +230,6 @@ const Header = ({
               </Link>
             </li>
             <li className="group/step-one">
-              {/* <LinkBuilderWithLocale
-                path={`/about-us`}
-                className="nav-link nav-link-sm"
-                onClick={() => setToggle(false)}
-              >
-                {locale === "hr" ? "O nama" : "About Us"}
-              </LinkBuilderWithLocale> */}
               <Link
                 href="/about-us"
                 className="nav-link nav-link-sm"
@@ -302,13 +239,6 @@ const Header = ({
               </Link>
             </li>
             <li className="group/step-one">
-              {/* <LinkBuilderWithLocale
-                path={`/contact`}
-                className="nav-link nav-link-sm"
-                onClick={() => setToggle(false)}
-              >
-                {locale === "hr" ? "Kontakt" : "Contact"}
-              </LinkBuilderWithLocale> */}
               <Link
                 href="/contact"
                 className="nav-link nav-link-sm"
