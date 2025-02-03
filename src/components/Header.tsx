@@ -117,10 +117,34 @@ const Header = ({
         </div>
         <div className="shrink-0 flex items-center gap-4">
           <div className="language-switcher flex items-center gap-2">
-            <Link href={pathWithoutLocale} locale="en" className={`text-sm hover:text-primary transition-colors ${locale === 'en' ? 'font-bold' : ''}`}>
+            <Link 
+              href={pathWithoutLocale} 
+              locale="en" 
+              className={`text-sm hover:text-primary transition-colors ${
+                locale === 'en' ? 'font-bold' : ''
+              } ${
+                variant === 'transparent' || variant === 'transparent-V2'
+                  ? isSticky
+                    ? 'text-dark'
+                    : 'text-white'
+                  : ''
+              }`}
+            >
               EN
             </Link>
-            <Link href={pathWithoutLocale} locale="hr" className={`text-sm hover:text-primary transition-colors ${locale === 'hr' ? 'font-bold' : ''}`}>
+            <Link 
+              href={pathWithoutLocale} 
+              locale="hr" 
+              className={`text-sm hover:text-primary transition-colors ${
+                locale === 'hr' ? 'font-bold' : ''
+              } ${
+                variant === 'transparent' || variant === 'transparent-V2'
+                  ? isSticky
+                    ? 'text-dark'
+                    : 'text-white'
+                  : ''
+              }`}
+            >
               HR
             </Link>
           </div>
