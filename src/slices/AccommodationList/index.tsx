@@ -4,7 +4,7 @@ import { createClient } from "@/prismicio";
 import { occupiedDatesFromIcal } from "@/lib/utils";
 import { AccommodationSingle } from "@/app/[locale]/accommodation/accommodation-single";
 import { Link } from "@/i18n/routing";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 /**
  * Props for `AccomodationList`.
@@ -19,7 +19,10 @@ const AccomodationList = async ({
   slice,
 }: AccomodationListProps): Promise<JSX.Element> => {
   const client = createClient();
-  const accommodations = await client.getAllByType("accomodation_single");
+  const locale = await getLocale();
+  const accommodations = await client.getAllByType("accomodation_single", {
+    lang: locale,
+  });
 
   const accommodationsWithCalendar = await Promise.all(
     accommodations.map(async (a) => ({

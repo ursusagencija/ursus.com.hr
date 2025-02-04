@@ -2,7 +2,7 @@ import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import Card from "@/components/Card";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 
 /**
@@ -15,7 +15,8 @@ export type TourListProps = SliceComponentProps<Content.TourListSlice>;
  */
 const TourList = async ({ slice }: any) => {
   const client = createClient();
-  const tours = await client.getAllByType("tours_single");
+  const locale = await getLocale();
+  const tours = await client.getAllByType("tours_single", { lang: locale });
   const sortedTours = tours.sort((a, b) => {
     if (a.data.isFeatured && !b.data.isFeatured) {
       return -1;
