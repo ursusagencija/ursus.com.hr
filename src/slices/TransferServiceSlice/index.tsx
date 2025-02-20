@@ -52,6 +52,19 @@ const TransferServiceSlice = ({
             </div>
 
             <div className="mt-5 lg:mt-6">
+              <label htmlFor="email" className="mb-2 text-dark-3 capitalize block">
+                {t("email")}*
+              </label>
+              <input
+                required
+                type="email"
+                id="email"
+                name="email"
+                className="input_style__primary"
+              />
+            </div>
+
+            <div className="mt-5 lg:mt-6">
               <label htmlFor="phone" className="mb-2 text-dark-3 capitalize block">
                 {t("phone")}
               </label>
@@ -97,32 +110,16 @@ const TransferServiceSlice = ({
 
             <div className="mt-5 lg:mt-6">
               <label
-                htmlFor="transferDate"
+                htmlFor="transferDateTime"
                 className="mb-2 text-dark-3 capitalize block"
               >
-                {t("transfer-date")}*
+                {t("transfer-datetime")}*
               </label>
               <input
                 required
-                type="date"
-                id="transferDate"
-                name="transferDate"
-                className="input_style__primary"
-              />
-            </div>
-
-            <div className="mt-5 lg:mt-6">
-              <label
-                htmlFor="transferTime"
-                className="mb-2 text-dark-3 capitalize block"
-              >
-                {t("transfer-time")}*
-              </label>
-              <input
-                required
-                type="time"
-                id="transferTime"
-                name="transferTime"
+                type="datetime-local"
+                id="transferDateTime"
+                name="transferDateTime"
                 className="input_style__primary"
               />
             </div>

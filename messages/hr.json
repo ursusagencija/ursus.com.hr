@@ -88,12 +88,12 @@
     "transfer-service": {
         "request": "Upit za transfer",
         "name": "Ime i prezime",
+        "email": "Email adresa",
+        "phone": "Broj telefona",
         "departure-address": "Adresa polaska (ulica, grad)",
         "arrival-address": "Adresa dolaska (ulica, grad)",
-        "transfer-date": "Datum transfera",
-        "transfer-time": "Vrijeme transfera",
+        "transfer-datetime": "Datum i vrijeme transfera",
         "number-of-passengers": "Broj putnika",
-        "phone": "Broj telefona",
         "additional-info": "Dodatne informacije",
         "submit": "Pošalji"
     },

@@ -122,26 +122,27 @@ export async function submitTransferBooking2(formData: FormData) {
     phone: formData.get("phone"),
     departureAddress: formData.get("departureAddress"),
     arrivalAddress: formData.get("arrivalAddress"),
-    transferDate: formData.get("transferDate"),
-    transferTime: formData.get("transferTime"),
+    transferDateTime: formData.get("transferDateTime"),
     passengerCount: formData.get("passengerCount"),
     additionalInfo: formData.get("additionalInfo"),
+    email: formData.get("email"),
   });
 
   const message = `
               Name: ${formData.get("name")}\r\n
+              Email: ${formData.get("email")}\r\n
               Phone: ${formData.get("phone")}\r\n        
               Departure Address: ${formData.get("departureAddress")}\r\n
               Arrival Address: ${formData.get("arrivalAddress")}\r\n
-              Transfer Date: ${formData.get("transferDate")}\r\n
-              Transfer Time: ${formData.get("transferTime")}\r\n
+              Transfer Date & Time: ${formData.get("transferDateTime")}\r\n
               Number of Passengers: ${formData.get("passengerCount")}\r\n
               Additional Information: ${formData.get("additionalInfo")}\r\n`;
 
   const data = {
     to: toEmail,
     from: "ursusagencija@gmail.com",
-    replyTo: formData.get("email") as string,    subject: "Ursus Travel & Accommodation - Transfer Service Request",
+    replyTo: formData.get("email") as string,
+    subject: "Ursus Travel & Accommodation - Transfer Service Request",
     text: message,
     html: message.replace(/\r\n/g, "<br>"),
   };
