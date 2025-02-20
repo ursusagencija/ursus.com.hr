@@ -2,6 +2,8 @@ import ical from "@/lib/cal-parser";
 import {
   addDays,
   eachDayOfInterval,
+  isAfter,
+  isBefore,
   isSameDay,
   isWithinInterval,
   parse,
@@ -9,27 +11,151 @@ import {
 } from "date-fns";
 import { Content } from "@prismicio/client";
 import { useTranslations } from "next-intl";
+import { DateRange } from "@/types";
+import { start } from "repl";
 
 export const occupiedDatesFromIcal = async (url: string) => {
   const dates: Date[] = [];
 
-  const res = await fetch(url);
-  const text = await res.text();
+  try {
+    if (!url) return dates;
 
-  ical(text).forEach((e) => {
-    //const startDate = addDays(e.startDate!, 1); // Jedan dan dodajemo jer to moze biti zadnji dan (odlazak)
-    const startDate = e.startDate!;
-    const endDate = subDays(e.endDate!, 1); // Jedan dan odbijamo, jer se ne racuna u broj nocenja
+    const res = await fetch(url, { cache: "no-store" });
 
-    const interval = eachDayOfInterval({
-      start: startDate,
-      end: endDate,
+    if (!res.ok) return dates;
+
+    const text = await res.text();
+
+    ical(text).forEach((e) => {
+      const startDate = e.startDate!;
+      const endDate = e.endDate!;
+
+      const interval = eachDayOfInterval({
+        start: startDate,
+        end: endDate,
+      });
+
+      dates.push(...interval);
     });
-
-    dates.push(...interval);
-  });
+  } catch (error) {}
 
   return dates;
+};
+
+export const occupiedRangesFromIcal = async (url: string) => {
+  const dates: DateRange[] = [];
+
+  try {
+    if (!url) return dates;
+
+    const res = await fetch(url, { cache: "no-store" });
+
+    if (!res.ok) return dates;
+
+    const text = await res.text();
+
+    ical(text).forEach((e) => {
+      const startDate = e.startDate!;
+      const endDate = e.endDate!;
+
+      dates.push({ startDate, endDate });
+    });
+  } catch (error) {
+    return dates;
+  }
+
+  return dates;
+};
+
+export const isDateInOccupiedRange = (
+  date: Date,
+  occupiedRanges: DateRange[]
+) => {
+  return occupiedRanges.some(({ startDate, endDate }) =>
+    isWithinInterval(date, {
+      start: startDate!,
+      end: subDays(endDate!, 1),
+    })
+  );
+};
+
+export const getApplicablePriceRange = (
+  date: Date,
+  priceRanges: Content.AccomodationSingleDocumentData["pricing"]
+) => {
+  return priceRanges.find((range, index, ranges) => {
+    const previousRange = ranges[index - 1];
+
+    const inCurrentRange = isWithinInterval(date, {
+      start: range.period_start!,
+      end: range.period_end!,
+    });
+
+    const isTransitionDay = previousRange
+      ? isAfter(date, previousRange.period_end!) &&
+        isBefore(date, range.period_start!)
+      : false;
+
+    return inCurrentRange || isTransitionDay;
+  });
+};
+
+export const isDateAvailable = (
+  date: Date,
+  priceRanges: Content.AccomodationSingleDocumentData["pricing"],
+  occupiedRanges: DateRange[]
+) => {
+  const range = getApplicablePriceRange(date, priceRanges);
+  if (!range || !range.price) return false;
+
+  return !isDateInOccupiedRange(date, occupiedRanges);
+};
+
+export const isEndDateValid = (
+  startDate: Date,
+  endDate: Date,
+  priceRanges: Content.AccomodationSingleDocumentData["pricing"],
+  occupiedRanges: DateRange[]
+) => {
+  const range = getApplicablePriceRange(endDate, priceRanges);
+
+  if (!range) return false;
+
+  return !eachDayOfInterval({ start: startDate, end: endDate }).some((date) =>
+    isDateInOccupiedRange(date, occupiedRanges)
+  );
+};
+
+export const getAvailableEndDates = (
+  startDate: Date,
+  priceRanges: Content.AccomodationSingleDocumentData["pricing"],
+  occupiedRanges: DateRange[]
+) => {
+  const validEndDates = [];
+  for (let days = 1; days <= 30; days++) {
+    // Checking for next 30 days (adjust as necessary)
+    const potentialEndDate = addDays(startDate, days);
+    if (
+      isEndDateValid(startDate, potentialEndDate, priceRanges, occupiedRanges)
+    ) {
+      validEndDates.push(potentialEndDate);
+    }
+  }
+  return validEndDates;
+};
+
+export const hasValidEndDates = (
+  startDate: Date,
+  priceRanges: Content.AccomodationSingleDocumentData["pricing"],
+  occupiedRanges: DateRange[]
+) => {
+  const validEndDates = getAvailableEndDates(
+    startDate,
+    priceRanges,
+    occupiedRanges
+  );
+
+  return validEndDates.length > 0;
 };
 
 export const hasOverlap = (

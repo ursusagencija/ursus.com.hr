@@ -56,3 +56,8 @@ export type Objects = {
     data: CalendarEvent[]
   ) => CalendarEvent | undefined;
 };
+
+export type DateRange = {
+  startDate: Date | null;
+  endDate: Date | null;
+};

@@ -1,24 +1,37 @@
 "use client";
 
 import { Content } from "@prismicio/client";
-import { eachDayOfInterval, isSameDay } from "date-fns";
+import { eachDayOfInterval, isAfter, isSameDay } from "date-fns";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 
 import { submitBooking } from "@/app/actions";
 import { usePathname } from "@/i18n/routing";
-import { computePrice, formatCurrency } from "@/lib/utils";
+import {
+  computePrice,
+  formatCurrency,
+  hasValidEndDates,
+  isDateAvailable,
+  isDateInOccupiedRange,
+  isEndDateValid,
+} from "@/lib/utils";
 import { useSearch } from "@/providers/SearchProvider";
+import { DateRange } from "@/types";
 
 import "react-datepicker/dist/react-datepicker.css";
 
 type Props = {
   excludeDates: Date[];
+  occupiedRanges: DateRange[];
   pricing: Content.AccomodationSingleDocumentData["pricing"];
 };
 
-const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
+const PackageBookingForm = ({
+  excludeDates,
+  occupiedRanges,
+  pricing,
+}: Props) => {
   const t = useTranslations("booking");
   const path = usePathname();
   const { query, updateQuery } = useSearch();
@@ -60,7 +73,8 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
 
   const isSelectable = (date: Date) => {
     //if (!startDate) return true;
-    if (isDateExcluded(date)) return false;
+    //if (isDateExcluded(date)) return false;
+    /*if (isDateInOccupiedRange(date, occupiedRanges)) return false;
     if (startDate && isSameDay(date, startDate)) return false;
 
     if (startDate && !endDate) {
@@ -68,13 +82,21 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
       return !range.some(isDateExcluded);
     }
 
-    return true;
+    return true;*/
+    if (!startDate || (startDate && endDate)) {
+      return isDateAvailable(date, pricing, occupiedRanges);
+    }
+
+    return (
+      isAfter(date, startDate) &&
+      isEndDateValid(startDate, date, pricing, occupiedRanges)
+    );
   };
 
   const handleDateChange = (update: any) => {
     const [start, end] = update;
 
-    if (start && end) {
+    /*if (start && end) {
       const range = eachDayOfInterval({ start, end });
       const rangeIsValid = !range.some(isDateExcluded);
 
@@ -88,7 +110,23 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
     }
 
     setDateRange(update);
-    updateQuery({ dateRange: update });
+    updateQuery({ dateRange: update });*/
+    if (!start || (start && end)) {
+      if (
+        isDateAvailable(start, pricing, occupiedRanges) &&
+        hasValidEndDates(start, pricing, occupiedRanges) &&
+        isAfter(start, new Date())
+      ) {
+        setDateRange([start, end]);
+        updateQuery({ dateRange: update });
+      }
+    } else if (start && !end) {
+      setDateRange([start, end]);
+      updateQuery({ dateRange: [start, end] });
+    } else {
+      setDateRange([start, end]);
+      updateQuery({ dateRange: [start, null] });
+    }
   };
 
   const handleSubmit = submitBooking.bind(
@@ -133,7 +171,7 @@ const PackageBookingForm = ({ excludeDates, pricing }: Props) => {
               selectsRange={true}
               startDate={startDate!}
               endDate={endDate!}
-              excludeDates={excludeDates}
+              //excludeDates={excludeDates}
               filterDate={isSelectable}
               onChange={handleDateChange}
               placeholderText={t("select-date")}

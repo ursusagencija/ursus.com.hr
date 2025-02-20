@@ -16,7 +16,7 @@ import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import richTextStyling from "@/components/utility/richTextSyling";
 import Faq from "@/components/Faq";
-
+import { occupiedDatesFromIcal, occupiedRangesFromIcal } from "@/lib/utils";
 
 // const DynamicMap = dynamic(() => import('@/components/package/PackageMap'), {
 //     ssr: false
@@ -32,7 +32,6 @@ export default async function Page({ params }: { params: Params }) {
 
   const services = await client.getByType("services", { lang: params.locale });
 
-
   const photos = page.data.gallery.map((photo) => ({
     src: photo.photo?.url || "",
     width: Number(photo.photo.dimensions?.width),
@@ -46,7 +45,7 @@ export default async function Page({ params }: { params: Params }) {
     return Math.min(...prices);
   };
 
-  let dates: Date[] = [];
+  /*let dates: Date[] = [];
 
   const res = await fetch(page.data.ical as string, { cache: "no-store" });
   const text = await res.text();
@@ -62,7 +61,9 @@ export default async function Page({ params }: { params: Params }) {
     });
 
     dates = [...dates, ...interval];
-  });
+  });*/
+  const occupiedDates = await occupiedDatesFromIcal(page.data.ical!);
+  const occupiedRanges = await occupiedRangesFromIcal(page.data.ical!);
 
   const t = await getTranslations("accommodation");
 
@@ -167,7 +168,7 @@ export default async function Page({ params }: { params: Params }) {
                     photos={photos}
                   />
                 )}
-                <Calendar excludeDates={dates} />
+                <Calendar excludeDates={occupiedDates} />
                 <div className="lg:pt-10 pt-8" id="rules">
                   <h3>{t("house-rules")}</h3>
 
@@ -192,14 +193,14 @@ export default async function Page({ params }: { params: Params }) {
                 <div className="lg:pt-10 pt-8" id="faq">
                   <h3>FAQ</h3>
                   <Faq faqList={page.data.faq} />
-
                 </div>
               </div>
             </div>
             <div className="lg:col-span-4 col-span-12 lg:pt-20 pt-10 relative">
               <div className="lg:sticky top-[108px]">
                 <PackageBookingForm
-                  excludeDates={dates}
+                  excludeDates={occupiedDates}
+                  occupiedRanges={occupiedRanges}
                   pricing={page.data.pricing}
                 />
               </div>
