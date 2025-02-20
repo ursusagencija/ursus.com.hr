@@ -87,7 +87,7 @@ export async function submitTransferBooking(formData: FormData) {
   const message = `
               Name: ${formData.get("name")}\r\n
               Email: ${formData.get("email")}\r\n
-              Phone: ${formData.get("phone")}\r\n        
+              Phone: ${formData.get("phoneNumber")}\r\n        
               Message: ${formData.get("additionalInfo")}\r\n
               Flight: #${formData.get("flightNumber")} ${formData.get("flyingFrom")} - ${formData.get("flyingTo")} @ ${formData.get("flightDateTime")}\r\n
               Passengers: ${formData.get("passengerCount")}`;
@@ -114,6 +114,20 @@ export async function submitTransferBooking(formData: FormData) {
 
 //regular transfer (not airport transfer)
 export async function submitTransferBooking2(formData: FormData) {
+  console.log("Starting transfer booking submission...");
+  
+  // Log form data
+  console.log("Form data received:", {
+    name: formData.get("name"),
+    phone: formData.get("phone"),
+    departureAddress: formData.get("departureAddress"),
+    arrivalAddress: formData.get("arrivalAddress"),
+    transferDate: formData.get("transferDate"),
+    transferTime: formData.get("transferTime"),
+    passengerCount: formData.get("passengerCount"),
+    additionalInfo: formData.get("additionalInfo"),
+  });
+
   const message = `
               Name: ${formData.get("name")}\r\n
               Phone: ${formData.get("phone")}\r\n        
@@ -127,18 +141,26 @@ export async function submitTransferBooking2(formData: FormData) {
   const data = {
     to: toEmail,
     from: "ursusagencija@gmail.com",
-    replyTo: formData.get("phone") as string,
-    subject: "Ursus Travel & Accommodation - Transfer Service Request",
+    replyTo: formData.get("email") as string,    subject: "Ursus Travel & Accommodation - Transfer Service Request",
     text: message,
     html: message.replace(/\r\n/g, "<br>"),
   };
 
+  console.log("Preparing to send email with data:", data);
+
   try {
     await mail.send(data);
-    console.log("Message sent");
+    console.log("Email sent successfully!");
   } catch (error: any) {
-    console.error(`Message failed to send: ${error.message}`);
+    console.error("Failed to send email:", error);
+    console.error("Error details:", {
+      message: error.message,
+      code: error.code,
+      response: error.response?.body,
+    });
+    throw error; // This will prevent the redirect if the email fails
   }
 
+  console.log("Redirecting to message-sent page...");
   redirect("/en/message-sent");
 }
