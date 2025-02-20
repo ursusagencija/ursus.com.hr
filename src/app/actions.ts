@@ -6,7 +6,8 @@ import { redirect } from "next/navigation";
 
 mail.setApiKey(process.env.SENDGRID_API_KEY || "");
 
-const toEmail = "officeursus@gmail.com"
+// const toEmail = "officeursus@gmail.com"
+const toEmail = "crashaw@gmail.com"
 
 export async function submitBooking(
   dateRange: [Date | null, Date | null],
@@ -81,7 +82,7 @@ export async function submitTourBooking(
 
   redirect("/en/message-sent");
 }
-
+// airport transfer
 export async function submitTransferBooking(formData: FormData) {
   const message = `
               Name: ${formData.get("name")}\r\n
@@ -96,7 +97,38 @@ export async function submitTransferBooking(formData: FormData) {
     to: toEmail,
     from: "ursusagencija@gmail.com",
     replyTo: formData.get("email") as string,
-    subject: "Ursus Travel & Accommodation - Transfer",
+    subject: "Ursus Travel & Accommodation - Airport Transfer",
+    text: message,
+    html: message.replace(/\r\n/g, "<br>"),
+  };
+
+  try {
+    await mail.send(data);
+    console.log("Message sent");
+  } catch (error: any) {
+    console.error(`Message failed to send: ${error.message}`);
+  }
+
+  redirect("/en/message-sent");
+}
+
+//regular transfer (not airport transfer)
+export async function submitTransferBooking2(formData: FormData) {
+  const message = `
+              Name: ${formData.get("name")}\r\n
+              Phone: ${formData.get("phone")}\r\n        
+              Departure Address: ${formData.get("departureAddress")}\r\n
+              Arrival Address: ${formData.get("arrivalAddress")}\r\n
+              Transfer Date: ${formData.get("transferDate")}\r\n
+              Transfer Time: ${formData.get("transferTime")}\r\n
+              Number of Passengers: ${formData.get("passengerCount")}\r\n
+              Additional Information: ${formData.get("additionalInfo")}\r\n`;
+
+  const data = {
+    to: toEmail,
+    from: "ursusagencija@gmail.com",
+    replyTo: formData.get("phone") as string,
+    subject: "Ursus Travel & Accommodation - Transfer Service Request",
     text: message,
     html: message.replace(/\r\n/g, "<br>"),
   };

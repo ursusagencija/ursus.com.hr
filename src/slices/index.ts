@@ -13,4 +13,5 @@ export const components = {
   transfer_contact_form_slice: dynamic(
     () => import("./TransferContactFormSlice"),
   ),
+  transfer_service_slice: dynamic(() => import("./TransferServiceSlice")),
 };

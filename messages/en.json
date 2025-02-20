@@ -73,14 +73,26 @@
         "show-available": "Show Available"
     },
     "transfers": {
-        "request": "Transfer Request",
+        "request": "Airport Transfer Request",
         "name": "Name",
         "from": "Flying From",
         "to": "Flying To",
         "date": "Flight Date and Time",
         "flight-number": "Flight Number",
-        "number-of-passangers": "Number of Passengers",
+        "number-of-passengers": "Number of Passengers",
         "email": "Email",
+        "phone": "Phone Number",
+        "additional-info": "Additional Information",
+        "submit": "Submit"
+    },
+    "transfer-service": {
+        "request": "Transfer Service Request",
+        "name": "Name and Surname",
+        "departure-address": "Departure Address (street, city)",
+        "arrival-address": "Arrival Address (street, city)",
+        "transfer-date": "Date of the Transfer",
+        "transfer-time": "Time of the Transfer",
+        "number-of-passengers": "Number of Passengers",
         "phone": "Phone Number",
         "additional-info": "Additional Information",
         "submit": "Submit"

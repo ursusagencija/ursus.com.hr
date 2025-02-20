@@ -1459,6 +1459,7 @@ export interface TransfersDocumentDataHowtobookItem {
 }
 
 type TransfersDocumentDataSlicesSlice =
+  | TransferServiceSliceSlice
   | TransferContactFormSliceSlice
   | ImageSliderSlice
   | HeroSlice
@@ -2019,6 +2020,88 @@ export type TransferContactFormSliceSlice = prismic.SharedSlice<
   TransferContactFormSliceSliceVariation
 >;
 
+/**
+ * Item in *TransferServiceSlice → Default → Primary → HowToBook*
+ */
+export interface TransferServiceSliceSliceDefaultPrimaryHowtobookItem {
+  /**
+   * Heading field in *TransferServiceSlice → Default → Primary → HowToBook*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: transfer_service_slice.default.primary.howtobook[].heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Content field in *TransferServiceSlice → Default → Primary → HowToBook*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: transfer_service_slice.default.primary.howtobook[].content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *TransferServiceSlice → Default → Primary*
+ */
+export interface TransferServiceSliceSliceDefaultPrimary {
+  /**
+   * Content field in *TransferServiceSlice → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: transfer_service_slice.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * HowToBook field in *TransferServiceSlice → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: transfer_service_slice.default.primary.howtobook[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  howtobook: prismic.GroupField<
+    Simplify<TransferServiceSliceSliceDefaultPrimaryHowtobookItem>
+  >;
+}
+
+/**
+ * Default variation for TransferServiceSlice Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TransferServiceSliceSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TransferServiceSliceSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *TransferServiceSlice*
+ */
+type TransferServiceSliceSliceVariation = TransferServiceSliceSliceDefault;
+
+/**
+ * TransferServiceSlice Shared Slice
+ *
+ * - **API ID**: `transfer_service_slice`
+ * - **Description**: TransferServiceSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TransferServiceSliceSlice = prismic.SharedSlice<
+  "transfer_service_slice",
+  TransferServiceSliceSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -2107,6 +2190,11 @@ declare module "@prismicio/client" {
       TransferContactFormSliceSlice,
       TransferContactFormSliceSliceVariation,
       TransferContactFormSliceSliceDefault,
+      TransferServiceSliceSlice,
+      TransferServiceSliceSliceDefaultPrimaryHowtobookItem,
+      TransferServiceSliceSliceDefaultPrimary,
+      TransferServiceSliceSliceVariation,
+      TransferServiceSliceSliceDefault,
     };
   }
 }

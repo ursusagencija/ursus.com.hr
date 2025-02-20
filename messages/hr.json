@@ -73,7 +73,7 @@
         "show-available": "Prikaži dostupno"
     },
     "transfers": {
-        "request": "Upit za transfer",
+        "request": "Upit za aerodromski transfer",
         "name": "Ime",
         "from": "Let iz",
         "to": "Let u",
@@ -82,6 +82,18 @@
         "number-of-passengers": "Broj putnika",
         "email": "Email",
         "phone": "Telefon",
+        "additional-info": "Dodatne informacije",
+        "submit": "Pošalji"
+    },
+    "transfer-service": {
+        "request": "Upit za transfer",
+        "name": "Ime i prezime",
+        "departure-address": "Adresa polaska (ulica, grad)",
+        "arrival-address": "Adresa dolaska (ulica, grad)",
+        "transfer-date": "Datum transfera",
+        "transfer-time": "Vrijeme transfera",
+        "number-of-passengers": "Broj putnika",
+        "phone": "Broj telefona",
         "additional-info": "Dodatne informacije",
         "submit": "Pošalji"
     },

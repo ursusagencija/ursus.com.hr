@@ -19,7 +19,7 @@ export default async function Page({
   return (
     <>
       <HeroSimple heading={page.data.heading} image={page.data.image} />
-      <div className="container">
+      <div className="container mt-6">
         <ContentBlock>{page.data.content}</ContentBlock>
         <Itinerary itinerary={page.data.howtobook} />
 
