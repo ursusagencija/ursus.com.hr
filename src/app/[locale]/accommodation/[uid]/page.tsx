@@ -14,6 +14,9 @@ import { Link } from "@/i18n/routing";
 import ical from "@/lib/cal-parser";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
+import richTextStyling from "@/components/utility/richTextSyling";
+import Faq from "@/components/Faq";
+
 
 // const DynamicMap = dynamic(() => import('@/components/package/PackageMap'), {
 //     ssr: false
@@ -29,16 +32,7 @@ export default async function Page({ params }: { params: Params }) {
 
   const services = await client.getByType("services", { lang: params.locale });
 
-  const rtfComponents: Record<
-    string,
-    React.ComponentType<{ children: React.ReactNode }>
-  > = {
-    em: ({ children }) => <span className="text-dark-2 ">{children}</span>,
 
-    paragraph: ({ children }) => <p className="text-dark-2 ">{children}</p>,
-    strong: ({ children }) => <span className=" text-dark-2 ">{children}</span>,
-    list: ({ children }) => <ul className="  text-dark-2">{children}</ul>,
-  };
   const photos = page.data.gallery.map((photo) => ({
     src: photo.photo?.url || "",
     width: Number(photo.photo.dimensions?.width),
@@ -133,7 +127,7 @@ export default async function Page({ params }: { params: Params }) {
                 </div>
                 <PrismicRichText
                   field={page.data.description}
-                  components={rtfComponents}
+                  components={richTextStyling}
                 />
 
                 <ul className="mt-base">
@@ -163,7 +157,7 @@ export default async function Page({ params }: { params: Params }) {
                   <h3>{t("distances")}</h3>
                   <PrismicRichText
                     field={page.data.distances}
-                    components={rtfComponents}
+                    components={richTextStyling}
                   />
                 </div>
                 {photos && (
@@ -180,9 +174,25 @@ export default async function Page({ params }: { params: Params }) {
                   <PartialDiv>
                     <PrismicRichText
                       field={page.data.house_rules}
-                      components={rtfComponents}
+                      components={richTextStyling}
                     />
                   </PartialDiv>
+                </div>
+                <div className="lg:pt-10 pt-8" id="important-information">
+                  <h3>{t("important-information")}</h3>
+
+                  <PartialDiv>
+                    <PrismicRichText
+                      field={page.data.important_information}
+                      components={richTextStyling}
+                    />
+                  </PartialDiv>
+                </div>
+                {/* faq list */}
+                <div className="lg:pt-10 pt-8" id="faq">
+                  <h3>FAQ</h3>
+                  <Faq faqList={page.data.faq} />
+
                 </div>
               </div>
             </div>

@@ -32,7 +32,8 @@
         "price-from": "Price from",
         "amenities": "Amenities",
         "distances": "Distances",
-        "house-rules": "House Rules"
+        "house-rules": "House Rules",
+        "important-information": "Important Information"
     },
     "tours": {
         "show-all": "Show all",

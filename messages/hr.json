@@ -32,7 +32,8 @@
         "price-from": "Cijena od",
         "amenities": "Značajke",
         "distances": "Udaljenosti",
-        "house-rules": "Kućna pravila"
+        "house-rules": "Kućna pravila",
+        "important-information": "Važne informacije"
     },
     "tours": {
         "show-all": "Prikaži sve",
