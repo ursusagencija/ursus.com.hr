@@ -6,8 +6,7 @@ import { redirect } from "next/navigation";
 
 mail.setApiKey(process.env.SENDGRID_API_KEY || "");
 
-// const toEmail = "officeursus@gmail.com"
-const toEmail = "crashaw@gmail.com"
+const toEmail = "officeursus@gmail.com"
 
 export async function submitBooking(
   dateRange: [Date | null, Date | null],
