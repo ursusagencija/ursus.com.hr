@@ -88,7 +88,7 @@ const PackageBookingForm = ({
     }
 
     return (
-      isAfter(date, startDate) &&
+      //isAfter(date, startDate) &&
       isEndDateValid(startDate, date, pricing, occupiedRanges)
     );
   };
