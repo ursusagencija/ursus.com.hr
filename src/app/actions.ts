@@ -1,12 +1,22 @@
 "use server";
 
-import mail from "@sendgrid/mail";
+import nodemailer from "nodemailer";
 import { format } from "date-fns";
 import { redirect } from "next/navigation";
 
-mail.setApiKey(process.env.SENDGRID_API_KEY || "");
+// Create transporter with environment variables
+const transporter = nodemailer.createTransport({
+  host: process.env.MAIL_HOST,
+  port: parseInt(process.env.MAIL_PORT || "587"),
+  secure: process.env.MAIL_SECURE === "true", // true for 465, false for other ports
+  auth: {
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASSWORD,
+  },
+});
 
-const toEmail = "officeursus@gmail.com"
+const toEmail = process.env.MAIL_TO;
+const fromEmail = process.env.MAIL_USER;
 
 export async function submitBooking(
   dateRange: [Date | null, Date | null],
@@ -25,20 +35,17 @@ export async function submitBooking(
               Accommodation: https://ursus.com.hr${url}\r\n
               Price: ${price}`;
 
-  const data = {
-    // to: "info@ursus.com.hr",
+  const mailOptions = {
+    from: fromEmail,
     to: toEmail,
-    from: "ursusagencija@gmail.com",
     replyTo: formData.get("email") as string,
     subject: "Ursus Travel & Accommodation - Accommodation",
     text: message,
     html: message.replace(/\r\n/g, "<br>"),
   };
 
-
-
   try {
-    await mail.send(data);
+    await transporter.sendMail(mailOptions);
   } catch (error: any) {
     console.error(`Message failed to send: ${error.message}`);
     return;
@@ -62,10 +69,9 @@ export async function submitTourBooking(
               People: ${people}\r\n
               Tour: https://ursus.com.hr${url}`;
 
-  const data = {
-    // to: "info@ursus.com.hr",
+  const mailOptions = {
+    from: fromEmail,
     to: toEmail,
-    from: "ursusagencija@gmail.com",
     replyTo: formData.get("email") as string,
     subject: "Ursus Travel & Accommodation - Tour",
     text: message,
@@ -73,7 +79,7 @@ export async function submitTourBooking(
   };
 
   try {
-    await mail.send(data);
+    await transporter.sendMail(mailOptions);
     console.log("Message sent");
   } catch (error: any) {
     console.error(`Message failed to send: ${error.message}`);
@@ -91,10 +97,9 @@ export async function submitTransferBooking(formData: FormData) {
               Flight: #${formData.get("flightNumber")} ${formData.get("flyingFrom")} - ${formData.get("flyingTo")} @ ${formData.get("flightDateTime")}\r\n
               Passengers: ${formData.get("passengerCount")}`;
 
-  const data = {
-    // to: "info@ursus.com.hr",
+  const mailOptions = {
+    from: fromEmail,
     to: toEmail,
-    from: "ursusagencija@gmail.com",
     replyTo: formData.get("email") as string,
     subject: "Ursus Travel & Accommodation - Airport Transfer",
     text: message,
@@ -102,7 +107,7 @@ export async function submitTransferBooking(formData: FormData) {
   };
 
   try {
-    await mail.send(data);
+    await transporter.sendMail(mailOptions);
     console.log("Message sent");
   } catch (error: any) {
     console.error(`Message failed to send: ${error.message}`);
@@ -114,7 +119,7 @@ export async function submitTransferBooking(formData: FormData) {
 //regular transfer (not airport transfer)
 export async function submitTransferBooking2(formData: FormData) {
   console.log("Starting transfer booking submission...");
-  
+
   // Log form data
   console.log("Form data received:", {
     name: formData.get("name"),
@@ -137,26 +142,26 @@ export async function submitTransferBooking2(formData: FormData) {
               Number of Passengers: ${formData.get("passengerCount")}\r\n
               Additional Information: ${formData.get("additionalInfo")}\r\n`;
 
-  const data = {
+  const mailOptions = {
+    from: fromEmail,
     to: toEmail,
-    from: "ursusagencija@gmail.com",
     replyTo: formData.get("email") as string,
     subject: "Ursus Travel & Accommodation - Transfer Service Request",
     text: message,
     html: message.replace(/\r\n/g, "<br>"),
   };
 
-  console.log("Preparing to send email with data:", data);
+  console.log("Preparing to send email with options:", mailOptions);
 
   try {
-    await mail.send(data);
+    await transporter.sendMail(mailOptions);
     console.log("Email sent successfully!");
   } catch (error: any) {
     console.error("Failed to send email:", error);
     console.error("Error details:", {
       message: error.message,
       code: error.code,
-      response: error.response?.body,
+      response: error.response,
     });
     throw error; // This will prevent the redirect if the email fails
   }
