@@ -30,7 +30,15 @@ export default async function Page({ params }: { params: Params }) {
   const client = createClient();
   const page = await client
     .getByUID("accomodation_single", params.uid, { lang: params.locale })
-    .catch(() => notFound());
+    .catch((error) => {
+      console.error(
+        "Accommodation getByUID failed",
+        params.locale,
+        params.uid,
+        error
+      );
+      notFound();
+    });
 
   const services = await client.getByType("services", { lang: params.locale });
 
@@ -232,7 +240,15 @@ export async function generateMetadata({
   const client = createClient();
   const page = await client
     .getByUID("accomodation_single", params.uid, { lang: params.locale })
-    .catch(() => notFound());
+    .catch((error) => {
+      console.error(
+        "Accommodation metadata getByUID failed",
+        params.locale,
+        params.uid,
+        error
+      );
+      notFound();
+    });
 
   return {
     title: page.data.meta_title,

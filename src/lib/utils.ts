@@ -12,7 +12,6 @@ import {
 import { Content } from "@prismicio/client";
 import { useTranslations } from "next-intl";
 import { DateRange } from "@/types";
-import { start } from "repl";
 
 export const occupiedDatesFromIcal = async (url: string) => {
   const dates: Date[] = [];
