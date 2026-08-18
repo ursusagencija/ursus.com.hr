@@ -2,7 +2,7 @@ import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, SliceZone } from "@prismicio/react";
 import { eachDayOfInterval, subDays } from "date-fns";
 import { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 import { Calendar } from "@/components/Calendar";
@@ -10,7 +10,7 @@ import PackageBookingForm from "@/components/package/PackageBookingForm";
 import PartialDiv from "@/components/PartialDiv";
 import PhotoGallery from "@/components/PhotoGallery";
 import Services from "@/components/Services";
-import { Link } from "@/i18n/routing";
+import { Link, routing } from "@/i18n/routing";
 import ical from "@/lib/cal-parser";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
@@ -25,6 +25,8 @@ import { occupiedDatesFromIcal, occupiedRangesFromIcal } from "@/lib/utils";
 type Params = { uid: string; locale: string };
 
 export default async function Page({ params }: { params: Params }) {
+  setRequestLocale(params.locale);
+
   const client = createClient();
   const page = await client
     .getByUID("accomodation_single", params.uid, { lang: params.locale })
@@ -32,11 +34,13 @@ export default async function Page({ params }: { params: Params }) {
 
   const services = await client.getByType("services", { lang: params.locale });
 
-  const photos = page.data.gallery.map((photo) => ({
-    src: photo.photo?.url || "",
-    width: Number(photo.photo.dimensions?.width),
-    height: Number(photo.photo.dimensions?.height),
-  }));
+  const photos = page.data.gallery
+    .filter((photo) => photo.photo?.url && photo.photo.dimensions)
+    .map((photo) => ({
+      src: photo.photo.url as string,
+      width: Number(photo.photo.dimensions?.width),
+      height: Number(photo.photo.dimensions?.height),
+    }));
 
   const lowestPrice = () => {
     const prices = page.data.pricing
@@ -65,7 +69,10 @@ export default async function Page({ params }: { params: Params }) {
   const occupiedDates = await occupiedDatesFromIcal(page.data.ical!);
   const occupiedRanges = await occupiedRangesFromIcal(page.data.ical!);
 
-  const t = await getTranslations("accommodation");
+  const t = await getTranslations({
+    locale: params.locale,
+    namespace: "accommodation",
+  });
 
   return (
     <>
@@ -220,6 +227,8 @@ export async function generateMetadata({
 }: {
   params: Params;
 }): Promise<Metadata> {
+  setRequestLocale(params.locale);
+
   const client = createClient();
   const page = await client
     .getByUID("accomodation_single", params.uid, { lang: params.locale })
@@ -233,9 +242,14 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const client = createClient();
-  const pages = await client.getAllByType("accomodation_single", { lang: "*" });
+  const pages = await Promise.all(
+    routing.locales.map(async (locale) => {
+      const documents = await client.getAllByType("accomodation_single", {
+        lang: locale,
+      });
+      return documents.map((page) => ({ uid: page.uid, locale }));
+    })
+  );
 
-  return pages.map((page) => {
-    return { uid: page.uid, lang: page.lang };
-  });
+  return pages.flat();
 }

@@ -1,8 +1,8 @@
-import { Link } from "@/i18n/routing";
+import { Link, routing } from "@/i18n/routing";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, SliceZone } from "@prismicio/react";
 import { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 import Faq from "@/components/Faq";
@@ -17,6 +17,8 @@ import { components } from "@/slices";
 type Params = { uid: string; locale: string };
 
 export default async function Page({ params }: { params: Params }) {
+  setRequestLocale(params.locale);
+
   const client = createClient();
   const page = await client
     .getByUID("tours_single", params.uid, { lang: params.locale })
@@ -43,7 +45,7 @@ export default async function Page({ params }: { params: Params }) {
     height: Number(photo.photo.dimensions?.height),
   }));
 
-  const t = await getTranslations("tours");
+  const t = await getTranslations({ locale: params.locale, namespace: "tours" });
 
   return (
     <>
@@ -168,6 +170,8 @@ export async function generateMetadata({
 }: {
   params: Params;
 }): Promise<Metadata> {
+  setRequestLocale(params.locale);
+
   const client = createClient();
   const page = await client
     .getByUID("tours_single", params.uid, { lang: params.locale })
@@ -181,9 +185,14 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const client = createClient();
-  const pages = await client.getAllByType("tours_single", { lang: "*" });
+  const pages = await Promise.all(
+    routing.locales.map(async (locale) => {
+      const documents = await client.getAllByType("tours_single", {
+        lang: locale,
+      });
+      return documents.map((page) => ({ uid: page.uid, locale }));
+    })
+  );
 
-  return pages.map((page) => {
-    return { uid: page.uid, lang: page.lang };
-  });
+  return pages.flat();
 }
