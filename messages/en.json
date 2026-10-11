@@ -10,6 +10,7 @@
         "contact": "Contact"
     },
     "footer": {
+        "tagline": "Experience the Dalmatian Sensation",
         "office": "Office",
         "summer-season": "Summer Season",
         "off-season": "Off Season",
@@ -19,6 +20,16 @@
         "hours-off": "Monday to Friday: 9am - 5pm",
         "terms": "Terms and Conditions",
         "privacy": "Privacy Policy"
+    },
+    "calendar": {
+        "overtitle": "Calendar",
+        "heading": "Availability"
+    },
+    "not-found": {
+        "code": "404",
+        "title": "That page can't be found.",
+        "description": "The page you are looking for may have been moved or no longer exists.",
+        "back-home": "Back to home"
     },
     "accommodation": {
         "show-all": "Show all",
@@ -64,6 +75,8 @@
         "submit": "Submit"
     },
     "message-sent": {
+        "meta-title": "Message successfully sent - Ursus Travel & Accommodation",
+        "meta-description": "Message successfully sent. We will be in contact shortly.",
         "success": "Message sent successfully",
         "contact-soon": "We will be in contact shortly."
     },

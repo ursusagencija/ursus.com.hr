@@ -58,7 +58,7 @@ const RenterInquiryForm = ({
           email,
           phone: phone || "-",
           message,
-          subject: "Ursus Travel & Accommodation - Upit za iznajmljivače",
+          subject: "Ursus Travel & Accommodation – Owner inquiry",
         }),
       });
       const result = await res.json();

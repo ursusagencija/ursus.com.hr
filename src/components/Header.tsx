@@ -52,10 +52,23 @@ const Header = ({
   const pathWithoutLocale = pathname.replace(/^\/(en|hr)/, "") || "/";
 
   // Light pages without a photo hero need a solid header for contrast.
-  const solidHeaderPaths = ["/owners-landing", "/message-sent"];
-  const effectiveVariant = solidHeaderPaths.includes(pathWithoutLocale)
-    ? "default"
-    : variant;
+  // Also treat unknown routes (404) as solid so the menu stays readable.
+  const transparentHeaderPaths = [
+    "/",
+    "/accommodation",
+    "/tours",
+    "/transfers",
+    "/for-renters",
+    "/about-us",
+    "/contact",
+  ];
+  const isDetailPage =
+    pathWithoutLocale.startsWith("/accommodation/") ||
+    pathWithoutLocale.startsWith("/tours/");
+  const effectiveVariant =
+    transparentHeaderPaths.includes(pathWithoutLocale) || isDetailPage
+      ? variant
+      : "default";
 
   return (
     <header

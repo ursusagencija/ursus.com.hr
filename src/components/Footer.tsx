@@ -22,7 +22,7 @@ const Footer = () => {
         </div>
 
         <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500">
-          Experience the Dalmatian Sensation
+          {t("tagline")}
         </p>
         <ul className="mt-8 space-y-1 text-sm text-center text-gray-700">
           <li>

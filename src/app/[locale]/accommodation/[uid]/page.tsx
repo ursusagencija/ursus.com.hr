@@ -18,10 +18,6 @@ import richTextStyling from "@/components/utility/richTextSyling";
 import Faq from "@/components/Faq";
 import { occupiedDatesFromIcal, occupiedRangesFromIcal } from "@/lib/utils";
 
-// const DynamicMap = dynamic(() => import('@/components/package/PackageMap'), {
-//     ssr: false
-// });
-
 type Params = { uid: string; locale: string };
 
 export default async function Page({ params }: { params: Params }) {

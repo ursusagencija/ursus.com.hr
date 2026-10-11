@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import DatePicker from "react-datepicker";
 
 type Props = {
@@ -7,11 +8,13 @@ type Props = {
 };
 
 export const Calendar = ({ excludeDates }: Props) => {
+  const t = useTranslations("calendar");
+
   return (
     <div className="mt-8">
       <div className="text-center lg:pb-[60px] pb-[40px]">
-        <h5 className="section-sub-title-v1">Calendar</h5>
-        <h2 className="section-title-v1">Availability</h2>
+        <h5 className="section-sub-title-v1">{t("overtitle")}</h5>
+        <h2 className="section-title-v1">{t("heading")}</h2>
       </div>
       <div className="flex justify-center">
         <DatePicker

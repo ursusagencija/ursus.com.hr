@@ -8,9 +8,6 @@ import Header from "@/components/Header";
 import { routing } from "@/i18n/routing";
 import SearchProvider from "@/providers/SearchProvider";
 
-import "@/styles/globals.css";
-import "swiper/css";
-
 export default async function LangLayout({
   children,
   params: { locale },

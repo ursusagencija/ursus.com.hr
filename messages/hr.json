@@ -10,6 +10,7 @@
         "contact": "Kontakt"
     },
     "footer": {
+        "tagline": "Doživite dalmatinsku senzaciju",
         "office": "Ured",
         "summer-season": "Ljetna sezona",
         "off-season": "Van sezone",
@@ -19,6 +20,16 @@
         "hours-off": "Ponedjeljak - Petak 09:00 - 17:00",
         "terms": "Uvjeti korištenja",
         "privacy": "Politika privatnosti"
+    },
+    "calendar": {
+        "overtitle": "Kalendar",
+        "heading": "Dostupnost"
+    },
+    "not-found": {
+        "code": "404",
+        "title": "Stranica nije pronađena.",
+        "description": "Stranica koju tražite je možda premještena ili više ne postoji.",
+        "back-home": "Natrag na naslovnicu"
     },
     "accommodation": {
         "show-all": "Prikaži sve",
@@ -64,6 +75,8 @@
         "submit": "Pošalji"
     },
     "message-sent": {
+        "meta-title": "Poruka uspješno poslana - Ursus Travel & Accommodation",
+        "meta-description": "Poruka je uspješno poslana. Uskoro ćemo vam se javiti.",
         "success": "Poruka uspješno poslana",
         "contact-soon": "Uskoro ćemo vam se javiti."
     },

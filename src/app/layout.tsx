@@ -1,13 +1,12 @@
 import "@/styles/globals.css";
 import { Jost, Playfair_Display, Satisfy } from "next/font/google";
 import { PrismicPreview } from "@prismicio/next";
+import { getLocale } from "next-intl/server";
 
-// Import Swiper styles
 import "swiper/css";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { repositoryName } from "@/prismicio";
 
-/*Configure Google Fonts*/
 const jost = Jost({
   weight: ["200", "300", "400", "500", "600", "700"],
   subsets: ["latin"],
@@ -26,18 +25,25 @@ const satisfy = Satisfy({
   variable: "--font-satisfy",
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  let locale = "en";
+  try {
+    locale = await getLocale();
+  } catch {
+    // Non-localized routes (API, sitemap, etc.)
+  }
+
   return (
     <html
-      lang="en"
+      lang={locale}
       className={`${jost.variable} ${playfairDisplay.variable} ${satisfy.variable}`}
     >
-      <GoogleAnalytics />
       <body>
+        <GoogleAnalytics />
         {children}
         <PrismicPreview repositoryName={repositoryName} />
       </body>

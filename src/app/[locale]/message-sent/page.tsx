@@ -1,13 +1,28 @@
+import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
-export const metadata = {
-  title: "Message Sucessfully Sent - Ursus Travel & Accommodation",
-  description: "Message successfully sent. We will be in contact shortly.",
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
+type Params = { locale: string };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Params;
+}): Promise<Metadata> {
+  const t = await getTranslations({
+    locale: params.locale,
+    namespace: "message-sent",
+  });
+
+  return {
+    title: t("meta-title"),
+    description: t("meta-description"),
+    robots: {
+      index: false,
+      follow: false,
+    },
+  };
+}
+
 export default async function Page() {
   const t = await getTranslations("message-sent");
 
