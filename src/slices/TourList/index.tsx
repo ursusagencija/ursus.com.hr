@@ -2,6 +2,7 @@ import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import Card from "@/components/Card";
+import Reveal from "@/components/Reveal";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 
@@ -36,12 +37,14 @@ const TourList = async ({ slice }: any) => {
       className="my-12 lg:my-20"
     >
       <div className="container pt-4">
-        <div className="text-center lg:pb-[60px] pb-[40px]">
-          <h5 className="section-sub-title-v1 variant-1">
-            {slice.primary.overtitle}
-          </h5>
-          <h2 className="section-title-v1">{slice.primary.heading}</h2>
-        </div>
+        <Reveal>
+          <div className="text-center lg:pb-[60px] pb-[40px]">
+            <h5 className="section-sub-title-v1 variant-1">
+              {slice.primary.overtitle}
+            </h5>
+            <h2 className="section-title-v1">{slice.primary.heading}</h2>
+          </div>
+        </Reveal>
 
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-base ">
           {sortedTours
@@ -51,7 +54,7 @@ const TourList = async ({ slice }: any) => {
                 ? parseInt(slice.primary.limit)
                 : undefined
             )
-            .map((item) => {
+            .map((item, index) => {
               return (
                 <Card
                   key={item.uid}
@@ -62,6 +65,7 @@ const TourList = async ({ slice }: any) => {
                   duration={item.data.duration || ""}
                   location={item.data.location || ""}
                   href={`/tours/${item.uid}`}
+                  revealDelay={(index % 3) * 80}
                 />
               );
             })}

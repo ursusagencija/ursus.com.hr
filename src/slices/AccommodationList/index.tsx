@@ -3,6 +3,7 @@ import { SliceComponentProps } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import { occupiedDatesFromIcal } from "@/lib/utils";
 import { AccommodationSingle } from "@/app/[locale]/accommodation/accommodation-single";
+import Reveal from "@/components/Reveal";
 import { Link } from "@/i18n/routing";
 import { getLocale, getTranslations } from "next-intl/server";
 
@@ -50,12 +51,14 @@ const AccomodationList = async ({
       className="my-12 lg:my-20"
     >
       <div className="container pt-4 " id="search-results">
-        <div className="text-center lg:pb-[60px] pb-[40px]">
-          <h5 className="section-sub-title-v1 variant-1">
-            {slice.primary.overtitle}
-          </h5>
-          <h2 className="section-title-v1">{slice.primary.heading}</h2>
-        </div>
+        <Reveal>
+          <div className="text-center lg:pb-[60px] pb-[40px]">
+            <h5 className="section-sub-title-v1 variant-1">
+              {slice.primary.overtitle}
+            </h5>
+            <h2 className="section-title-v1">{slice.primary.heading}</h2>
+          </div>
+        </Reveal>
 
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-base ">
           <AccommodationSingle

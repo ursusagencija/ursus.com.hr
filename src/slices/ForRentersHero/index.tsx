@@ -5,6 +5,7 @@ import { PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
 import RenterInquiryForm from "@/components/RenterInquiryForm";
+import Reveal from "@/components/Reveal";
 
 export type ForRentersHeroProps =
   SliceComponentProps<Content.ForRentersHeroSlice>;
@@ -23,7 +24,7 @@ const ForRentersHero = ({ slice }: ForRentersHeroProps): JSX.Element => {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,64,97,0.08),transparent_55%)]" />
       <div className="container relative z-1 lg:pt-36 pt-28 lg:pb-24 pb-16">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          <div className="lg:col-span-6">
+          <Reveal className="lg:col-span-6">
             {isFilled.keyText(slice.primary.eyebrow) ? (
               <p className="inline-flex items-center gap-3 text-xs tracking-[0.18em] uppercase font-medium text-primary-1 mb-5">
                 <span className="block h-px w-8 bg-primary-1" />
@@ -126,9 +127,13 @@ const ForRentersHero = ({ slice }: ForRentersHeroProps): JSX.Element => {
                 })()}
               </div>
             ) : null}
-          </div>
+          </Reveal>
 
-          <div id="inquiry" className="lg:col-span-6 lg:col-start-7 scroll-mt-28">
+          <Reveal
+            id="inquiry"
+            className="lg:col-span-6 lg:col-start-7 scroll-mt-28"
+            delay={120}
+          >
             <div className="bg-white border border-stock-1 shadow-[0_20px_60px_rgba(3,4,21,0.06)]">
               <div className="h-1.5 bg-primary-1" />
               <div className="p-6 sm:p-8">
@@ -177,7 +182,7 @@ const ForRentersHero = ({ slice }: ForRentersHeroProps): JSX.Element => {
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

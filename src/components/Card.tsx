@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
-import { count } from "console";
+
+import Reveal from "@/components/Reveal";
 
 const Card = ({
   img,
@@ -16,6 +17,7 @@ const Card = ({
   duration,
   tour,
   location,
+  revealDelay = 0,
 }: {
   img: string;
   title: string;
@@ -27,12 +29,14 @@ const Card = ({
   duration?: string;
   tour?: boolean;
   location?: string;
+  revealDelay?: number;
 }) => {
   const t = useTranslations("card");
 
   return (
+    <Reveal delay={revealDelay}>
     <Link href={href}>
-      <div className="group/card package-card-style-one wow fadeInUp overflow-hidden">
+      <div className="group/card package-card-style-one overflow-hidden">
         <div className="overflow-hidden relative h-64">
           <Image
             fill
@@ -112,6 +116,7 @@ const Card = ({
                 </Link> */}
       </div>
     </Link>
+    </Reveal>
   );
 };
 

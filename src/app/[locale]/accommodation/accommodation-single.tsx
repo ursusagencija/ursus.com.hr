@@ -20,9 +20,34 @@ export const AccommodationSingle = ({ showAll, accommodations }: Props) => {
   const {
     query: { dateRange, people },
   } = useSearch();
+
+  const renderCard = (
+    item: Content.AccomodationSingleDocument<string>,
+    index: number
+  ) => {
+    const prices = item.data.pricing
+      .map((period) => period.price ?? 0)
+      .filter(Boolean);
+    const lowestPrice = Math.min(...prices);
+
+    return (
+      <Card
+        key={item.uid}
+        tour={false}
+        title={item.data.heading || "Heading"}
+        img={item.data.cover_image.url || ""}
+        price={lowestPrice.toString()}
+        bedrooms={item.data.bedrooms || 0}
+        people={item.data.guests || 0}
+        href={`/accommodation/${item.uid}`}
+        revealDelay={(index % 3) * 80}
+      />
+    );
+  };
+
   if (!showAll) {
     const filteredByPeople = accommodations.filter(
-      (item) => (item.data.guests ? item.data.guests >= (people ?? 1) : true) // ako nema podatka o krevetima, uvijek true
+      (item) => (item.data.guests ? item.data.guests >= (people ?? 1) : true)
     );
 
     const filteredByDate = filteredByPeople.filter((item) => {
@@ -37,49 +62,8 @@ export const AccommodationSingle = ({ showAll, accommodations }: Props) => {
       );
     }
 
-    return filteredByDate.map((item) => {
-      const lowestPrice = () => {
-        const prices = item.data.pricing
-          .map((period) => period.price ?? 0)
-          .filter(Boolean);
-        return Math.min(...prices);
-      };
-
-      return (
-        <Card
-          key={item.uid}
-          tour={false}
-          title={item.data.heading || "Heading"}
-          img={item.data.cover_image.url || ""}
-          price={lowestPrice().toString()}
-          bedrooms={item.data.bedrooms || 0}
-          people={item.data.guests || 0}
-          href={`/accommodation/${item.uid}`}
-        />
-      );
-    });
-  } else {
-    // Ako je homepage, prikazujemo sve
-    return accommodations.map((item) => {
-      const lowestPrice = () => {
-        const prices = item.data.pricing
-          .map((period) => period.price ?? 0)
-          .filter(Boolean);
-        return Math.min(...prices);
-      };
-
-      return (
-        <Card
-          key={item.uid}
-          tour={false}
-          title={item.data.heading || "Heading"}
-          img={item.data.cover_image.url || ""}
-          price={lowestPrice().toString()}
-          bedrooms={item.data.bedrooms || 0}
-          people={item.data.guests || 0}
-          href={`/accommodation/${item.uid}`}
-        />
-      );
-    });
+    return filteredByDate.map(renderCard);
   }
+
+  return accommodations.map(renderCard);
 };
