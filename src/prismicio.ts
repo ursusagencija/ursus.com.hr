@@ -18,7 +18,7 @@ const routes: prismic.ClientConfig["routes"] = config.routes;
 /**
  * Creates a Prismic client for the project's repository.
  */
-export const createClient = (configOverride: prismicNext.CreateClientConfig = {}) => {
+export const createClient = (configOverride: prismic.ClientConfig = {}) => {
   const client = prismic.createClient(repositoryName, {
     routes,
     fetchOptions: {
@@ -30,11 +30,7 @@ export const createClient = (configOverride: prismicNext.CreateClientConfig = {}
     ...configOverride,
   });
 
-  prismicNext.enableAutoPreviews({
-    client,
-    previewData: configOverride.previewData,
-    req: configOverride.req,
-  });
+  prismicNext.enableAutoPreviews({ client });
 
   return client;
 };

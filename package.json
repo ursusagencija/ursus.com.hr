@@ -6,13 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "slicemachine": "start-slicemachine"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@prismicio/client": "^7.5.0",
-    "@prismicio/next": "^1.5.0",
-    "@prismicio/react": "^2.7.4",
+    "@prismicio/client": "^7.22.3",
+    "@prismicio/next": "^2.3.3",
+    "@prismicio/react": "^3.5.1",
     "@types/nodemailer": "^6.4.17",
     "@types/react-datepicker": "^6.2.0",
     "@types/react-select": "^5.0.1",

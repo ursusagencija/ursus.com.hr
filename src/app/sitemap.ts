@@ -70,7 +70,7 @@ function entriesForUids(
 ): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
-  for (const [uid, { locales, lastModified }] of byUid) {
+  Array.from(byUid.entries()).forEach(([uid, { locales, lastModified }]) => {
     const urlsByLocale = Object.fromEntries(
       locales.map((locale) => [locale, absoluteUrl(locale, `${pathPrefix}/${uid}`)])
     );
@@ -84,7 +84,7 @@ function entriesForUids(
         alternates: languageAlternates(urlsByLocale),
       });
     }
-  }
+  });
 
   return entries;
 }

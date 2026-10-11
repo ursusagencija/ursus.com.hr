@@ -86,33 +86,44 @@ const ForRentersHero = ({ slice }: ForRentersHeroProps): JSX.Element => {
 
             {isFilled.link(slice.primary.cta) ? (
               <div className="mt-8">
-                {slice.primary.cta.link_type === "Web" &&
-                slice.primary.cta.url?.startsWith("#") ? (
-                  <a
-                    href={slice.primary.cta.url}
-                    className="btn_primary__v1 outlined"
-                    onClick={(event) => {
-                      const id = slice.primary.cta.url?.slice(1);
-                      if (!id) return;
-                      const target = document.getElementById(id);
-                      if (!target) return;
-                      event.preventDefault();
-                      target.scrollIntoView({ behavior: "smooth", block: "start" });
-                      window.history.replaceState(null, "", `#${id}`);
-                    }}
-                  >
-                    {slice.primary.cta.text}
-                    <i className="bi bi-chevron-right" />
-                  </a>
-                ) : (
-                  <PrismicNextLink
-                    field={slice.primary.cta}
-                    className="btn_primary__v1 outlined"
-                  >
-                    {slice.primary.cta.text}
-                    <i className="bi bi-chevron-right" />
-                  </PrismicNextLink>
-                )}
+                {(() => {
+                  const cta = slice.primary.cta;
+                  const href = "url" in cta ? cta.url : undefined;
+                  const label = "text" in cta ? cta.text : undefined;
+
+                  if (href?.startsWith("#")) {
+                    return (
+                      <a
+                        href={href}
+                        className="btn_primary__v1 outlined"
+                        onClick={(event) => {
+                          const id = href.slice(1);
+                          const target = document.getElementById(id);
+                          if (!target) return;
+                          event.preventDefault();
+                          target.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                          });
+                          window.history.replaceState(null, "", href);
+                        }}
+                      >
+                        {label}
+                        <i className="bi bi-chevron-right" />
+                      </a>
+                    );
+                  }
+
+                  return (
+                    <PrismicNextLink
+                      field={cta}
+                      className="btn_primary__v1 outlined"
+                    >
+                      {label}
+                      <i className="bi bi-chevron-right" />
+                    </PrismicNextLink>
+                  );
+                })()}
               </div>
             ) : null}
           </div>
