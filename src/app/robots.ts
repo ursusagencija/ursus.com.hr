@@ -19,7 +19,6 @@ export default function robots(): MetadataRoute.Robots {
         "/hr/message-sent",
       ],
     },
-    host: SITE_URL,
     sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

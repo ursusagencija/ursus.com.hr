@@ -72,7 +72,10 @@ function entriesForUids(
 
   Array.from(byUid.entries()).forEach(([uid, { locales, lastModified }]) => {
     const urlsByLocale = Object.fromEntries(
-      locales.map((locale) => [locale, absoluteUrl(locale, `${pathPrefix}/${uid}`)])
+      locales.map((locale) => [
+        locale,
+        absoluteUrl(locale, `${pathPrefix}/${uid}`),
+      ])
     );
 
     for (const locale of locales) {
@@ -89,8 +92,7 @@ function entriesForUids(
   return entries;
 }
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const client = createClient();
+function staticEntries(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
   for (const path of STATIC_PATHS) {
@@ -109,23 +111,35 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  const [accommodations, tours] = await Promise.all([
-    Promise.all(
-      routing.locales.map((locale) =>
-        client.getAllByType("accomodation_single", { lang: locale })
-      )
-    ).then((pages) => pages.flat()),
-    Promise.all(
-      routing.locales.map((locale) =>
-        client.getAllByType("tours_single", { lang: locale })
-      )
-    ).then((pages) => pages.flat()),
-  ]);
+  return entries;
+}
 
-  entries.push(
-    ...entriesForUids(collectByUid(accommodations), "/accommodation", 0.7),
-    ...entriesForUids(collectByUid(tours), "/tours", 0.7)
-  );
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const entries = staticEntries();
+
+  try {
+    const client = createClient();
+    const [accommodations, tours] = await Promise.all([
+      Promise.all(
+        routing.locales.map((locale) =>
+          client.getAllByType("accomodation_single", { lang: locale })
+        )
+      ).then((pages) => pages.flat()),
+      Promise.all(
+        routing.locales.map((locale) =>
+          client.getAllByType("tours_single", { lang: locale })
+        )
+      ).then((pages) => pages.flat()),
+    ]);
+
+    entries.push(
+      ...entriesForUids(collectByUid(accommodations), "/accommodation", 0.7),
+      ...entriesForUids(collectByUid(tours), "/tours", 0.7)
+    );
+  } catch (error) {
+    // Never fail the whole sitemap for Google — return static URLs at minimum.
+    console.error("Sitemap: failed to load Prismic documents", error);
+  }
 
   return entries;
 }
