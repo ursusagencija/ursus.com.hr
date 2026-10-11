@@ -1,97 +1,96 @@
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import type { JSXMapSerializer } from "@prismicio/react";
 
-type RichTextNodeProps = {
-    children: React.ReactNode;
-    node: any;
-};
-
-const richTextStyling: Record<
-    string,
-    React.ComponentType<RichTextNodeProps>
-> = {
-    paragraph: ({ children }) => (
-        <p className="mb-2 leading-relaxed text-dark-2 text-md">{children}</p>
-    ),
-    heading1: ({ children }) => (
-        <h1 className="mb-4 text-dark-2 font-semibold leading-tight text-4xl">
-            {children}
-        </h1>
-    ),
-    heading2: ({ children }) => (
-        <h2 className="mb-4 text-dark-2 font-semibold leading-tight text-3xl">
-            {children}
-        </h2>
-    ),
-    heading3: ({ children }) => (
-        <h3 className="mb-4 text-dark-2 font-semibold leading-tight text-2xl">
-            {children}
-        </h3>
-    ),
-    heading4: ({ children }) => (
-        <h4 className="mb-4 text-dark-2 font-semibold leading-tight text-xl">
-            {children}
-        </h4>
-    ),
-    heading5: ({ children }) => (
-        <h5 className="mb-4 text-dark-2 font-semibold leading-tight text-lg">
-            {children}
-        </h5>
-    ),
-    heading6: ({ children }) => (
-        <h6 className="mb-4 text-dark-2 font-semibold leading-tight text-base">
-            {children}
-        </h6>
-    ),
-    strong: ({ children }) => (
-        <strong className="font-semibold text-dark-2">{children}</strong>
-    ),
-    em: ({ children }) => (
-        <em className="italic text-dark-2">{children}</em>
-    ),
-    listItem: ({ children }) => (
-        <li className="mb-1 text-dark-2">{children}</li>
-    ),
-    oListItem: ({ children }) => (
-        <li className="mb-1 text-dark-2">{children}</li>
-    ),
-    list: ({ children }) => (
-        <ul className="mb-4 list-disc pl-4 text-dark-2">{children}</ul>
-    ),
-    oList: ({ children }) => (
-        <ol className="mb-4 list-decimal pl-4 text-dark-2">{children}</ol>
-    ),
-    preformatted: ({ children }) => (
-        <pre className="bg-[#f4f4f4] rounded-lg p-4 mb-4 overflow-x-auto text-sm font-mono">
-            {children}
-        </pre>
-    ),
-    image: ({ node }: RichTextNodeProps) => (
-        <div className="relative w-full aspect-video mb-4 mt-6">
-            <PrismicNextImage field={node} />
-        </div>
-    ),
-    embed: ({ node }: RichTextNodeProps) => (
-        <div className="relative aspect-video mb-4 mt-6">
-            <iframe
-                className="absolute w-full h-full top-0 left-0 rounded-lg"
-                src={node.oembed.embed_url}
-                allowFullScreen
-            />
-        </div>
-    ),
-    hyperlink: ({ children, node }: RichTextNodeProps) => (
-        <PrismicNextLink
-            field={node.data}
-            className="text-[#E8604C] hover:text-[#004061] underline"
-        >
-            {children}
-        </PrismicNextLink>
-    ),
-    quote: ({ children }) => (
-        <blockquote className="border-l-4 border-gray-200 pl-4 italic mb-4 text-gray-600">
-            {children}
-        </blockquote>
-    ),
+const richTextStyling: JSXMapSerializer = {
+  paragraph: ({ children }) => (
+    <p className="mb-5 font-sans text-base lg:text-md leading-[1.7] text-dark-3 last:mb-0">
+      {children}
+    </p>
+  ),
+  heading1: ({ children }) => (
+    <h1 className="mt-10 mb-5 first:mt-0 font-serif font-semibold text-dark-1 text-3xl lg:text-4xl leading-[1.25]">
+      {children}
+    </h1>
+  ),
+  heading2: ({ children }) => (
+    <h2 className="mt-10 mb-4 first:mt-0 font-serif font-semibold text-dark-1 text-2xl lg:text-3xl leading-[1.3]">
+      {children}
+    </h2>
+  ),
+  heading3: ({ children }) => (
+    <h3 className="mt-8 mb-3 first:mt-0 font-serif font-medium text-dark-1 text-xl lg:text-2xl leading-[1.35]">
+      {children}
+    </h3>
+  ),
+  heading4: ({ children }) => (
+    <h4 className="mt-7 mb-3 first:mt-0 font-serif font-medium text-dark-1 text-lg lg:text-xl leading-[1.4]">
+      {children}
+    </h4>
+  ),
+  heading5: ({ children }) => (
+    <h5 className="mt-6 mb-2 first:mt-0 font-serif font-medium text-dark-1 text-md lg:text-lg leading-[1.4]">
+      {children}
+    </h5>
+  ),
+  heading6: ({ children }) => (
+    <h6 className="mt-5 mb-2 first:mt-0 font-serif font-medium text-dark-1 text-base lg:text-md leading-[1.45]">
+      {children}
+    </h6>
+  ),
+  strong: ({ children }) => (
+    <strong className="font-semibold text-dark-1">{children}</strong>
+  ),
+  em: ({ children }) => <em className="italic text-dark-3">{children}</em>,
+  listItem: ({ children }) => (
+    <li className="pl-1 text-dark-3 text-base lg:text-md leading-[1.65]">
+      {children}
+    </li>
+  ),
+  oListItem: ({ children }) => (
+    <li className="pl-1 text-dark-3 text-base lg:text-md leading-[1.65]">
+      {children}
+    </li>
+  ),
+  list: ({ children }) => (
+    <ul className="mb-6 ml-1 list-disc space-y-2.5 pl-5 marker:text-primary-1 text-dark-3 last:mb-0">
+      {children}
+    </ul>
+  ),
+  oList: ({ children }) => (
+    <ol className="mb-6 ml-1 list-decimal space-y-2.5 pl-5 marker:text-primary-1 text-dark-3 last:mb-0">
+      {children}
+    </ol>
+  ),
+  preformatted: ({ children }) => (
+    <pre className="mb-6 overflow-x-auto rounded-md bg-dark-6 p-4 font-mono text-sm text-dark-2 last:mb-0">
+      {children}
+    </pre>
+  ),
+  image: ({ node }) => (
+    <figure className="my-8 w-full last:mb-0">
+      <PrismicNextImage field={node} className="h-auto w-full" />
+    </figure>
+  ),
+  embed: ({ node }) => (
+    <div className="relative my-8 aspect-video last:mb-0">
+      <iframe
+        className="absolute left-0 top-0 h-full w-full rounded-md"
+        src={node.oembed.embed_url}
+        allowFullScreen
+        title={node.oembed.title || "Embedded content"}
+      />
+    </div>
+  ),
+  hyperlink: ({ children, node }) => (
+    <PrismicNextLink
+      field={node.data}
+      className="font-medium text-primary-1 underline underline-offset-2 transition-opacity hover:opacity-80"
+    >
+      {children}
+    </PrismicNextLink>
+  ),
+  label: ({ children }) => <span>{children}</span>,
+  span: ({ text }) => <>{text}</>,
 };
 
 export default richTextStyling;

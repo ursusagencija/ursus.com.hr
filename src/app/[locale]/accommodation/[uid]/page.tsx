@@ -141,10 +141,12 @@ export default async function Page({ params }: { params: Params }) {
                     </li>
                   </ul>
                 </div>
-                <PrismicRichText
-                  field={page.data.description}
-                  components={richTextStyling}
-                />
+                <div className="rich-text">
+                  <PrismicRichText
+                    field={page.data.description}
+                    components={richTextStyling}
+                  />
+                </div>
 
                 <ul className="mt-base">
                   <li className="lg:flex lg:pt-6 pt-5 pb-5 lg:pb-6 border-t border-stock-1 last:border-b">
@@ -171,10 +173,12 @@ export default async function Page({ params }: { params: Params }) {
 
                 <div className="lg:pt-10 pt-8" id="distances">
                   <h3>{t("distances")}</h3>
-                  <PrismicRichText
-                    field={page.data.distances}
-                    components={richTextStyling}
-                  />
+                  <div className="rich-text">
+                    <PrismicRichText
+                      field={page.data.distances}
+                      components={richTextStyling}
+                    />
+                  </div>
                 </div>
                 {photos && (
                   <PhotoGallery
@@ -188,20 +192,24 @@ export default async function Page({ params }: { params: Params }) {
                   <h3>{t("house-rules")}</h3>
 
                   <PartialDiv>
-                    <PrismicRichText
-                      field={page.data.house_rules}
-                      components={richTextStyling}
-                    />
+                    <div className="rich-text">
+                      <PrismicRichText
+                        field={page.data.house_rules}
+                        components={richTextStyling}
+                      />
+                    </div>
                   </PartialDiv>
                 </div>
                 <div className="lg:pt-10 pt-8" id="important-information">
                   <h3>{t("important-information")}</h3>
 
                   <PartialDiv>
-                    <PrismicRichText
-                      field={page.data.important_information}
-                      components={richTextStyling}
-                    />
+                    <div className="rich-text">
+                      <PrismicRichText
+                        field={page.data.important_information}
+                        components={richTextStyling}
+                      />
+                    </div>
                   </PartialDiv>
                 </div>
                 {/* faq list */}

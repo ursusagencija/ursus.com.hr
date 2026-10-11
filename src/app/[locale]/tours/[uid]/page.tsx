@@ -11,6 +11,7 @@ import PhotoGallery from "@/components/PhotoGallery";
 import Services from "@/components/Services";
 import TickList from "@/components/TickList";
 import TourBookingForm from "@/components/package/TourBookingForm";
+import richTextStyling from "@/components/utility/richTextSyling";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 
@@ -25,18 +26,6 @@ export default async function Page({ params }: { params: Params }) {
     .catch(() => notFound());
   const services = await client.getByType("services", { lang: params.locale });
 
-  const rtfComponents: Record<
-    string,
-    React.ComponentType<{ children: React.ReactNode }>
-  > = {
-    // em: ({ children }) => (
-    //   <span className="text-md text-dark-2 font-medium leading-[1.5]">
-    //     {children}
-    //   </span>
-    // ),
-    // paragraph: ({ children }) => <p className="text-xl leading-[1.5]">{children}</p>,
-    // strong: ({ children }) => <span className="text-md ">{children}</span>,
-  };
   const includedItems = page.data.price_includes.map((item) => item.included);
   const excludedItems = page.data.price_excludes.map((item) => item.excluded);
   const photos = page.data.gallery.map((photo) => ({
@@ -109,10 +98,12 @@ export default async function Page({ params }: { params: Params }) {
           <div className="grid grid-cols-12 gap-base">
             <div className="lg:col-span-8 col-span-12">
               <div className="pack__disc">
-                <PrismicRichText
-                  field={page.data.description}
-                  components={rtfComponents}
-                />
+                <div className="rich-text">
+                  <PrismicRichText
+                    field={page.data.description}
+                    components={richTextStyling}
+                  />
+                </div>
 
                 <ul className="mt-base">
                   {includedItems.length > 0 && (

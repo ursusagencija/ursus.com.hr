@@ -512,13 +512,13 @@ Customiz Third-Party Plugins
 .disc__wrapper blockquote cite{
   @apply relative pl-10 text-dark-2 font-medium before:absolute before:content-[''] before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-9 before:h-[1.5px] before:bg-dark-2
 }
-.pack__disc h3, .pack__disc h2, .pack__disc h1, .pack__disc h4, .pack__disc h5{
+.pack__disc > h3, .pack__disc > h2, .pack__disc > h1, .pack__disc > h4, .pack__disc > h5{
   @apply text-dark-1 leading-[1.42] font-medium mt-[10px] mb-[14px];
 }
-.pack__disc h3{
+.pack__disc > h3{
   @apply lg:text-2xl md:text-xl text-lg;
 }
-.pack__disc p{
+.pack__disc > p{
   @apply text-dark-3 leading-[1.62] lg:text-base text-sm lg:pb-6 pb-5;
 }
 .pack__list{
@@ -641,6 +641,21 @@ Customiz Third-Party Plugins
     opacity: 1;
     transform: none;
   }
+}
+
+/* Prismic rich text prose shell */
+.rich-text > :first-child {
+  margin-top: 0;
+}
+.rich-text > :last-child {
+  margin-bottom: 0;
+}
+.rich-text ul ul,
+.rich-text ol ol,
+.rich-text ul ol,
+.rich-text ol ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 /* Subtle scroll / mount reveals */
