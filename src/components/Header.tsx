@@ -52,8 +52,10 @@ const Header = ({
   const pathWithoutLocale = pathname.replace(/^\/(en|hr)/, "") || "/";
 
   // Light pages without a photo hero need a solid header for contrast.
-  const effectiveVariant =
-    pathWithoutLocale === "/owners-landing" ? "default" : variant;
+  const solidHeaderPaths = ["/owners-landing", "/message-sent"];
+  const effectiveVariant = solidHeaderPaths.includes(pathWithoutLocale)
+    ? "default"
+    : variant;
 
   return (
     <header
