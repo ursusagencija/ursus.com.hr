@@ -1,16 +1,16 @@
 {
-  "id": "transfer_contact_form_slice",
-  "type": "SharedSlice",
-  "name": "TransferContactFormSlice",
   "description": "TransferContactFormSlice",
+  "id": "transfer_contact_form_slice",
+  "name": "TransferContactFormSlice",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": ""
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/ursus/shared-slices/transfer_contact_form_slice/default/e8af463926fce98e5ff99a4fdf0732a18e6592d5.png?auto=compress%2Cformat",
+      "name": "Default",
+      "version": "initial"
     }
   ]
 }

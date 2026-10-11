@@ -1,0 +1,121 @@
+{
+  "id": "for_renters_hero",
+  "name": "ForRentersHero",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "description": "Default",
+      "docURL": "",
+      "id": "default",
+      "imageUrl": "",
+      "name": "Default",
+      "primary": {
+        "eyebrow": {
+          "config": {
+            "label": "Eyebrow",
+            "placeholder": "Ursus · Split"
+          },
+          "type": "Text"
+        },
+        "heading": {
+          "config": {
+            "label": "Heading",
+            "single": "heading1"
+          },
+          "type": "StructuredText"
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "multi": "paragraph,strong,em,hyperlink"
+          },
+          "type": "StructuredText"
+        },
+        "supporting_text": {
+          "config": {
+            "label": "Supporting text",
+            "multi": "paragraph,strong,em,hyperlink"
+          },
+          "type": "StructuredText"
+        },
+        "highlights": {
+          "config": {
+            "fields": {
+              "label": {
+                "config": {
+                  "label": "Label"
+                },
+                "type": "Text"
+              },
+              "emphasis": {
+                "config": {
+                  "label": "Emphasis"
+                },
+                "type": "Text"
+              }
+            },
+            "label": "Highlights"
+          },
+          "type": "Group"
+        },
+        "cta": {
+          "config": {
+            "allowText": true,
+            "label": "CTA"
+          },
+          "type": "Link"
+        },
+        "form_eyebrow": {
+          "config": {
+            "label": "Form eyebrow",
+            "placeholder": "Pošaljite upit"
+          },
+          "type": "Text"
+        },
+        "form_heading": {
+          "config": {
+            "label": "Form heading",
+            "single": "heading2"
+          },
+          "type": "StructuredText"
+        },
+        "form_description": {
+          "config": {
+            "label": "Form description",
+            "multi": "paragraph,strong,em,hyperlink"
+          },
+          "type": "StructuredText"
+        },
+        "form_submit_label": {
+          "config": {
+            "label": "Form submit label",
+            "placeholder": "Zatražite ponudu"
+          },
+          "type": "Text"
+        },
+        "form_privacy_note": {
+          "config": {
+            "label": "Form privacy note",
+            "multi": "paragraph,strong,em,hyperlink"
+          },
+          "type": "StructuredText"
+        },
+        "service_options": {
+          "config": {
+            "fields": {
+              "label": {
+                "config": {
+                  "label": "Option label"
+                },
+                "type": "Text"
+              }
+            },
+            "label": "Service options"
+          },
+          "type": "Group"
+        }
+      },
+      "version": ""
+    }
+  ]
+}

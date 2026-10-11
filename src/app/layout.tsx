@@ -1,13 +1,11 @@
 import "@/styles/globals.css";
 import { Jost, Playfair_Display, Satisfy } from "next/font/google";
-import Header from "@/components/Header";
+import { PrismicPreview } from "@prismicio/next";
 
 // Import Swiper styles
 import "swiper/css";
-import Footer from "@/components/Footer";
-import ContactBar from "@/components/ContactBar";
-import SearchProvider from "@/providers/SearchProvider";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { repositoryName } from "@/prismicio";
 
 /*Configure Google Fonts*/
 const jost = Jost({
@@ -39,7 +37,10 @@ export default function RootLayout({
       className={`${jost.variable} ${playfairDisplay.variable} ${satisfy.variable}`}
     >
       <GoogleAnalytics />
-      <body>{children}</body>
+      <body>
+        {children}
+        <PrismicPreview repositoryName={repositoryName} />
+      </body>
     </html>
   );
 }

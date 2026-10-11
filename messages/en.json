@@ -117,5 +117,22 @@
         "people": "{count, plural, =1 {# person} other {# people}}",
         "bedrooms": "{count, plural, =0 {Studio apartment} =1 {# bedroom} other {# bedrooms}}",
         "from": "From"
+    },
+    "for-renters": {
+        "name": "Full name",
+        "name-placeholder": "Your full name",
+        "email": "Email",
+        "email-placeholder": "name@example.com",
+        "phone": "Phone (optional)",
+        "phone-placeholder": "+385",
+        "location": "Property location",
+        "location-placeholder": "City or neighborhood",
+        "service": "Which service are you interested in?",
+        "service-placeholder": "Select a service",
+        "additional": "Additional information (optional)",
+        "additional-placeholder": "Number of apartments, desired services, or your question…",
+        "submitting": "Sending…",
+        "validation-required": "Please fill in all required fields.",
+        "submit-error": "Something went wrong. Please try again or contact us by phone."
     }
 }

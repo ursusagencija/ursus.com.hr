@@ -1,27 +1,27 @@
 {
-  "id": "image_slider",
-  "type": "SharedSlice",
-  "name": "ImageSlider",
   "description": "ImageSlider",
+  "id": "image_slider",
+  "name": "ImageSlider",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": "",
-      "primary": {},
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format",
       "items": {
         "image": {
-          "type": "Image",
           "config": {
-            "label": "Image",
             "constraint": {},
+            "label": "Image",
             "thumbnails": []
-          }
+          },
+          "type": "Image"
         }
-      }
+      },
+      "name": "Default",
+      "primary": {},
+      "version": "initial"
     }
   ]
 }

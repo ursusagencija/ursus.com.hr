@@ -1,28 +1,28 @@
 {
-  "id": "content",
-  "type": "SharedSlice",
-  "name": "Content",
   "description": "Content",
+  "id": "content",
+  "name": "Content",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": "",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/ursus/shared-slices/content/default/5e7b54ee97236e22cca9aa0c9a091e3f76cf7bb5.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "content": {
-          "type": "StructuredText",
           "config": {
-            "label": "Content",
-            "placeholder": "",
             "allowTargetBlank": true,
-            "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,embed,list-item,o-list-item,rtl"
-          }
+            "label": "Content",
+            "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,embed,list-item,o-list-item,rtl",
+            "placeholder": ""
+          },
+          "type": "StructuredText"
         }
       },
-      "items": {}
+      "version": "initial"
     }
   ]
 }

@@ -1,0 +1,56 @@
+{
+  "repositoryName": "ursus",
+  "libraries": [
+    "./src/slices"
+  ],
+  "routes": [
+    {
+      "type": "about_us",
+      "path": "/:lang?/about-us"
+    },
+    {
+      "type": "accomodation",
+      "path": "/:lang?/accommodation"
+    },
+    {
+      "type": "accomodation_single",
+      "path": "/:lang?/accommodation/:uid"
+    },
+    {
+      "type": "contact",
+      "path": "/:lang?/contact"
+    },
+    {
+      "type": "for_renters",
+      "path": "/:lang?/for-renters"
+    },
+    {
+      "type": "homepage",
+      "path": "/:lang?"
+    },
+    {
+      "type": "owners_landing",
+      "path": "/:lang?/owners-landing"
+    },
+    {
+      "type": "privacy_policy",
+      "path": "/:lang?/privacy-policy"
+    },
+    {
+      "type": "terms_and_conditions",
+      "path": "/:lang?/terms-and-conditions"
+    },
+    {
+      "type": "tours",
+      "path": "/:lang?/tours"
+    },
+    {
+      "type": "tours_single",
+      "path": "/:lang?/tours/:uid"
+    },
+    {
+      "type": "transfers",
+      "path": "/:lang?/transfers"
+    }
+  ]
+}

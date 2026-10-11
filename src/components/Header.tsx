@@ -49,14 +49,18 @@ const Header = ({
   const t = useTranslations("navbar");
 
   // Get the path without any locale prefix
-  const pathWithoutLocale = pathname.replace(/^\/(en|hr)/, '') || '/';
+  const pathWithoutLocale = pathname.replace(/^\/(en|hr)/, "") || "/";
+
+  // Light pages without a photo hero need a solid header for contrast.
+  const effectiveVariant =
+    pathWithoutLocale === "/owners-landing" ? "default" : variant;
 
   return (
     <header
       className={`header-style 
            ${isSticky ? "sticky" : ""} 
-           ${variant === "transparent" ? "herder-variant-three" : ""}
-           ${variant === "transparent-V2" ? "herder-variant-two" : ""}
+           ${effectiveVariant === "transparent" ? "herder-variant-three" : ""}
+           ${effectiveVariant === "transparent-V2" ? "herder-variant-two" : ""}
            `}
     >
       <div className="desktop-menu max-w-[1570px] mx-auto justify-between items-center xl:flex hidden">
@@ -123,26 +127,28 @@ const Header = ({
               className={`text-sm hover:text-primary transition-colors ${
                 locale === 'en' ? 'font-bold' : ''
               } ${
-                variant === 'transparent' || variant === 'transparent-V2'
+                effectiveVariant === "transparent" ||
+                effectiveVariant === "transparent-V2"
                   ? isSticky
-                    ? 'text-dark'
-                    : 'text-white'
-                  : ''
+                    ? "text-dark"
+                    : "text-white"
+                  : "text-dark-1"
               }`}
             >
               EN
             </Link>
-            <Link 
-              href={pathWithoutLocale} 
-              locale="hr" 
+            <Link
+              href={pathWithoutLocale}
+              locale="hr"
               className={`text-sm hover:text-primary transition-colors ${
-                locale === 'hr' ? 'font-bold' : ''
+                locale === "hr" ? "font-bold" : ""
               } ${
-                variant === 'transparent' || variant === 'transparent-V2'
+                effectiveVariant === "transparent" ||
+                effectiveVariant === "transparent-V2"
                   ? isSticky
-                    ? 'text-dark'
-                    : 'text-white'
-                  : ''
+                    ? "text-dark"
+                    : "text-white"
+                  : "text-dark-1"
               }`}
             >
               HR

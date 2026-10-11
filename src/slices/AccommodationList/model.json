@@ -1,36 +1,35 @@
 {
-  "id": "accomodation_list",
-  "type": "SharedSlice",
-  "name": "AccommodationList",
   "description": "AccomodationList",
+  "id": "accomodation_list",
+  "name": "AccommodationList",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": "",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/ursus/shared-slices/accomodation_list/default/20653d4abb19d6b3290a0d4d18778a231228407c.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "heading": {
-          "type": "Text",
           "config": {
             "label": "Heading",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "overtitle": {
-          "type": "Text",
           "config": {
             "label": "Overtitle",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "limit": {
-          "type": "Select",
           "config": {
+            "default_value": "No limit",
             "label": "Limit",
-            "placeholder": "",
             "options": [
               "No limit",
               "2",
@@ -41,11 +40,12 @@
               "7",
               "8"
             ],
-            "default_value": "No limit"
-          }
+            "placeholder": ""
+          },
+          "type": "Select"
         }
       },
-      "items": {}
+      "version": "initial"
     }
   ]
 }

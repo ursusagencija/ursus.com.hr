@@ -1,42 +1,42 @@
 {
-  "id": "gallery",
-  "type": "SharedSlice",
-  "name": "Gallery",
   "description": "Gallery",
+  "id": "gallery",
+  "name": "Gallery",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": "",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/ursus/shared-slices/gallery/default/314a9a50a77303a1ae31c566df03aa7f90e161a7.png?auto=compress%2Cformat",
+      "items": {
+        "image": {
+          "config": {
+            "constraint": {},
+            "label": "Image",
+            "thumbnails": []
+          },
+          "type": "Image"
+        }
+      },
+      "name": "Default",
       "primary": {
         "heading": {
-          "type": "Text",
           "config": {
             "label": "Heading",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "overtitle": {
-          "type": "Text",
           "config": {
             "label": "Overtitle",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         }
       },
-      "items": {
-        "image": {
-          "type": "Image",
-          "config": {
-            "label": "Image",
-            "constraint": {},
-            "thumbnails": []
-          }
-        }
-      }
+      "version": "initial"
     }
   ]
 }

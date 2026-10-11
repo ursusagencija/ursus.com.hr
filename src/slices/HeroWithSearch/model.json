@@ -1,34 +1,34 @@
 {
-  "id": "hero_with_search",
-  "type": "SharedSlice",
-  "name": "HeroWithSearch",
   "description": "HeroWithSearch",
+  "id": "hero_with_search",
+  "name": "HeroWithSearch",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": "",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/ursus/shared-slices/hero_with_search/default/bcf50ee132921c09f82c0a9f2866b6860085ecc2.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "heading": {
-          "type": "Text",
           "config": {
             "label": "Heading",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "image": {
-          "type": "Image",
           "config": {
-            "label": "Image",
             "constraint": {},
+            "label": "Image",
             "thumbnails": []
-          }
+          },
+          "type": "Image"
         }
       },
-      "items": {}
+      "version": "initial"
     }
   ]
 }
