@@ -1,14 +1,9 @@
 {
   "format": "page",
   "id": "terms_and_conditions",
-  "label": "Terms And Conditions",
-  "repeatable": false,
-  "status": true,
   "json": {
     "Main": {
       "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
         "config": {
           "choices": {
             "hero": {
@@ -18,7 +13,9 @@
               "type": "SharedSlice"
             }
           }
-        }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
       }
     },
     "SEO & Metadata": {
@@ -48,5 +45,8 @@
         "type": "Text"
       }
     }
-  }
+  },
+  "label": "Terms And Conditions",
+  "repeatable": false,
+  "status": true
 }

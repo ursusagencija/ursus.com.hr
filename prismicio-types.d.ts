@@ -586,14 +586,14 @@ interface ContactDocumentData {
  */
 export type ContactDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<ContactDocumentData>, "contact", Lang>;
 
-type ForRentersDocumentDataSlicesSlice = ContentSlice | HeroSlice | GallerySlice | ImageSliderSlice
+type ForRentersDocumentDataSlicesSlice = ForRentersHeroSlice | FeatureGridSlice | ProcessStepsSlice | FaqSlice
 
 /**
- * Content for For Renters documents
+ * Content for For Renters (old - archive) documents
  */
 interface ForRentersDocumentData {
 	/**
-	 * Slice Zone field in *For Renters*
+	 * Slice Zone field in *For Renters (old - archive)*
 	 *
 	 * - **Field Type**: Slice Zone
 	 * - **Placeholder**: *None*
@@ -602,7 +602,7 @@ interface ForRentersDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/slices
 	 */
 	slices: prismic.SliceZone<ForRentersDocumentDataSlicesSlice>;/**
-	 * Meta Description field in *For Renters*
+	 * Meta Description field in *For Renters (old - archive)*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: A brief summary of the page
@@ -613,7 +613,7 @@ interface ForRentersDocumentData {
 	meta_description: prismic.KeyTextField;
 	
 	/**
-	 * Meta Image field in *For Renters*
+	 * Meta Image field in *For Renters (old - archive)*
 	 *
 	 * - **Field Type**: Image
 	 * - **Placeholder**: *None*
@@ -624,7 +624,7 @@ interface ForRentersDocumentData {
 	meta_image: prismic.ImageField<never>;
 	
 	/**
-	 * Meta Title field in *For Renters*
+	 * Meta Title field in *For Renters (old - archive)*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: A title of the page used for social media and search engines
@@ -636,7 +636,7 @@ interface ForRentersDocumentData {
 }
 
 /**
- * For Renters document from Prismic
+ * For Renters (old - archive) document from Prismic
  *
  * - **API ID**: `for_renters`
  * - **Repeatable**: `false`
@@ -709,11 +709,11 @@ export type HomepageDocument<Lang extends string = string> = prismic.PrismicDocu
 type OwnersLandingDocumentDataSlicesSlice = ForRentersHeroSlice | FeatureGridSlice | ProcessStepsSlice | FaqSlice
 
 /**
- * Content for Owners Landing documents
+ * Content for For Renters documents
  */
 interface OwnersLandingDocumentData {
 	/**
-	 * Slice Zone field in *Owners Landing*
+	 * Slice Zone field in *For Renters*
 	 *
 	 * - **Field Type**: Slice Zone
 	 * - **Placeholder**: *None*
@@ -722,7 +722,7 @@ interface OwnersLandingDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/slices
 	 */
 	slices: prismic.SliceZone<OwnersLandingDocumentDataSlicesSlice>;/**
-	 * Meta Title field in *Owners Landing*
+	 * Meta Title field in *For Renters*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: A title of the page used for social media and search engines
@@ -733,7 +733,7 @@ interface OwnersLandingDocumentData {
 	meta_title: prismic.KeyTextField;
 	
 	/**
-	 * Meta Description field in *Owners Landing*
+	 * Meta Description field in *For Renters*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: A brief summary of the page
@@ -744,7 +744,7 @@ interface OwnersLandingDocumentData {
 	meta_description: prismic.KeyTextField;
 	
 	/**
-	 * Meta Image field in *Owners Landing*
+	 * Meta Image field in *For Renters*
 	 *
 	 * - **Field Type**: Image
 	 * - **Placeholder**: *None*
@@ -756,7 +756,7 @@ interface OwnersLandingDocumentData {
 }
 
 /**
- * Owners Landing document from Prismic
+ * For Renters document from Prismic
  *
  * - **API ID**: `owners_landing`
  * - **Repeatable**: `false`

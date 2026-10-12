@@ -10,7 +10,7 @@ export default async function Page({
   params: { locale: string };
 }) {
   const client = createClient();
-  const page = await client.getSingle("for_renters", {
+  const page = await client.getSingle("owners_landing", {
     lang: locale,
   });
 
@@ -23,7 +23,7 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const client = createClient();
-  const page = await client.getSingle("for_renters", { lang: locale });
+  const page = await client.getSingle("owners_landing", { lang: locale });
 
   return {
     title: page.data.meta_title,

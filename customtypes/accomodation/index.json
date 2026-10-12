@@ -1,14 +1,9 @@
 {
   "format": "page",
   "id": "accomodation",
-  "label": "Accommodation",
-  "repeatable": false,
-  "status": true,
   "json": {
     "Main": {
       "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
         "config": {
           "choices": {
             "hero_with_search": {
@@ -24,7 +19,9 @@
               "type": "SharedSlice"
             }
           }
-        }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
       }
     },
     "SEO & Metadata": {
@@ -54,5 +51,8 @@
         "type": "Text"
       }
     }
-  }
+  },
+  "label": "Accommodation",
+  "repeatable": false,
+  "status": true
 }

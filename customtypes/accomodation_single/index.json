@@ -1,9 +1,6 @@
 {
   "format": "page",
   "id": "accomodation_single",
-  "label": "Accommodation Single",
-  "repeatable": true,
-  "status": true,
   "json": {
     "Main": {
       "uid": {
@@ -13,201 +10,201 @@
         "type": "UID"
       },
       "heading": {
-        "type": "Text",
         "config": {
           "label": "Heading",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "ical": {
-        "type": "Text",
         "config": {
           "label": "iCal",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "cover_image": {
-        "type": "Image",
         "config": {
-          "label": "Cover Image",
           "constraint": {},
+          "label": "Cover Image",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       },
       "guests": {
-        "type": "Number",
         "config": {
           "label": "Guests",
           "placeholder": ""
-        }
+        },
+        "type": "Number"
       },
       "bedrooms": {
-        "type": "Number",
         "config": {
           "label": "Bedrooms",
           "placeholder": ""
-        }
+        },
+        "type": "Number"
       },
       "beds": {
-        "type": "Number",
         "config": {
           "label": "Beds",
           "placeholder": ""
-        }
+        },
+        "type": "Number"
       },
       "bathrooms": {
-        "type": "Number",
         "config": {
           "label": "Bathrooms",
           "placeholder": ""
-        }
+        },
+        "type": "Number"
       },
       "description": {
-        "type": "StructuredText",
         "config": {
-          "label": "Description",
-          "placeholder": "",
           "allowTargetBlank": true,
-          "multi": "paragraph,preformatted,strong,em,hyperlink,embed,list-item,o-list-item,rtl"
-        }
+          "label": "Description",
+          "multi": "paragraph,preformatted,strong,em,hyperlink,embed,list-item,o-list-item,rtl",
+          "placeholder": ""
+        },
+        "type": "StructuredText"
       },
       "amenities": {
-        "type": "Group",
         "config": {
-          "label": "Amenities",
-          "repeat": true,
           "fields": {
             "amenity": {
-              "type": "Text",
               "config": {
                 "label": "Amenity",
                 "placeholder": ""
-              }
+              },
+              "type": "Text"
             }
-          }
-        }
+          },
+          "label": "Amenities",
+          "repeat": true
+        },
+        "type": "Group"
       },
       "distances": {
-        "type": "StructuredText",
         "config": {
-          "label": "Distances",
-          "placeholder": "",
           "allowTargetBlank": true,
-          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-        }
+          "label": "Distances",
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+          "placeholder": ""
+        },
+        "type": "StructuredText"
       },
       "house_rules": {
-        "type": "StructuredText",
         "config": {
-          "label": "House Rules",
-          "placeholder": "",
           "allowTargetBlank": true,
-          "multi": "paragraph,preformatted,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-        }
+          "label": "House Rules",
+          "multi": "paragraph,preformatted,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+          "placeholder": ""
+        },
+        "type": "StructuredText"
       },
       "summary": {
-        "type": "StructuredText",
         "config": {
-          "label": "Summary",
-          "placeholder": "",
           "allowTargetBlank": true,
-          "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,embed,list-item,o-list-item,rtl"
-        }
+          "label": "Summary",
+          "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,embed,list-item,o-list-item,rtl",
+          "placeholder": ""
+        },
+        "type": "StructuredText"
       },
       "important_information": {
-        "type": "StructuredText",
         "config": {
-          "label": "Important Information",
-          "placeholder": "",
           "allowTargetBlank": true,
-          "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,embed,list-item,o-list-item,rtl,hyperlink"
-        }
+          "label": "Important Information",
+          "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,embed,list-item,o-list-item,rtl,hyperlink",
+          "placeholder": ""
+        },
+        "type": "StructuredText"
       },
       "faq": {
-        "type": "Group",
         "config": {
-          "label": "FAQ",
-          "repeat": true,
           "fields": {
             "question": {
-              "type": "Text",
               "config": {
                 "label": "Question",
                 "placeholder": ""
-              }
+              },
+              "type": "Text"
             },
             "answer": {
-              "type": "Text",
               "config": {
                 "label": "Answer",
                 "placeholder": ""
-              }
+              },
+              "type": "Text"
             }
-          }
-        }
+          },
+          "label": "FAQ",
+          "repeat": true
+        },
+        "type": "Group"
       },
       "gallery": {
-        "type": "Group",
         "config": {
-          "label": "Gallery",
-          "repeat": true,
           "fields": {
             "photo": {
-              "type": "Image",
               "config": {
-                "label": "Photo",
                 "constraint": {},
+                "label": "Photo",
                 "thumbnails": []
-              }
+              },
+              "type": "Image"
             }
-          }
-        }
+          },
+          "label": "Gallery",
+          "repeat": true
+        },
+        "type": "Group"
       },
       "pricing": {
-        "type": "Group",
         "config": {
-          "label": "Pricing",
-          "repeat": true,
           "fields": {
             "period_start": {
-              "type": "Date",
               "config": {
                 "label": "Period start",
                 "placeholder": ""
-              }
+              },
+              "type": "Date"
             },
             "period_end": {
-              "type": "Date",
               "config": {
                 "label": "Period end",
                 "placeholder": ""
-              }
+              },
+              "type": "Date"
             },
             "price": {
-              "type": "Number",
               "config": {
                 "label": "Price",
                 "placeholder": ""
-              }
+              },
+              "type": "Number"
             }
-          }
-        }
+          },
+          "label": "Pricing",
+          "repeat": true
+        },
+        "type": "Group"
       },
       "isFeatured": {
-        "type": "Boolean",
         "config": {
+          "default_value": false,
           "label": "Is Featured",
           "placeholder_false": "false",
-          "placeholder_true": "true",
-          "default_value": false
-        }
+          "placeholder_true": "true"
+        },
+        "type": "Boolean"
       },
       "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
         "config": {
           "choices": {}
-        }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
       }
     },
     "SEO & Metadata": {
@@ -237,5 +234,8 @@
         "type": "Text"
       }
     }
-  }
+  },
+  "label": "Accommodation Single",
+  "repeatable": true,
+  "status": true
 }

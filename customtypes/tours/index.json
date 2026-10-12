@@ -1,14 +1,9 @@
 {
   "format": "page",
   "id": "tours",
-  "label": "Tours",
-  "repeatable": false,
-  "status": true,
   "json": {
     "Main": {
       "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
         "config": {
           "choices": {
             "tour_list": {
@@ -18,7 +13,9 @@
               "type": "SharedSlice"
             }
           }
-        }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
       }
     },
     "SEO & Metadata": {
@@ -48,5 +45,8 @@
         "type": "Text"
       }
     }
-  }
+  },
+  "label": "Tours",
+  "repeatable": false,
+  "status": true
 }

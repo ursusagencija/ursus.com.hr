@@ -16,7 +16,6 @@ const STATIC_PATHS = [
   "/tours",
   "/transfers",
   "/for-renters",
-  "/owners-landing",
   "/about-us",
   "/contact",
   "/terms-and-conditions",

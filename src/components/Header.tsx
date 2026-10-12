@@ -58,7 +58,6 @@ const Header = ({
     "/accommodation",
     "/tours",
     "/transfers",
-    "/for-renters",
     "/about-us",
     "/contact",
   ];

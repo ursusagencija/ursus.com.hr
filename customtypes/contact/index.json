@@ -1,36 +1,33 @@
 {
   "format": "page",
   "id": "contact",
-  "label": "Contact",
-  "repeatable": false,
-  "status": true,
   "json": {
     "Main": {
       "heading": {
-        "type": "Text",
         "config": {
           "label": "Heading",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "image": {
-        "type": "Image",
         "config": {
-          "label": "Image",
           "constraint": {},
+          "label": "Image",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       },
       "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
         "config": {
           "choices": {
             "hero": {
               "type": "SharedSlice"
             }
           }
-        }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
       }
     },
     "SEO & Metadata": {
@@ -60,5 +57,8 @@
         "type": "Text"
       }
     }
-  }
+  },
+  "label": "Contact",
+  "repeatable": false,
+  "status": true
 }

@@ -1,63 +1,58 @@
 {
   "format": "page",
   "id": "transfers",
-  "label": "Transfers",
-  "repeatable": false,
-  "status": true,
   "json": {
     "Main": {
       "heading": {
-        "type": "Text",
         "config": {
           "label": "Heading",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "image": {
-        "type": "Image",
         "config": {
-          "label": "Image",
           "constraint": {},
+          "label": "Image",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       },
       "content": {
-        "type": "StructuredText",
         "config": {
-          "label": "Content",
-          "placeholder": "",
           "allowTargetBlank": true,
-          "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-        }
+          "label": "Content",
+          "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+          "placeholder": ""
+        },
+        "type": "StructuredText"
       },
       "howtobook": {
-        "type": "Group",
         "config": {
-          "label": "HowToBook",
-          "repeat": true,
           "fields": {
             "heading": {
-              "type": "Text",
               "config": {
                 "label": "Heading",
                 "placeholder": ""
-              }
+              },
+              "type": "Text"
             },
             "content": {
-              "type": "StructuredText",
               "config": {
-                "label": "Content",
-                "placeholder": "",
                 "allowTargetBlank": true,
-                "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-              }
+                "label": "Content",
+                "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+                "placeholder": ""
+              },
+              "type": "StructuredText"
             }
-          }
-        }
+          },
+          "label": "HowToBook",
+          "repeat": true
+        },
+        "type": "Group"
       },
       "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
         "config": {
           "choices": {
             "transfer_service_slice": {
@@ -76,7 +71,9 @@
               "type": "SharedSlice"
             }
           }
-        }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
       }
     },
     "SEO & Metadata": {
@@ -106,5 +103,8 @@
         "type": "Text"
       }
     }
-  }
+  },
+  "label": "Transfers",
+  "repeatable": false,
+  "status": true
 }

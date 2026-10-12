@@ -21,16 +21,12 @@
       "path": "/:lang?/contact"
     },
     {
-      "type": "for_renters",
-      "path": "/:lang?/for-renters"
-    },
-    {
       "type": "homepage",
       "path": "/:lang?"
     },
     {
       "type": "owners_landing",
-      "path": "/:lang?/owners-landing"
+      "path": "/:lang?/for-renters"
     },
     {
       "type": "privacy_policy",

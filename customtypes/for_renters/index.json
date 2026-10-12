@@ -6,16 +6,16 @@
       "slices": {
         "config": {
           "choices": {
-            "content": {
+            "for_renters_hero": {
               "type": "SharedSlice"
             },
-            "hero": {
+            "feature_grid": {
               "type": "SharedSlice"
             },
-            "gallery": {
+            "process_steps": {
               "type": "SharedSlice"
             },
-            "image_slider": {
+            "faq": {
               "type": "SharedSlice"
             }
           }
@@ -52,7 +52,7 @@
       }
     }
   },
-  "label": "For Renters",
+  "label": "For Renters (old - archive)",
   "repeatable": false,
   "status": true
 }

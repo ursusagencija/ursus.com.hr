@@ -1,9 +1,6 @@
 {
   "format": "page",
   "id": "tours_single",
-  "label": "Tours Single",
-  "repeatable": true,
-  "status": true,
   "json": {
     "Main": {
       "uid": {
@@ -13,169 +10,169 @@
         "type": "UID"
       },
       "heading": {
-        "type": "Text",
         "config": {
           "label": "Heading",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "cover_image": {
-        "type": "Image",
         "config": {
-          "label": "Cover Image",
           "constraint": {},
+          "label": "Cover Image",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       },
       "location": {
-        "type": "Text",
         "config": {
           "label": "Location",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "price": {
-        "type": "Text",
         "config": {
           "label": "Price",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "duration": {
-        "type": "Text",
         "config": {
           "label": "Duration",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "min_age": {
-        "type": "Text",
         "config": {
           "label": "min_age",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "description": {
-        "type": "StructuredText",
         "config": {
-          "label": "Description",
-          "placeholder": "",
           "allowTargetBlank": true,
-          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-        }
+          "label": "Description",
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+          "placeholder": ""
+        },
+        "type": "StructuredText"
       },
       "price_includes": {
-        "type": "Group",
         "config": {
-          "label": "Price Includes",
-          "repeat": true,
           "fields": {
             "included": {
-              "type": "Text",
               "config": {
                 "label": "Included",
                 "placeholder": ""
-              }
+              },
+              "type": "Text"
             }
-          }
-        }
+          },
+          "label": "Price Includes",
+          "repeat": true
+        },
+        "type": "Group"
       },
       "price_excludes": {
-        "type": "Group",
         "config": {
-          "label": "Price Excludes",
-          "repeat": true,
           "fields": {
             "excluded": {
-              "type": "Text",
               "config": {
                 "label": "Excluded",
                 "placeholder": ""
-              }
+              },
+              "type": "Text"
             }
-          }
-        }
+          },
+          "label": "Price Excludes",
+          "repeat": true
+        },
+        "type": "Group"
       },
       "itinerary": {
-        "type": "Group",
         "config": {
-          "label": "Itinerary",
-          "repeat": true,
           "fields": {
             "heading": {
-              "type": "Text",
               "config": {
                 "label": "Heading",
                 "placeholder": ""
-              }
+              },
+              "type": "Text"
             },
             "content": {
-              "type": "StructuredText",
               "config": {
-                "label": "Content",
-                "placeholder": "",
                 "allowTargetBlank": true,
-                "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-              }
+                "label": "Content",
+                "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+                "placeholder": ""
+              },
+              "type": "StructuredText"
             }
-          }
-        }
+          },
+          "label": "Itinerary",
+          "repeat": true
+        },
+        "type": "Group"
       },
       "faq": {
-        "type": "Group",
         "config": {
-          "label": "FAQ",
-          "repeat": true,
           "fields": {
             "question": {
-              "type": "Text",
               "config": {
                 "label": "Question",
                 "placeholder": ""
-              }
+              },
+              "type": "Text"
             },
             "answer": {
-              "type": "Text",
               "config": {
                 "label": "Answer",
                 "placeholder": ""
-              }
+              },
+              "type": "Text"
             }
-          }
-        }
+          },
+          "label": "FAQ",
+          "repeat": true
+        },
+        "type": "Group"
       },
       "gallery": {
-        "type": "Group",
         "config": {
-          "label": "Gallery",
-          "repeat": true,
           "fields": {
             "photo": {
-              "type": "Image",
               "config": {
-                "label": "Photo",
                 "constraint": {},
+                "label": "Photo",
                 "thumbnails": []
-              }
+              },
+              "type": "Image"
             }
-          }
-        }
+          },
+          "label": "Gallery",
+          "repeat": true
+        },
+        "type": "Group"
       },
       "isFeatured": {
-        "type": "Boolean",
         "config": {
+          "default_value": false,
           "label": "Is Featured",
           "placeholder_false": "false",
-          "placeholder_true": "true",
-          "default_value": false
-        }
+          "placeholder_true": "true"
+        },
+        "type": "Boolean"
       },
       "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
         "config": {
           "choices": {}
-        }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
       }
     },
     "SEO & Metadata": {
@@ -205,5 +202,8 @@
         "type": "Text"
       }
     }
-  }
+  },
+  "label": "Tours Single",
+  "repeatable": true,
+  "status": true
 }

@@ -1,145 +1,145 @@
 {
   "format": "custom",
   "id": "services",
-  "label": "Services",
-  "repeatable": false,
-  "status": true,
   "json": {
     "Main": {
       "heading": {
-        "type": "Text",
         "config": {
           "label": "Heading",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "overtitle": {
-        "type": "Text",
         "config": {
           "label": "Overtitle",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "service1_heading": {
-        "type": "Text",
         "config": {
           "label": "Service1 Heading",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "service1_subtitle": {
-        "type": "Text",
         "config": {
           "label": "Service1 Subtitle",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "service1_image": {
-        "type": "Image",
         "config": {
-          "label": "Service1 Image",
           "constraint": {},
+          "label": "Service1 Image",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       },
       "service1_link": {
-        "type": "Link",
         "config": {
           "label": "Service1 Link",
           "placeholder": "",
           "select": null
-        }
+        },
+        "type": "Link"
       },
       "service2_heading": {
-        "type": "Text",
         "config": {
           "label": "Service2 Heading",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "service2_subtitle": {
-        "type": "Text",
         "config": {
           "label": "Service2 Subtitle",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "service2_image": {
-        "type": "Image",
         "config": {
-          "label": "Service2 Image",
           "constraint": {},
+          "label": "Service2 Image",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       },
       "service2_link": {
-        "type": "Link",
         "config": {
           "label": "Service2 Link",
           "placeholder": "",
           "select": null
-        }
+        },
+        "type": "Link"
       },
       "service3_heading": {
-        "type": "Text",
         "config": {
           "label": "Service3 Heading",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "service3_subtitle": {
-        "type": "Text",
         "config": {
           "label": "Service3 Subtitle",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "service3_image": {
-        "type": "Image",
         "config": {
-          "label": "Service3 Image",
           "constraint": {},
+          "label": "Service3 Image",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       },
       "service3_link": {
-        "type": "Link",
         "config": {
           "label": "Service3 Link",
           "placeholder": "",
           "select": null
-        }
+        },
+        "type": "Link"
       },
       "service4_heading": {
-        "type": "Text",
         "config": {
           "label": "Service4 Heading",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "service4_subtitle": {
-        "type": "Text",
         "config": {
           "label": "Service4 Subtitle",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "service4_image": {
-        "type": "Image",
         "config": {
-          "label": "Service4 Image",
           "constraint": {},
+          "label": "Service4 Image",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       },
       "service4_link": {
-        "type": "Link",
         "config": {
           "label": "Service4 Link",
           "placeholder": "",
           "select": null
-        }
+        },
+        "type": "Link"
       }
     }
-  }
+  },
+  "label": "Services",
+  "repeatable": false,
+  "status": true
 }
