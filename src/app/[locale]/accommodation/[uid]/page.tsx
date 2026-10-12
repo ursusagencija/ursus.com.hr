@@ -1,3 +1,4 @@
+import { asText } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, SliceZone } from "@prismicio/react";
 import { eachDayOfInterval, subDays } from "date-fns";
@@ -6,17 +7,18 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 import { Calendar } from "@/components/Calendar";
+import Faq from "@/components/Faq";
 import PackageBookingForm from "@/components/package/PackageBookingForm";
 import PartialDiv from "@/components/PartialDiv";
 import PhotoGallery from "@/components/PhotoGallery";
 import Services from "@/components/Services";
+import richTextStyling from "@/components/utility/richTextSyling";
 import { Link, routing } from "@/i18n/routing";
 import ical from "@/lib/cal-parser";
+import { buildPageMetadata } from "@/lib/metadata";
+import { occupiedDatesFromIcal, occupiedRangesFromIcal } from "@/lib/utils";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
-import richTextStyling from "@/components/utility/richTextSyling";
-import Faq from "@/components/Faq";
-import { occupiedDatesFromIcal, occupiedRangesFromIcal } from "@/lib/utils";
 
 type Params = { uid: string; locale: string };
 
@@ -254,10 +256,20 @@ export async function generateMetadata({
       notFound();
     });
 
-  return {
-    title: page.data.meta_title,
-    description: page.data.meta_description,
-  };
+  const galleryImage = page.data.gallery?.[0]?.photo;
+  const bodyDescription = asText(page.data.description) || undefined;
+
+  return buildPageMetadata({
+    title: page.data.heading || page.data.meta_title,
+    description: page.data.meta_description || bodyDescription,
+    locale: params.locale,
+    path: `/accommodation/${params.uid}`,
+    image: page.data.meta_image?.url
+      ? page.data.meta_image
+      : page.data.cover_image?.url
+        ? page.data.cover_image
+        : galleryImage,
+  });
 }
 
 export async function generateStaticParams() {

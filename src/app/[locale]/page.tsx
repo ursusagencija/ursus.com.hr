@@ -1,7 +1,7 @@
-// ./src/app/[lang]/page.tsx
-
 import { Metadata } from "next";
 import { SliceZone } from "@prismicio/react";
+
+import { buildPageMetadata, getStaticPageMeta } from "@/lib/metadata";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 
@@ -12,11 +12,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const client = createClient();
   const page = await client.getSingle("homepage", { lang: locale });
+  const fallback = getStaticPageMeta("homepage", locale);
 
-  return {
-    title: page.data.meta_title,
-    description: page.data.meta_description,
-  };
+  return buildPageMetadata({
+    title: fallback.title,
+    description: fallback.description,
+    locale,
+    path: "/",
+    image: page.data.meta_image,
+  });
 }
 
 export default async function Index({

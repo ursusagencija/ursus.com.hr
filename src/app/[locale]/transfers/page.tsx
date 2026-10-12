@@ -1,11 +1,12 @@
 import { Metadata } from "next";
 import { SliceZone } from "@prismicio/react";
 
+import ContentBlock from "@/components/ContentBlock";
+import HeroSimple from "@/components/HeroSimple";
+import Itinerary from "@/components/Itinerary";
+import { buildPageMetadata, getStaticPageMeta } from "@/lib/metadata";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
-import HeroSimple from "@/components/HeroSimple";
-import ContentBlock from "@/components/ContentBlock";
-import Itinerary from "@/components/Itinerary";
 
 export default async function Page({
   params: { locale },
@@ -36,9 +37,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const client = createClient();
   const page = await client.getSingle("transfers", { lang: locale });
+  const fallback = getStaticPageMeta("transfers", locale);
 
-  return {
-    title: page.data.meta_title,
-    description: page.data.meta_description,
-  };
+  return buildPageMetadata({
+    title: fallback.title,
+    description: fallback.description,
+    locale,
+    path: "/transfers",
+    image: page.data.meta_image,
+  });
 }

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { SliceZone } from "@prismicio/react";
 
+import { buildPageMetadata, getStaticPageMeta } from "@/lib/metadata";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 
@@ -24,9 +25,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const client = createClient();
   const page = await client.getSingle("privacy_policy", { lang: locale });
+  const fallback = getStaticPageMeta("privacy-policy", locale);
 
-  return {
-    title: page.data.meta_title,
-    description: page.data.meta_description,
-  };
+  return buildPageMetadata({
+    title: fallback.title,
+    description: fallback.description,
+    locale,
+    path: "/privacy-policy",
+    image: page.data.meta_image,
+  });
 }

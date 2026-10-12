@@ -1,4 +1,4 @@
-import { Link, routing } from "@/i18n/routing";
+import { asText } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, SliceZone } from "@prismicio/react";
 import { Metadata } from "next";
@@ -12,6 +12,8 @@ import Services from "@/components/Services";
 import TickList from "@/components/TickList";
 import TourBookingForm from "@/components/package/TourBookingForm";
 import richTextStyling from "@/components/utility/richTextSyling";
+import { Link, routing } from "@/i18n/routing";
+import { buildPageMetadata } from "@/lib/metadata";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 
@@ -168,10 +170,20 @@ export async function generateMetadata({
     .getByUID("tours_single", params.uid, { lang: params.locale })
     .catch(() => notFound());
 
-  return {
-    title: page.data.meta_title,
-    description: page.data.meta_description,
-  };
+  const galleryImage = page.data.gallery?.[0]?.photo;
+  const bodyDescription = asText(page.data.description) || undefined;
+
+  return buildPageMetadata({
+    title: page.data.heading || page.data.meta_title,
+    description: page.data.meta_description || bodyDescription,
+    locale: params.locale,
+    path: `/tours/${params.uid}`,
+    image: page.data.meta_image?.url
+      ? page.data.meta_image
+      : page.data.cover_image?.url
+        ? page.data.cover_image
+        : galleryImage,
+  });
 }
 
 export async function generateStaticParams() {

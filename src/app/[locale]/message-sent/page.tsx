@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
+import { buildPageMetadata, getStaticPageMeta } from "@/lib/metadata";
+
 type Params = { locale: string };
 
 export async function generateMetadata({
@@ -8,19 +10,15 @@ export async function generateMetadata({
 }: {
   params: Params;
 }): Promise<Metadata> {
-  const t = await getTranslations({
-    locale: params.locale,
-    namespace: "message-sent",
-  });
+  const fallback = getStaticPageMeta("message-sent", params.locale);
 
-  return {
-    title: t("meta-title"),
-    description: t("meta-description"),
-    robots: {
-      index: false,
-      follow: false,
-    },
-  };
+  return buildPageMetadata({
+    title: fallback.title,
+    description: fallback.description,
+    locale: params.locale,
+    path: "/message-sent",
+    noIndex: true,
+  });
 }
 
 export default async function Page() {
